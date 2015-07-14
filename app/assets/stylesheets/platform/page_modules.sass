@@ -1,0 +1,700 @@
+@import bootstrap/variables
+@import bootstrap/mixins
+@import common
+
+.feature-heading-container, .post-banner-img
+  .photo-credit
+    position: absolute
+    bottom: 0
+    right: 0
+    font-size: 13px
+    z-index: 999
+    padding: 4px 14px 4px 14px
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.1)
+
+    @media (max-width: $screen-md)
+      display: none
+    &, a
+      color: #fff
+      // font-style: italic84
+
+.feature-heading
+  cursor: pointer
+  display: block
+
+  $fh_height: 569px
+
+  .feature-heading-img-box
+    width: 100%
+    +img_background
+    position: relative
+    z-index: 0
+
+    .feature-heading-inner
+      max-width: 1200px
+      margin: 0 auto
+      height: 100%
+
+      .container-fluid
+        position: relative
+        height: 100%
+
+    &, .col-md-6
+      height: $fh_height
+
+    @media (max-width: $screen-md)
+      height: auto
+
+
+  .feature-post-wrap
+    height: $fh_height
+    display: table-cell
+    vertical-align: middle
+
+    @media (max-width: $screen-md)
+      height: auto
+
+  .category-wrap
+    position: absolute
+    top: 0
+    +heavy_font
+    text-transform: uppercase
+    color: #000
+    margin-bottom: 12px
+    font-size: 13px
+
+    .category-name
+      display: block
+      padding: 6px 14px
+      background-color: $white_alpha
+      text-rendering: optimizeLegibility
+
+    &.big-tag
+      height: 60px
+      min-width: 140px
+      .category-name
+        height: 100%
+        width: 100%
+        padding-top: 8px
+        color: white
+        text-transform: none
+        text-align: center
+        background: $hover_color
+        font-size: 30px
+
+
+    @media (max-width: $screen-md)
+      padding-left: 30px
+
+  .feature-post-box
+    display: inline-block
+    min-height: 100px
+    padding: 34px 30px 24px 0
+    color: $body_text_color
+    max-width: 534px
+
+    &.long-headline, &.extralong-headline
+      max-width: 734px
+
+      .post-headline
+        font-size: 76px
+        padding-bottom: 0
+        line-height: 118%
+
+    &.extralong-headline
+      font-size: 40px
+
+    .post-headline
+      display: inline-block
+      z-index: 10
+      +extrabold_font
+
+
+    @media (max-width: $screen-md)
+      margin-top: 0
+      padding: 64px 0 54px 0
+
+    a
+      &, &:hover, &:focus, &:active, &:visited
+        text-decoration: none
+
+    .category-label, .post-tag
+      padding: 6px 14px
+      text-align: center
+
+
+
+    .post-headline
+      color: $body_text_color
+      margin-top: 12px
+      font-size: 90px
+      line-height: 120%
+      margin-bottom: 0
+      padding-bottom: 0.03em
+
+      span.inner
+        background: $home_bg
+        box-decoration-break: clone
+
+
+      @media (max-width: $screen-xs-max)
+        font-size: 39px
+
+
+
+    .read-story-link
+      background: $body_text_color
+      color: #f7f7f7
+      padding: 14px 23px
+      text-transform: uppercase
+      display: inline-block
+      font-size: 22px
+      +heavy_font
+
+    .featured-post-excerpt
+      margin-top: 16px
+      font-size: 17px
+      line-height: 172%
+
+
+
+
+.page-group
+  max-width: 1170px
+  margin: 0 auto 40px auto
+  border-top: 1px solid #ccc
+  padding-bottom: 36px
+  padding-top: 28px
+
+  &.no-border
+    border-top: none
+
+  h3
+    text-align: center
+    padding: 14px 16px 0 16px
+    margin: 0 auto 35px auto
+    max-width: 240px
+    border-bottom: 8px solid #000
+    text-transform: uppercase
+
+    &.with-link
+      padding: 0
+      border-bottom: none
+
+      a
+        padding: 14px 16px 0 16px
+        display: inline-block
+        border-bottom: 8px solid #000
+
+        &:hover
+          border-bottom: 8px solid $hover_color
+          color: $hover_color
+
+.latest-posts-module-container
+  padding-top: 18px
+
+.page-group.latest-posts-module
+  padding-bottom: 0
+
+
+.second-level-feature-wrap
+  border-top: none
+  padding: 0
+  margin-bottom: 0
+
+  .feature-heading-inner
+    padding: 0 60px
+
+    @media (max-width: $screen-xs-max)
+      padding: 0
+
+  .feature-heading-img-box, .feature-heading .feature-post-wrap
+    height: 476px
+
+
+  .feature-post-box .post-headline
+    font-size: 61px
+
+.post-thumb-box
+  overflow: hidden
+  margin-bottom: 32px
+  display: block
+  position: relative
+  cursor: pointer
+  padding: 6px
+
+  &:hover, &:visited, &:focus
+    text-decoration: none
+    // box-shadow: 0 0 5px #888
+
+    .post-thumb-headline
+      color: $hover_color
+      text-decoration: none
+
+  &.expanded .post-thumb-content
+    top: 0 !important
+
+    .author-info
+      opacity: 1
+
+  .post-thumb-box-img
+    display: block
+    width: 100%
+    height: 238px
+    +img_background
+    position: relative
+
+    .post-tag, .category-label
+      border: none
+      position: absolute
+      z-index: 1
+      top: 0
+      left: 0
+      padding: 6px 14px
+      font-size: 13px
+      background: $body_text_color
+      color: #000
+      background: $white_alpha
+
+  &.first-level
+    .post-thumb-box-img
+      height: 301px
+
+  &.second-level
+    .post-thumb-box-img
+      height: 238px
+    .post-thumb-text .post-thumb-headline
+      font-size: 28px
+
+  &.third-level
+    .post-thumb-box-img
+      height: 166px
+
+    .post-thumb-text .post-thumb-headline
+      font-size: 24px
+
+  .post-thumb-text
+    width: 100%
+    padding: 8px
+
+    .post-thumb-headline
+      +heavy_font
+      width: 100%
+      font-size: 34px
+      line-height: 1.25em
+      margin: 8px 0 0 0
+
+    .featured-post-excerpt
+      display: none
+      font-size: 15px
+      line-height: 190%
+
+  .author-info
+    margin-top: 2px
+
+    .post-author-link, .post-author-name
+      margin-right: 3px
+
+  @media (max-width: $screen-xs-max)
+    &.first-level, &.second-level, &.third-level
+      .post-thumb-box-img
+        height: 166px
+
+    .post-thumb-text
+      .post-thumb-headline
+        font-size: 25px
+        line-height: 136%
+        margin-bottom: 0
+
+
+.most-popular-posts-box
+  +vw_shadow
+  background: #fff
+
+  .most-popular-posts-loading-overlay
+    display: none
+    position: absolute
+    top: 0
+    left: 0
+    background: #fff
+    opacity: 0.7
+    z-index: 999
+    width: 100%
+    height: 100%
+
+  .inner
+    padding: 4px 20px 0 20px
+
+  .most-popular-posts-heading
+    padding: 10px 0 0 0
+    margin-bottom: 0
+    text-transform: uppercase
+    border-bottom: 8px solid #000
+    text-align: center
+    font-size: $md_title_font_size
+    +extrabold_font
+
+  ul.popular-posts
+    li.popular-post
+      padding: 0 18px 0 18px
+      min-height: 88px
+      position: relative
+
+      .popular-post-inner
+        padding: 27px 0  22px 0
+        border-bottom: 1px solid #ccc
+        display: block
+
+        &:hover
+          text-decoration: none
+
+      &:last-child .popular-post-inner
+        border-bottom: none
+
+      .number
+        display: block
+        font-weight: 700
+        font-size: 17px
+        margin: 0 auto 4px auto
+        background: $body_text_color
+        color: #fff
+        border-radius: 28px
+        width: 35px
+        height: 35px
+        line-height: 35px
+        text-align: center
+
+      .post-headline
+        font-size: 22px
+        width: 100%
+        text-align: center
+        font-weight: 600
+        display: block
+
+        .text
+          display: block
+          font-size: 18px
+
+      .author-info
+        display: none
+        font-size: 13px
+        margin-top: 3px
+
+        .post-author-link, .post-author-name
+          margin-right: 4px
+
+
+      &:hover
+        // background: #f7f7f7
+        color: $hover_color
+
+        .number
+          background: $hover_color
+          text-decoration: none
+
+        .post-headline .text
+          text-decoration: underline
+
+      &:last-child
+        border-bottom: none
+
+    .most-popular-posts-body
+      position: relative
+
+  .more-link
+    border-top: 1px solid #ccc
+    text-transform: uppercase
+    +heavy_font
+
+  .popular-more-link, .popular-prev-link
+    display: inline-block
+    padding: 15px 22px
+    font-size: 18px
+    text-align: right
+    width: 50%
+    float: right
+
+    &.last-page
+      display: none
+
+      &:hover
+        cursor: default
+
+    &:focus, &:hover, &:focus &:hover, &:visited
+      text-decoration: none
+
+  .popular-prev-link
+    float: left
+    text-align: left
+
+    &.first-page
+      display: none
+
+.tag-focus.page-group.container-fluid
+  color: #000
+  +img_background
+  padding: 95px 40px 85px 40px
+  max-width: none
+
+  &.no-img
+    background-image: none !important
+
+  .tag-col, .tag-articles-col
+    position: relative
+    min-height: 300px
+
+  &.count-1, &.count-2, &.count-3
+    .tag-col, .tag-articles-col
+      min-height: 100px
+
+
+  .tag-col
+    text-align: right
+
+    @media (max-width: $screen-md-max)
+      min-height: 0
+
+  .tag-name
+    font-size: 66px
+    font-weight: 700
+    padding: 18px 34px 38px 25px
+    background: $body_text_color
+    color: #fff
+    +heavy_font
+    +vcenter
+    right: -152px
+    z-index: 10
+
+    @media (max-width: $screen-md-max)
+      text-align: center
+      display: block
+      font-size: 50px
+      padding: 18px 12px 38px 12px
+      position: relative
+      top: auto
+      transform: none
+      right: auto
+      width: 100%
+      margin-bottom: 18px
+
+    .name
+      border-bottom: 10px solid #fff
+      text-transform: uppercase
+
+  .tag-articles-wrap
+    background: #fff
+    padding: 0 20px
+
+    @media (min-width: $screen-md-max)
+      padding: 5px 20px 6px 150px
+      +vcenter
+
+    .tag-articles
+      margin: 0
+
+      li
+        border-bottom: 1px solid #ccc
+        padding: 20px 8px
+
+        &:last-child
+          border-bottom: none
+        a
+          font-size: 21px
+          font-weight: 700
+
+
+.category-focus
+  border-bottom: none
+
+  .category-box
+    +vw_shadow
+    margin-bottom: 42px
+    background: #fff
+    min-height: 542px
+
+    .category-box-heading
+      display: block
+      background: $body_text_color
+      color: #fff
+      font-size: 21px
+      text-align: center
+      padding: 14px 20px 13px 20px
+      text-transform: uppercase
+      +heavy_font
+      font-weight: 400
+
+      &:hover
+        background: $hover_color
+
+      i
+        position: absolute
+        right: 15px
+        top: 17px
+        font-size: 22px
+
+      &:hover
+        text-decoration: none
+
+    .first-post
+      padding: 26px 12px 12px 12px
+
+    .cat-post-thumb-box
+      height: 187px
+      margin-top: 0
+      +img_background
+      display: block
+
+      &:hover + .category-list-wrap ul li:first-child a
+        color: $hover_color
+
+    .cat-post-thumb-box-placeholder
+      height: 25px
+
+    .headline
+      font-size: 27px
+
+      &:hover
+        text-decoration: none
+
+    .category-list-wrap
+      padding: 0
+      padding: 0 18px
+
+      .category-list
+        li:first-child a .inner
+          +heavy_font
+          font-size: 24px
+          line-height: 1.29em
+
+        li
+          a
+            display: block
+
+            &:hover
+              text-decoration: none
+
+            .inner
+              border-bottom: 1px solid $sep_gray
+              padding: 17px 0
+              font-size: 17px
+              font-weight: 500
+
+          &:last-child
+            a .inner
+              border-bottom: none
+
+.column-focus
+  border-top: none
+  padding-bottom: 15px
+
+  .view-columns
+    display: none
+    margin-top: 30px
+
+.column-box
+  display: block
+  +img_background
+  position: relative
+  height: 612px
+  color: #fff
+  padding: 56px 24px
+  +extrabold_font
+  margin-bottom: 15px
+
+  .overlay
+    position: absolute
+    z-index: 1
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: rgba(0,0,0,0.3)
+
+  &:hover
+    text-decoration: none
+    cursor: pointer
+
+    .overlay
+      background: rgba(#0066ff, 0.9)
+
+  .column-name
+    font-size: 62px
+    border-bottom: 8px solid #fff
+    text-transform: uppercase
+    line-height: 0.9em
+    padding-bottom: 14px
+    padding-right: 7%
+    z-index: 10
+
+  .description
+    font-size: 28px
+    line-height: 110%
+    padding-top: 26px
+    z-index: 10
+
+.show-more-wrap
+  margin: 24px 0 22px 0px
+
+  @media (max-width: $screen-md-max)
+    margin-bottom: 26px
+
+.block-link
+  display: inline-block
+  +heavy_font
+  background: $body_text_color
+  padding: 14px 23px
+  font-size: 22px
+  text-transform: uppercase
+
+  &, &:focus, &:active, &:visited
+    color: #fff
+
+    &:hover
+      color: #fff
+      background: $hover_color
+
+    &, &:hover
+      text-decoration: none
+
+  &.disabled
+    opacity: 0.7
+
+.popular-posts-tabs
+  list-style-type: none
+  padding: 0
+  margin: 0 20px
+  font-size: 17px
+
+  li
+    display: block
+    width: 50%
+    float: left
+    text-align: center
+
+    a
+      display: block
+      +light_bold_font
+      font-size: 15px
+      text-transform: uppercase
+      padding: 17px 0 5px 0
+      border-bottom: 2px solid #000
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+
+    &.active a, a:hover
+      color: $hover_color
+      border-bottom: 2px solid $hover_color
+
+
+    a, a:active, a:focus, a:visited
+      &, &:hover
+        text-decoration: none
+
+#subscriber-success-modal
+  h4.modal-title
+    text-align: center
+    +sans
+    font-size: 30px
+    font-weight: 500
+

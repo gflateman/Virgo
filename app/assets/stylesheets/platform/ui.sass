@@ -1,0 +1,434 @@
+@import bootstrap/mixins
+@import bootstrap/variables
+@import font-awesome/variables
+@import common
+
+.full-width
+  display: block
+  width: 100% !important
+
+.btn-inverse
+  +button-variant(#fff, #000, #000)
+
+.btn
+  +sans
+
+  &.pull-left
+    margin-right: 4px
+
+  &.pull-right
+    margin-left: 4px
+
+.auth-links
+  margin: 16px 0
+
+  a
+    display: block
+    margin: 0 0 6px 0
+
+.action-link
+  margin-top: 3px
+
+.ht-navbar
+  +cs_font
+  background: rgba(255, 255, 255, 0.9)
+  border-radius: 0
+  background: #fff
+  border: none
+  // +box-shadow(0px 1px 5px 0px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(0, 0, 0, 0.09))
+
+  a
+    cursor: pointer
+    font-size: 16px
+
+  .navbar-brand-wrap
+    width: 100%
+    text-align: center
+
+    #logo
+      float: none
+      margin: 0 auto 17px auto
+      display: inline-block
+      z-index: 10
+
+      img
+        height: 49px
+
+
+  .navbar-links
+    position: absolute
+    right: 15px
+    max-width: 200px
+    z-index: 1
+
+    .navbar-link
+      display: inline-block
+      padding: 0
+      font-size: 18px
+      line-height: 73px
+      margin-right: 14px
+
+      &, &:hover, &:visited
+        color: #666
+
+.sc-button
+  text-transform: uppercase
+  width: 240px
+  height: 60px
+  line-height: 60px
+  background-color: #0047be
+  border-color: #0047be
+  color: white
+  border-radius: 6px
+  font-size: 16px
+  letter-spacing: 3px
+  text-align: center
+  cursor: pointer
+  font-weight: 700
+  font-style: normal
+  padding: 0 12px
+  border-radius: 0
+
+  &:hover, &:focus, &:active
+    color: #fff
+    background: #00348b
+
+  &.disabled, &[disabled]
+    &, &:hover, &:focus, &:active, &:visited
+      background-color: #0047be
+      border-color: #0047be
+      opacity: 0.6
+
+.subtext
+  font-size: 14px
+  font-weight: 300
+
+.spacer
+  width: 100%
+  clear: both
+  height: 30px
+
+  &.xs
+    height: 12px
+
+  &.sm
+    height: 24px
+
+  &.md
+    height: 40px
+
+  &.lg
+    height: 60px
+
+  &.xl
+    height: 80px
+
+  &.xxl
+    height: 100px
+
+.clear
+  width: 100%
+  clear: both
+
+.delete-link
+  color: #a94442
+  margin-top: 8px
+
+.video-embed-wrap
+  text-align: left
+  margin-top: 20px
+
+p.info.info-sm
+  font-size: 15px
+  margin-bottom: 24px
+
+.alert-heading
+  display: block
+  margin-bottom: 10px
+
+
+.heavy-link
+  +heavy_font
+  text-transform: uppercase
+  font-size: 21px
+  font-weight: 500
+  display: block
+
+.copy
+  font-size: 20px
+  font-style: italic
+
+.list-signup-message
+  display: none
+  margin: 10px 0 0 4px
+  font-size: 18px
+  text-align: left
+  &.success
+    color: #fff
+  &.error
+    color: #ED4337
+
+.pagination-wrap
+  text-align: center
+  margin: 0 auto
+
+  .pagination
+    font-size: 19px
+
+    // & > li > a,
+    // & > li > span
+    //   background: transparent
+
+    // & > li.active a
+    //   background: #000
+
+textarea
+  &.md
+    height: 100px
+
+.slideshow-box-wrapper
+  &.expanded
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 1050
+    background: rgba(255,255,255,0.9)
+
+    .slideshow-box
+      width: 84%
+      top: 4%
+      left: 0
+      right: 0
+      position: absolute
+      margin: auto
+
+      .carousel-control
+        top: 310px
+
+      .slide-expand-collapse
+        .slide-expand
+          display: none
+        .slide-collapse
+          display: block !important
+
+.post .post-body .slideshow-box,
+.slideshow-box
+  background: #fff
+  padding: 8px 40px 4px
+  +flat_shadow
+
+  .slide-info
+    position: absolute
+    top: 8px
+    left: 0
+    display: inline-block
+    background: #fff
+    padding: 0 8px 8px 0
+    z-index: 400
+    +heavy_font
+
+  .slide-expand-collapse
+    text-align: center
+    line-height: 1.15em
+    height: 35px
+    width: 35px
+    position: absolute
+    top: 4px
+    right: 0
+    display: inline-block
+    background: #fff
+    padding: 8px
+    z-index: 400
+    border: 2px solid $light_gray
+    cursor: pointer
+    .slide-icon
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      padding: 7px
+      color: $light_gray
+    .slide-collapse
+      display: none
+    &:hover
+      border: 2px solid $dark_color
+      .slide-icon
+        color: $dark_color
+
+  .carousel-control
+    background-image: none
+    background-repeat: no-repeat
+    display: block
+    height: 46px
+    width: 60px
+    top: 250px
+    margin-top: -30px
+    background: #fff
+    opacity: 1
+
+    &.left
+      margin-left: -77px
+
+    &.right
+      margin-right: -77px
+
+    .icon-prev:before,
+    .icon-next:before
+      content: none
+
+    .control-icon
+      text-shadow: none
+      border: 2px solid $light_gray
+      color: $light_gray
+      display: block
+      height: 100%
+      width: 100%
+      text-align: center
+      line-height: 46px
+      margin-top: 0
+      margin-left: 0
+      top: auto
+      left: auto
+      right: auto
+      background: #fff !important
+      &:hover
+        border: 2px solid $dark_color
+        color: $dark_color
+
+  .item
+    overflow: visible
+
+  .slide-title
+    margin-top: 0 !important
+    margin-bottom: 0
+    padding-top: 1px
+    text-align: center !important
+    width: 84%
+    margin-left: 8%
+    +light_bold_font
+    text-transform: uppercase
+
+  .slide-subject
+    img
+      width: 100%
+      margin-top: 6px
+
+  .carousel-caption
+    color: $gray_text_color
+    text-shadow: none
+    text-align: left
+    position: relative
+    left: auto
+    right: auto
+    padding: 40px 0 0 0
+    font-size: 16px
+    font-weight: 300
+    line-height: 1.6
+
+    p, a, span
+      font-size: 18px
+
+    p
+      margin-bottom: 15px
+
+      &:last-child
+        margin-bottom: 0
+
+@media (max-width: $screen-xs-max)
+  .post .post-body .slideshow-box,
+  .slideshow-box
+    padding: 8px 24px 4px 24px
+
+    .item
+
+    .slide-title
+      font-size: 19px
+
+    .slide-info
+      font-size: 12px
+      padding: 0 4px 4px 0
+      left: 0
+      top: -1px
+
+    .carousel-control
+      height: 34px
+      width: 34px
+
+      &.left
+        margin-left: -39px
+      &.right
+        margin-right: -39px
+
+      .control-icon
+        line-height: 32px
+
+
+.well
+  .well-title
+    margin-top: 0
+    padding-top: 0
+    font-size: 23px
+    margin-bottom: 18px
+
+
+#ouibounce-modal.campaign-prompt
+  .campaign-prompt-modal
+    background-color: #0066ff
+    padding: 20px
+
+    &, p, a
+      color: #fff
+
+    .primary-head
+      text-transform: uppercase
+      font-size: 51px
+      border-bottom: 6px solid #fff
+      display: inline-block
+      margin-bottom: 26px
+
+    p.copy
+      +extrabold_font
+      font-size: 28px
+      font-style: normal
+      margin-bottom: 24px
+
+    .email-input-wrap
+      margin-top: 28px
+
+      input.email-input
+        +book_font
+
+    .list-signup-message
+      text-align: center
+      margin-top: 18px
+      +book_font
+      font-style: italic
+      font-size: 19px
+      margin-left: 0
+
+      &.info
+        display: block
+
+      .mobile-copy
+        display: none
+
+@media (max-width: $screen-xs-max)
+  #ouibounce-modal.campaign-prompt
+    .campaign-prompt-modal
+      .primary-head
+        margin-bottom: 14px
+
+      p.copy
+        font-size: 24px
+
+      .list-signup-message
+        font-size: 18px
+
+        .mobile-copy
+          display: inline-block
+
+        .desktop-copy
+          display: none
