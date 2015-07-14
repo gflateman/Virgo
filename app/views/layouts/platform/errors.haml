@@ -26,7 +26,7 @@
     - else
       %meta{:content => "#{image_url 'common/vw-social.jpg'}", :property => "og:image"}
 
-    = auto_discovery_link_tag(:rss, feed_url)
+    = auto_discovery_link_tag(:rss, Platform.feed_url)
     = render '/platform/common/fonts.html.erb'
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"

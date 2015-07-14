@@ -12,6 +12,8 @@ module Platform
     require 'friendly_id'
     require 'kaminari'
     require 'carrierwave'
+    require 'cancan'
+    require 'handles_sortable_columns'
     require 'action_controller/action_caching.rb'
     require 'htmlentities'
     require 'jquery-rails'

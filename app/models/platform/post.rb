@@ -91,7 +91,7 @@ module Platform
     scope :latest, ->{ posts.publicly_viewable.order(publish_at: :desc) }
 
     scope :containing_slideshow, ->(slideshow){
-      where("posts.meta -> 'contains_slideshow' = 'true'").where("posts.meta -> 'slideshow_id' = ?", slideshow.id.to_s)
+      where("platform_posts.meta -> 'contains_slideshow' = 'true'").where("platform_posts.meta -> 'slideshow_id' = ?", slideshow.id.to_s)
     }
 
     before_save :set_default_publish_at

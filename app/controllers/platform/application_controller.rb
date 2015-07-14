@@ -143,5 +143,9 @@ module Platform
     def enable_large_nav
       @_large_nav = true
     end
+
+    def current_ability
+       @current_ability ||= ::Platform::Ability.new(current_user)
+    end
   end
 end

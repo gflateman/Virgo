@@ -22,30 +22,30 @@ module Platform
 
     def editor
       can :manage, :all
-      can :manage, User do |u|
+      can :manage, Platform::User do |u|
         u == @user
       end
-      cannot :index, User
+      cannot :index, Platform::User
     end
 
     def contributor
-      can :manage, Post do |post|
+      can :manage, Platform::Post do |post|
         post.author == @user
       end
 
-      can :manage, Slideshow do |slideshow|
+      can :manage, Platform::Slideshow do |slideshow|
         slideshow.author == @user
       end
 
-      can :manage, Slide do |slide|
+      can :manage, Platform::Slide do |slide|
         can?(:manage, slide.slideshow)
       end
 
-      can :read, Post
+      can :read, Platform::Post
 
-      cannot :manage, User
-      cannot :manage, Column
-      cannot :manage, Site
+      cannot :manage, Platform::User
+      cannot :manage, Platform::Column
+      cannot :manage, Platform::Site
     end
 
     def admin

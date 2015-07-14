@@ -85,7 +85,7 @@ module Platform
 
         scope :by_similarity_to, ->(text) {
           sanitized = connection.quote(text)
-          select("posts.*, SIMILARITY(posts.search_document, #{sanitized}) AS search_similarity").order("search_similarity DESC")
+          select("platform_posts.*, SIMILARITY(platform_posts.search_document, #{sanitized}) AS search_similarity").order("search_similarity DESC")
         }
 
         def self.reindex!

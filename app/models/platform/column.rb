@@ -15,8 +15,8 @@ module Platform
     after_save :expire_site_key
 
     scope :with_post_count, ->{
-      select("columns.*, " +
-        "(SELECT COUNT(*) FROM posts WHERE posts.column_id = columns.id) AS post_count"
+      select("platform_columns.*, " +
+        "(SELECT COUNT(*) FROM platform_posts WHERE platform_posts.column_id = platform_columns.id) AS post_count"
       )
     }
 

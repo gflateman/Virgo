@@ -30,8 +30,8 @@ module Platform
     scope :by_name, ->{ order("LOWER(users.first_name) ASC") }
 
     scope :with_post_count, ->{
-      select("users.*, " +
-        "(SELECT COUNT(*) FROM posts WHERE posts.author_id = users.id) AS post_count"
+      select("platform_users.*, " +
+        "(SELECT COUNT(*) FROM platform_posts WHERE platform_posts.author_id = platform_users.id) AS post_count"
       )
     }
 

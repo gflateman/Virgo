@@ -24,7 +24,7 @@ module Platform
     scope :navbar, ->{ where(display_in_navbar: true).by_weight }
 
     scope :bottom_level, ->{
-      where("categories.id NOT IN (SELECT DISTINCT categories.parent_id FROM categories WHERE categories.parent_id IS NOT NULL)")
+      where("platform_categories.id NOT IN (SELECT DISTINCT platform_categories.parent_id FROM platform_categories WHERE platform_categories.parent_id IS NOT NULL)")
     }
 
     scope :top_level, ->{
@@ -32,8 +32,8 @@ module Platform
     }
 
     scope :with_post_count, ->{
-      select("categories.*, " +
-        "(SELECT COUNT(*) FROM post_categories WHERE post_categories.category_id = categories.id) AS post_count"
+      select("platform_categories.*, " +
+        "(SELECT COUNT(*) FROM platform_post_categories WHERE platform_post_categories.category_id = platform_categories.id) AS post_count"
       )
     }
 

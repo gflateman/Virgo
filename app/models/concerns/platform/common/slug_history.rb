@@ -8,7 +8,7 @@ module Platform
       after_save :generate_slug_history_item
 
       def self.find_by_historic_slug(slug_val)
-        slugs = ::SlugHistory.where(record_type: self.to_s, slug: slug_val)
+        slugs = ::Platform::SlugHistory.where(record_type: self.to_s, slug: slug_val)
         slugs.order(created_at: :asc).last.try(:record)
       end
 
