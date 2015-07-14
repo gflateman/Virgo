@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706180720) do
+ActiveRecord::Schema.define(version: 20150714214759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,14 +87,15 @@ ActiveRecord::Schema.define(version: 20150706180720) do
     t.string   "name"
     t.string   "template_path"
     t.boolean  "enabled"
-    t.integer  "weight",           default: 0
+    t.integer  "weight",             default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subject_id"
     t.string   "subject_type"
-    t.boolean  "editable_subject", default: false
+    t.boolean  "editable_subject",   default: false
     t.string   "image"
-    t.boolean  "can_set_posts",    default: false
+    t.boolean  "can_set_posts",      default: false
+    t.boolean  "hidden_from_admins", default: false
   end
 
   add_index "platform_page_modules", ["enabled"], name: "index_platform_page_modules_on_enabled", using: :btree

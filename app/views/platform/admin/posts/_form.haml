@@ -85,7 +85,7 @@
                 = icon 'refresh'
 
 
-          = f.input :status, label: 'Status', as: :select, collection: Post.status_names, include_blank: false
+          = f.input :status, label: 'Status', as: :select, collection: Platform::Post.status_names, include_blank: false
 
           = f.input :publish_at, label: 'Publish on date', as: :string, input_html: {id: 'publish-at-input', value: f.object.publish_at.try(:to_s, :slashes_with_time)}
 
@@ -114,7 +114,7 @@
             .row
               .col-sm-12
                 .post-column-field
-                  = f.input :column_id, as: :select, label: false, collection: Column.order(name: :asc)
+                  = f.input :column_id, as: :select, label: false, collection: Platform::Column.order(name: :asc)
 
         .panel.panel-default.push-down-sm
           .panel-heading Citation
@@ -199,6 +199,6 @@
       -# = f.button :submit, "Save Post", class: 'btn btn-info pull-right post-save-btn post-save-btn', data: {disable_with: "Saving"}
 
 
-- cache [Tag.cache_key, 'tag_ids'] do
+- cache [Platform::Tag.cache_key, 'tag_ids'] do
   :javascript
-    window.tag_info = #{ Tag.all.map{ |t| {t.name => t.id} }.reduce({}, :update).to_json };
+    window.tag_info = #{ Platform::Tag.all.map{ |t| {t.name => t.id} }.reduce({}, :update).to_json };

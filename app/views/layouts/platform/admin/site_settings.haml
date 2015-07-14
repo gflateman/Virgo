@@ -3,9 +3,9 @@
   .row
     .col-md-8.col-md-offset-2
       %ul.nav.nav-pills
-        %li{class: ('active' if controller?('admin/sites'))}
+        %li{class: ('active' if controller?('platform/admin/sites'))}
           = link_to "Basic Settings", admin_site_edit_path
-        %li{class: ('active' if controller?('admin/page_modules'))}
+        %li{class: ('active' if controller?('platform/admin/page_modules'))}
           = link_to "Page Modules", admin_page_modules_edit_path
 
       .site-settings-inner

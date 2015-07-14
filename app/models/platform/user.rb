@@ -27,7 +27,7 @@ module Platform
 
     scope :authors, ->{ where(role: [:superuser, :admin, :editor, :contributor]) }
 
-    scope :by_name, ->{ order("LOWER(users.first_name) ASC") }
+    scope :by_name, ->{ order("LOWER(platform_users.first_name) ASC") }
 
     scope :with_post_count, ->{
       select("platform_users.*, " +

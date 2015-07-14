@@ -12,8 +12,8 @@ module Platform
     validates :name, presence: true, uniqueness: {case_sensitive: false}
 
     scope :with_post_count, ->{
-      select("tags.*, " +
-        "(SELECT COUNT(*) FROM post_tags WHERE post_tags.tag_id = tags.id) AS post_count"
+      select("platform_tags.*, " +
+        "(SELECT COUNT(*) FROM platform_post_tags WHERE platform_post_tags.tag_id = platform_tags.id) AS post_count"
       )
     }
 
@@ -25,7 +25,7 @@ module Platform
       items = all
 
       if filters[:term].present?
-        items = items.where("tags.name ILIKE :term", term: "%#{filters[:term]}%")
+        items = items.where("platform_tags.name ILIKE :term", term: "%#{filters[:term]}%")
       end
 
       items

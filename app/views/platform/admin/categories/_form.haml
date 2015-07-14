@@ -4,7 +4,7 @@
   = hidden_field_tag 'post_id', post_id_param
   = f.input :name
   = f.input :slug, label: "Permalink"
-  = f.input :parent_id, label: 'Parent', as: :select, collection: Category.where.not(id: @category.id)
+  = f.input :parent_id, label: 'Parent', as: :select, collection: Platform::Category.where.not(id: @category.id)
   = f.input :display_in_navbar, label: "Display in navbar?"
   .row
     .col-md-3
