@@ -16,24 +16,24 @@
       %li.visible-sm.visible-xs
         = link_to 'Home', root_path
 
-      - Category.navbar.limit(5).each do |cat|
+      - Platform::Category.navbar.limit(5).each do |cat|
         %li{class: ('active' if (controller?('categories') && id_param == cat.slug) || cat == @category)}
           = link_to category_path(cat) do
             %span= cat.name
 
-      - if Category.navbar.size > 5
-        - Category.navbar.offset(5).limit(2).each_with_index do |cat, index|
+      - if Platform::Category.navbar.size > 5
+        - Platform::Category.navbar.offset(5).limit(2).each_with_index do |cat, index|
           %li.extended{class: "extended-#{index + 1} #{('active' if (controller?('categories') && id_param == cat.slug) || cat == @category)}"}
             = link_to category_path(cat) do
               %span= cat.name
 
-        - if Category.navbar.size > 7
+        - if Platform::Category.navbar.size > 7
           %li.dropdown.more.extended-categories-dropdown-wrap
             %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
               More
               %span.caret
             %ul.dropdown-menu
-              - Category.navbar.offset(7).each do |cat|
+              - Platform::Category.navbar.offset(7).each do |cat|
                 %li
                   = link_to cat.name, category_path(cat)
 

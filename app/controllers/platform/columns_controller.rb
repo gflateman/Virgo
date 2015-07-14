@@ -8,7 +8,7 @@ module Platform
     def index
       @columns = Column.by_weight
 
-      render layout: '/layouts/posts'
+      render layout: 'platform/posts'
     end
 
     def show

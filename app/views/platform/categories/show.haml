@@ -6,7 +6,7 @@
     - category_feature = Post.category_feature(@category)
 
     - if category_feature
-      = render '/common/category_heading', post: category_feature, category: @category
+      = render '/platform/common/category_heading', post: category_feature, category: @category
 
     .container.posts-container.category-posts
       .row
@@ -15,10 +15,10 @@
             .category-header-wrap
               %h3.category-header Latest in #{@category.name}
             - @posts.each do |post|
-              = render '/posts/post_short', post: post
+              = render '/platform/posts/post_short', post: post
 
             .pagination-wrap
               = paginate @posts
 
 - content_for :end_of_body do
-  = render '/common/disqus_comment_count'
+  = render '/platform/common/disqus_comment_count'

@@ -9,7 +9,7 @@ module Platform
     end
 
     def alerts(options={})
-      render_to_string(:partial => "/common/alerts", locals: options).html_safe
+      render_to_string(:partial => "/platform/common/alerts", locals: options).html_safe
     end
 
     def superuser?
@@ -42,7 +42,7 @@ module Platform
     end
 
     def base_errors(record)
-      render_to_string(:partial => "/common/base_errors", locals: {record: record}).html_safe
+      render_to_string(:partial => "/platform/common/base_errors", locals: {record: record}).html_safe
     end
 
     def post_time_format

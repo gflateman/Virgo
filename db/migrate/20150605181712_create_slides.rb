@@ -1,6 +1,6 @@
 class CreateSlides < ActiveRecord::Migration
   def change
-    create_table :slides do |t|
+    create_table :platform_slides do |t|
       t.string :image
       t.text :text
       t.integer :post_id
@@ -8,7 +8,7 @@ class CreateSlides < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :slides, :post_id
-    add_index :slides, :position
+    add_index :platform_slides, :post_id
+    add_index :platform_slides, :position
   end
 end

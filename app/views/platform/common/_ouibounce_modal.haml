@@ -7,7 +7,7 @@
       .header-wrap.text-center
         %h2.primary-head.text-center Wake Up!
       %p.copy.text-center You're sleeping through the good stuff
-      = simple_form_for (@subscriber || Subscriber.new), html: {class: 'list-signup-form js-list-signup-form ouibounce-list-signup-form', id: 'ouibounce-list-signup-form'} do |f|
+      = simple_form_for (@subscriber || Platform::Subscriber.new), html: {class: 'list-signup-form js-list-signup-form ouibounce-list-signup-form', id: 'ouibounce-list-signup-form'} do |f|
         .input-btn-append.inverse.email-input-wrap
           = f.text_field :email, class: 'email-input', placeholder: "Your Email Address"
           = f.button :submit, "Sign Up", class: "sign-up-btn", 'data-loading-text' => "Loading"

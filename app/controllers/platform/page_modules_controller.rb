@@ -10,7 +10,7 @@ module Platform
       @tab = @category.present? ? :category : :all
 
       render json: {
-        html: render_content(partial: '/page_modules/popular_posts', locals: {category: @category, tab: @tab, tabbed: @tabbed})
+        html: render_content(partial: '/platform/page_modules/popular_posts', locals: {category: @category, tab: @tab, tabbed: @tabbed})
       }
     end
 

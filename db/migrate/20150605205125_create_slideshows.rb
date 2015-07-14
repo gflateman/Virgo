@@ -1,12 +1,12 @@
 class CreateSlideshows < ActiveRecord::Migration
   def change
-    create_table :slideshows do |t|
+    create_table :platform_slideshows do |t|
       t.integer :author_id
       t.string :name
       t.timestamps
     end
-    add_index :slideshows, :author_id
+    add_index :platform_slideshows, :author_id
 
-    rename_column :slides, :post_id, :slideshow_id
+    rename_column :platform_slides, :post_id, :slideshow_id
   end
 end

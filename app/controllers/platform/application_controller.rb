@@ -2,7 +2,7 @@ module Platform
   class ApplicationController < ActionController::Base
     include Platform::RenderHelper, Platform::ApplicationHelper, ActionView::Helpers::SanitizeHelper, ActionView::Helpers::TextHelper
 
-    layout 'main'
+    layout 'platform/main'
 
     protect_from_forgery with: :exception
 

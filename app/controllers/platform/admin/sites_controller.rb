@@ -2,7 +2,7 @@ module Platform
   class Admin::SitesController < Admin::BaseController
     before_action :set_site
 
-    layout 'admin/site_settings'
+    layout 'platform/admin/site_settings'
 
     def edit
     end

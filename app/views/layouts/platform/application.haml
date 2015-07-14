@@ -36,11 +36,11 @@
       %meta{:content => "#{image_url 'common/vw-social.jpg'}", :property => "og:image"}
 
     = auto_discovery_link_tag(:rss, feed_url)
-    = render '/common/fonts'
+    = render '/platform/common/fonts'
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-    = render '/common/header_analytics'
+    = render '/platform/common/header_analytics'
     :coffee
       window.page_url = "#{page_url}";
 
@@ -50,9 +50,9 @@
   %body{class: "#{body_classes} #{params[:controller].split('/').join(' ')} #{params[:action]}#{' admin-user' if admin_access?}"}
     #wrap
       -# render 'common/navbar'
-      = render '/common/user_vars'
-      = render '/common/admin_navbar'
-      = render 'common/public_nav'
+      = render '/platform/common/user_vars'
+      = render '/platform/common/admin_navbar'
+      = render '/platform/common/public_nav'
 
       #main
         - if content_for? :content
@@ -60,6 +60,6 @@
         - else
           = yield
 
-    = render '/common/footer'
+    = render '/platform/common/footer'
 
     = yield :end_of_body

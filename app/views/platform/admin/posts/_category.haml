@@ -11,7 +11,7 @@
       %span.text= category.name
 
     - category.children.each do |child|
-      = render '/admin/posts/category', category: child, level: next_level
+      = render '/platform/admin/posts/category', category: child, level: next_level
 
   - else
     %label

@@ -9,14 +9,14 @@ module Platform
         render json: {
           status: :success,
           subscriber: @subscriber,
-          html: render_content(partial: '/subscribers/success_modal')
+          html: render_content(partial: '/platform/subscribers/success_modal')
         }
       else
         render json: {
           status: :err,
           subscriber: @subscriber,
           message: @subscriber.errors.full_messages,
-          html: render_content(partial: '/common/list_signup')
+          html: render_content(partial: '/platform/common/list_signup')
         }
       end
     end
@@ -28,19 +28,19 @@ module Platform
         if @subscriber.save
           render json: {
             status: :success,
-            html: render_content(partial: '/subscribers/success_modal')
+            html: render_content(partial: '/platform/subscribers/success_modal')
           }
         else
           render json: {
             status: :err,
-            html: render_content('/subscribers/modal', layout: false)
+            html: render_content('/platform/subscribers/modal', layout: false)
           }
         end
       else
         @subscriber = Subscriber.new
 
         render json: {
-          html: render_content('/subscribers/modal', layout: false)
+          html: render_content('/platform/subscribers/modal', layout: false)
         }
       end
     end

@@ -27,16 +27,16 @@
       %meta{:content => "#{image_url 'common/vw-social.jpg'}", :property => "og:image"}
 
     = auto_discovery_link_tag(:rss, feed_url)
-    = render '/common/fonts.html.erb'
+    = render '/platform/common/fonts.html.erb'
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = favicon_link_tag 'common/icons/favicon.ico'
     = csrf_meta_tags
-    = render '/common/header_analytics.html.erb'
+    = render '/platform/common/header_analytics.html.erb'
 
   %body{class: "#{body_classes} #{params[:controller].split('/').join(' ')} #{params[:action]}#{' admin-user' if admin_access?}"}
     #wrap
-      = render 'common/public_nav.haml'
+      = render '/platform/common/public_nav.haml'
 
       #main
         = yield

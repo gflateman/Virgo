@@ -36,7 +36,7 @@ module Platform
             render json: {
               status: :success,
               html: render_content('success_modal', layout: false),
-              categories_form_partial: render_content(partial: '/admin/posts/categories_form')}
+              categories_form_partial: render_content(partial: '/platform/admin/posts/categories_form')}
           }
           fmt.html {
             flash[:notice] = "Category added successfully"

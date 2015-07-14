@@ -10,7 +10,7 @@ module Platform
 
       template_name = @category.name == 'Resources' ? '/categories/resources' : '/categories/show'
 
-      render template_name, layout: 'posts'
+      render template_name, layout: 'platform/posts'
     end
 
     private

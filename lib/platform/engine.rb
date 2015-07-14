@@ -10,11 +10,13 @@ module Platform
 
     # some dependencies must be explicitly required if used in an engine...
     require 'friendly_id'
+    require 'kaminari'
     require 'carrierwave'
     require 'action_controller/action_caching.rb'
+    require 'htmlentities'
 
     initializer :append_migrations do |app|
-      unless app.root.to_s.match root.to_s
+      unless app.root.to_s == root.to_s
         config.paths["db/migrate"].expanded.each do |expanded_path|
           app.config.paths["db/migrate"] << expanded_path
         end

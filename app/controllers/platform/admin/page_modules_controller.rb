@@ -3,7 +3,7 @@ module Platform
     before_action :set_site
     before_action :set_page_module, only: [:edit_subject]
 
-    layout 'admin/site_settings'
+    layout 'platform/admin/site_settings'
 
     def edit
       authorize! :manage, PageModule

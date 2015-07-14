@@ -20,7 +20,7 @@ module Platform
     def more
       @posts = Post.exclude_front_page_feature.order(publish_at: :desc).page(page_param).per(6).padding(6)
       render json: {
-        html: render_content('/posts/more', layout: false)
+        html: render_content('/platform/posts/more', layout: false)
       }
     end
 
@@ -38,14 +38,14 @@ module Platform
 
       if @post.page?
         @page = @post
-        render "/pages/show", layout: "application"
+        render "/platform/pages/show", layout: "platform/application"
       else
-        render layout: 'posts'
+        render layout: '/platform/posts'
       end
     end
 
     def popular
-      render json: {html: render_content(partial: "/page_modules/popular_posts")}
+      render json: {html: render_content(partial: "/platform/page_modules/popular_posts")}
     end
 
     def rss

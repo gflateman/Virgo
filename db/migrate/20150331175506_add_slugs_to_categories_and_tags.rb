@@ -6,7 +6,7 @@ class AddSlugsToCategoriesAndTags < ActiveRecord::Migration
     add_index :platform_categories, :slug
     add_index :platform_tags, :slug
 
-    Category.find_each(&:save)
-    Tag.find_each(&:save)
+    Platform::Category.find_each(&:save)
+    Platform::Tag.find_each(&:save)
   end
 end

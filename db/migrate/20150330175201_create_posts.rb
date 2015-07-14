@@ -47,7 +47,7 @@ class CreatePosts < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :tags, :name
+    add_index :platform_tags, :name
 
     create_table :platform_post_tags do |t|
       t.integer :post_id

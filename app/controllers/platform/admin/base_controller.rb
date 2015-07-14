@@ -2,7 +2,7 @@ module Platform
   class Admin::BaseController < ApplicationController
     newrelic_ignore
 
-    layout 'admin'
+    layout 'platform/admin'
     before_filter :authorize_admin_user
     before_filter :set_is_admin_view
 

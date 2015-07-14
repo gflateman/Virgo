@@ -61,7 +61,7 @@ module Platform
 
     def embed
       render json: {
-        html: compact_html(Shortcode.process(render_to_string(partial: "/images/shortcode", locals: {image: @image})))
+        html: compact_html(Shortcode.process(render_to_string(partial: "/platform/images/shortcode", locals: {image: @image})))
       }
     end
 

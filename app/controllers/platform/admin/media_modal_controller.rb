@@ -29,7 +29,7 @@ module Platform
             html: render_content(partial: 'upload_success'),
             image: @image,
             img_url: @image.image.url(:content),
-            image_html: compact_html(Shortcode.process(render_to_string(partial: "/images/shortcode", locals: {image: @image})))
+            image_html: compact_html(Shortcode.process(render_to_string(partial: "/platform/images/shortcode", locals: {image: @image})))
           } and return
         end
       else
@@ -53,7 +53,7 @@ module Platform
             image: @image,
             caption: caption_param,
             credit: @image.credit,
-            html: compact_html(Shortcode.process(render_to_string(partial: "/images/shortcode", locals: {image: @image})))
+            html: compact_html(Shortcode.process(render_to_string(partial: "/platform/images/shortcode", locals: {image: @image})))
           }
         else
           render json: {

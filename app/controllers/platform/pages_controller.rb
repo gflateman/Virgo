@@ -3,7 +3,7 @@ module Platform
     before_action :set_page, only: :show
 
     def show
-      render layout: 'application'
+      render layout: 'platform/application'
     end
 
     def home
