@@ -1,6 +1,6 @@
 module Platform
   class ApplicationController < ActionController::Base
-    include RenderHelper, ApplicationHelper, ActionView::Helpers::SanitizeHelper, ActionView::Helpers::TextHelper
+    include Platform::RenderHelper, Platform::ApplicationHelper, ActionView::Helpers::SanitizeHelper, ActionView::Helpers::TextHelper
 
     layout 'main'
 

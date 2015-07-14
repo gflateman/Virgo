@@ -1,0 +1,4 @@
+= link_to expanded_post_url(post), class: 'post-sidebar-thumb' do
+  .post-sidebar-thumb-img{style: "background-image: url('#{post.thumb_image.try(:image).try(:url, :med_thumb)}');"}
+  .pub-date= local_time (post.publish_at || post.created_at), post_time_format
+  .headline= post.headline

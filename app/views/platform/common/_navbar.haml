@@ -1,0 +1,40 @@
+- if user_signed_in?
+  #admin-topbar.navbar.navbar-default.ht-navbar
+    .container-fluid
+      .navbar-brand-wrap
+        = link_to root_path, class: 'navbar-brand', id: 'admin-home-link' do
+          = image_tag "common/casper_c_grey.svg", class: 'home-icon'
+
+      %ul.nav.navbar-nav.navbar-left
+        - if admin_access? && @post.present? && @post.persisted?
+          - if admin_view?
+            %li
+              = link_to post_detail_path(@post), class: 'edit-post-link pull-left' do
+                %i.fa.fa-eye
+                View Post
+          - else
+            %li
+              = link_to edit_admin_post_path, class: 'edit-post-link pull-left' do
+                %i.fa.fa-pencil-square-o
+                Edit Post
+      .navbar-links.hidden-xs
+        .collapse.navbar-collapse
+          %ul#account-dropdown.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a#my-account.dropdown-toggle{data: {toggle: "dropdown"}}
+                My Account
+                %i.fa.fa-chevron-down
+
+              %ul.dropdown-menu
+                - if user_signed_in?
+                  - if admin_access?
+                    %li
+                      = link_to 'Admin', admin_posts_path
+                    %li
+                      = link_to "Account Settings", edit_admin_user_path(current_user)
+
+                  %li
+                    = link_to "Home", root_path
+
+                  %li
+                    = link_to "Sign Out", destroy_user_session_path, data: {method: :delete}

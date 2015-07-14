@@ -1,0 +1,22 @@
+%li.search-result-item
+  .row
+    .col-xs-9
+      .post-info
+        = link_to expanded_post_url(post), class: "post-link" do
+          %span.post-headline= truncate(post.headline)
+
+        %span.meta
+          %span.by
+            by
+          %span.author= truncate(post.author.byline)
+          %span.comma= ","
+          %span.post-date
+            = "posted #{post.created_at.to_s(:slashes)}"
+
+      .post-snippet
+        = search_snippet(post.search_document, @search.term, length: 480)
+
+    .col-xs-3
+      - if post.thumb_image.present?
+        = link_to expanded_post_url(post), class: 'post-thumb-wrap' do
+          = image_tag post.thumb_image.image.url(:med_thumb)

@@ -1,0 +1,6 @@
+- content_for :site_settings_content do
+  %h2 Weekly Newsletter Settings
+  = simple_form_for @site, url: admin_newsletter_path, method: :patch do |f|
+    = f.input :weekly_newsletter_intro_copy
+    = f.button :submit, "Save Settings", data: {disable_with: "Saving..."}
+    = link_to "View Changelog &raquo;".html_safe, admin_newsletter_changelog_path, class: "pull-right"

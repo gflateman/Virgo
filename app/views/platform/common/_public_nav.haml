@@ -1,0 +1,57 @@
+.navbar.navbar-default.public-nav
+  .navbar-header
+    %button.nav-toggle-btn.pull-right.navbar-toggle.collapsed{"data-target" => "#primary-nav", "data-toggle" => "collapse", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+
+    .navbar-brand
+      = link_to root_path, class: "logo-link" do
+        = t('site_name')
+
+
+  .navs
+    %ul#primary-nav.nav.navbar-nav.collapse.navbar-collapse.cat-nav.pull-right
+      %li.visible-sm.visible-xs
+        = link_to 'Home', root_path
+
+      - Category.navbar.limit(5).each do |cat|
+        %li{class: ('active' if (controller?('categories') && id_param == cat.slug) || cat == @category)}
+          = link_to category_path(cat) do
+            %span= cat.name
+
+      - if Category.navbar.size > 5
+        - Category.navbar.offset(5).limit(2).each_with_index do |cat, index|
+          %li.extended{class: "extended-#{index + 1} #{('active' if (controller?('categories') && id_param == cat.slug) || cat == @category)}"}
+            = link_to category_path(cat) do
+              %span= cat.name
+
+        - if Category.navbar.size > 7
+          %li.dropdown.more.extended-categories-dropdown-wrap
+            %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+              More
+              %span.caret
+            %ul.dropdown-menu
+              - Category.navbar.offset(7).each do |cat|
+                %li
+                  = link_to cat.name, category_path(cat)
+
+        %li.search.hidden-xs.hidden-sm.hidden-md
+          = link_to "#", class: 'navbar-search-link js-expand-search-form' do
+            %i.fa.fa-search
+      .search-form-container.js-search-form
+        .search-form-wrapper
+          = form_tag search_index_path, method: :post, class: 'search-form form-inline pull-left' do
+            = text_field_tag 'post_search[term]', "", class: 'form-control search-form-input'
+            = submit_tag "Search", class: 'btn block-link search-form-submit'
+
+            - if filter_params[:term].present?
+              - url = filter_params[:post_type] == 'page' ? admin_posts_path(post_type: 'page') : filter_params
+              = link_to nil, href: url, class: 'clear-link' do
+                %i.fa.fa-times-circle-o
+                clear search
+          %i.fa.fa-times.js-collapse-search-form.collapse-search-form.search-form-icon
+
+    .clear
+

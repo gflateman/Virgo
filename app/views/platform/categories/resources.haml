@@ -1,0 +1,30 @@
+- content_for :title do
+  Van Winkle's | #{@category.name}
+
+- content_for :posts_content do
+  - cache [@category, page_param] do
+    - @child_categories = @category.children
+
+    .container.posts-container.category-posts.resources-page
+      .category-posts-inner
+        .content-col
+          - @child_categories.by_weight.each do |category|
+            .category-header-wrap
+              %h3.category-header= category.name
+
+            - posts = category.posts.publicly_viewable.order(publish_at: :desc)
+
+            - if posts.first
+              = render '/posts/post_short', post: posts.first, skip_author_info: true
+            .row
+              .col-md-12
+                %ul.resource-posts
+                  - posts.offset(1).each_with_index do |post, index|
+                    %li
+                      = link_to post.headline, expanded_post_url(post)
+
+        .rail-col
+          = render "/page_modules/popular_posts", tabbed: true, category: @category, tab: :category
+
+- content_for :end_of_body do
+  = render '/common/disqus_comment_count'

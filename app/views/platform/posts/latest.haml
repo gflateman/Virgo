@@ -1,0 +1,16 @@
+- content_for :title do
+  Latest Posts | Van Winkle's
+
+- cache [site_key, page_param] do
+  .latest-posts-page
+    .container.posts-container.latest-posts-wrap
+      .row
+        .col-lg-10.col-lg-offset-1
+          - @posts.each do |post|
+            = render '/posts/post_short', post: post
+
+    .pagination-wrap
+      = paginate @posts
+
+- content_for :end_of_body do
+  = render '/common/disqus_comment_count'

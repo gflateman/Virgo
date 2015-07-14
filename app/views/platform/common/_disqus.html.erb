@@ -1,0 +1,24 @@
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+    function disqus_config() {
+        this.callbacks.onReady = [function() {
+          setTimeout(function(){
+            $(document).trigger("disqusready");
+          }, 150);
+        }];
+    }
+
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '<%= Rails.application.secrets.disqus_app_id %>';
+
+    var disqus_identifier = "<%= @post.disqus_identifier %>";
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>

@@ -1,0 +1,45 @@
+- navbar = local_assigns.has_key?(:navbar) ? navbar : false
+
+.share-links-wrap
+  .share-links
+    - if @post && !navbar
+      = link_to "#", class: "share-button facebook-share-button js-fb-share", data: {share_uri: page_url} do
+        %i.icon.fa.fa-facebook
+        %span.text Share on Facebook
+
+      = link_to "#", class: "share-button facebook-like-button js-fb-like", data: {share_uri: page_url} do
+        %i.icon.fa.fa-thumbs-o-up
+        %span.text Like
+
+      = link_to "https://twitter.com/intent/tweet?url=#{u(page_url)}&text=#{u(decode_html_entities(@post.headline))}&via=vanwinklesmedia", class: "share-button twitter js-tweet-button" do
+        %i.icon.fa.fa-twitter
+        %span.text Tweet
+
+      = link_to "https://www.pinterest.com/pin/create/button/?url=#{u(page_url)}", class: "share-button pinterest" do
+        %i.icon.fa.fa-pinterest-p
+        Pinterest
+
+      = link_to "mailto:?subject=#{u(@post.headline + "| Van Winkle's")}&body=#{u(page_url)}", class: "share-button email" do
+        %i.icon.fa.fa-envelope
+        %span.text Email
+
+      .like-widget-wrap.hidden
+        .fb-like{"data-action" => "like", "data-href" => "#{page_url}", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "true"}
+
+    - else
+      = link_to "#", class: "share-button facebook js-fb-share", data: {share_uri: page_url} do
+        %i.icon.fa.fa-facebook
+
+      = link_to "http://twitter.com/intent/follow?source=followbutton&amp;variant=1.0&amp;screen_name=vanwinklesmedia", class: "share-button twitter" do
+        %i.icon.fa.fa-twitter
+
+      = link_to "http://instagram.com/vanwinkles", target: "_blank", title: "Follow on instagram", class: "share-button instagram" do
+        %i.icon.fa.fa-instagram
+
+      = link_to "https://www.pinterest.com/vanwinklesmedia/", target: "_blank", title: "Follow on pinterest", class: "share-button pinterest" do
+        %i.icon.fa.fa-pinterest-p
+
+    = link_to "/feed.rss", class: "share-button share-rss" do
+      %i.icon.fa.fa-rss.rss-icon
+
+  .clear

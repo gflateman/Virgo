@@ -1,0 +1,22 @@
+- level = local_assigns.has_key?(:level) ? level : 0
+- next_level = level + 1
+
+.category-item
+  - if category.children.any?
+    %label
+      - level.times do
+        %span.level
+
+      = check_box_tag "post[category_ids][]", category.id, @post && @post.category_ids.include?(category.id)
+      %span.text= category.name
+
+    - category.children.each do |child|
+      = render '/admin/posts/category', category: child, level: next_level
+
+  - else
+    %label
+      - level.times do
+        %span.level
+
+      = check_box_tag "post[category_ids][]", category.id, @post && @post.category_ids.include?(category.id)
+      %span.text= category.name

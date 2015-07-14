@@ -1,0 +1,100 @@
+- if admin_access?
+  %nav.admin-nav.navbar
+    .container-fluid
+      %ul.nav.navbar-nav
+        %li
+          = link_to root_path do
+            %i.fa.fa-home
+            Home
+
+        - if can? :index, Post
+          %li{class: ('active' if controller?('admin/posts') && posts_action?)}
+            = link_to admin_posts_path do
+              %i.fa.fa-thumb-tack
+              Posts
+
+          %li{class: ('active' if controller?('admin/posts') && pages_action?)}
+            = link_to admin_posts_path(filters: {post_type: :page}) do
+              %i.fa.fa-file-o
+              Pages
+
+          %li{class: ('active' if controller?('admin/slideshows', 'admin/slides'))}
+            = link_to admin_slideshows_path do
+              %i.fa.fa-camera-retro
+              Slideshows
+
+        %li{class: ('active' if controller?('admin/categories'))}
+          = link_to admin_categories_path do
+            %i.fa.fa-archive
+            Categories
+
+        %li{class: ('active' if controller?('admin/tags'))}
+          = link_to admin_tags_path do
+            %i.fa.fa-tag
+            Tags
+
+        - if can? :index, Column
+          %li{class: ('active' if controller?('admin/columns'))}
+            = link_to admin_columns_path do
+              %i.fa.fa-newspaper-o
+              Columns
+
+        - if can? :index, User
+          %li{class: ('active' if controller?('admin/users'))}
+            = link_to admin_users_path do
+              %i.fa.fa-user
+              Users
+
+        %li{class: ('active' if controller?('admin/images'))}
+          = link_to admin_images_path do
+            %i.fa.fa-file-image-o
+            Media Library
+
+        - if can? :index, Site
+          %li{class: ('active' if controller?('admin/sites', 'admin/page_modules', 'admin/newsletters'))}
+            = link_to admin_site_edit_path do
+              %i.fa.fa-wrench
+              Site Settings
+
+        %li{class: ('active' if action?('help'))}
+          = link_to admin_help_path do
+            %i.fa.fa-life-ring
+            Help
+
+        - if admin_access? && @post.present? && @post.persisted?
+          - if admin_view?
+            %li
+              = link_to post_detail_path(@post), class: 'edit-post-link pull-left' do
+                %i.fa.fa-eye
+                - if @post.page?
+                  View Page
+                - else
+                  View Post
+          - else
+            %li
+              = link_to edit_admin_post_path, class: 'edit-post-link pull-left' do
+                %i.fa.fa-pencil-square-o
+                Edit Post
+
+      .navbar-links.hidden-xs
+        .collapse.navbar-collapse
+          %ul#account-dropdown.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a#my-account.dropdown-toggle{data: {toggle: "dropdown"}}
+                Account
+                %i.fa.fa-chevron-down
+
+              %ul.dropdown-menu
+                - if user_signed_in?
+                  - if admin_access?
+                    %li
+                      = link_to 'Admin', admin_posts_path
+
+                    %li
+                      = link_to "My Settings", edit_admin_user_path(current_user)
+
+                  %li
+                    = link_to "Home", root_path
+
+                  %li
+                    = link_to "Sign Out", destroy_user_session_path, data: {method: :delete}

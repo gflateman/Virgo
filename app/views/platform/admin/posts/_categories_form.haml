@@ -1,0 +1,5 @@
+.post-categories
+  - Category.top_level.order(navbar_weight: :asc).each do |category|
+    = render '/admin/posts/category', category: category, level: 0
+
+  = link_to "+ Add New Category", "#", data: {uri: modal_form_admin_categories_path(post_id: @post.try(:id))}, id: 'new-category-link'

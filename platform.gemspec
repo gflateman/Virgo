@@ -119,8 +119,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rest-client'
 
-  s.add_dependency 'gibbon'
-
   s.add_dependency 'newrelic_rpm'
 
   s.add_dependency 'geoip'

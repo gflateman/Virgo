@@ -1,0 +1,8 @@
+- if record.present? && record.errors[:base].any?
+  .alert.base-errors.alert-danger.flash.fade.in.alert-dismissible
+    %a{:class => 'close', :data => {:dismiss => 'alert'}}
+      &times;
+    .inner-text
+      - record.errors[:base].each do |message|
+        .error-message= message
+

@@ -1,0 +1,19 @@
+- content_for :posts_content do
+  - cache [Column.order(updated_at: :asc).last, 'index'] do
+    .posts-container.columns-index
+      .container.columns-index-inner
+        .content-col
+          %h3.columns-header Columns
+
+          .row
+            - @columns.each do |column|
+              - cache column do
+                .col-lg-4.column-box-wrap
+                  .column-box{style: "background-image: url('#{column.image.url(:content)}');", data: {uri: column_url(column)}}
+                    .overlay
+                    .column-name
+                      = column.name
+                    .description= column.description
+
+        .rail-col
+          = render "/page_modules/popular_posts", tabbed: true, category: Category.COLUMNS, tab: :category

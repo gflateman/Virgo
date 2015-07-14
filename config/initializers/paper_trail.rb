@@ -1,3 +1,4 @@
+require 'paper_trail'
 require 'paper_trail/frameworks/active_record/models/paper_trail/version'
 
 module PaperTrail

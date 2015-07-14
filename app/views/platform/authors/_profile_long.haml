@@ -1,0 +1,13 @@
+- cache author do
+  .container.author-detail
+    .row
+      .col-md-10.col-md-offset-1
+        .media.author-profile-long{class: ('no-img' if author.avatar.blank?)}
+          .media-left
+            = image_tag author.avatar.url(:thumb), class: 'img-circle'
+
+          .media-body
+            %h4.media-heading= author.byline
+            .media-text
+              = raw author.about
+

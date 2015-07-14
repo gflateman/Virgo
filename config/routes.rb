@@ -30,11 +30,11 @@ Platform::Engine.routes.draw do
 #  get '/sitemap.xml' => 'application#sitemap'
 
 
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations',
-    passwords: 'users/passwords',
-    confirmations: 'users/confirmations'
+  devise_for :users, class_name: "Platform::User", controllers: {
+    sessions: 'platform/users/sessions',
+    registrations: 'platform/users/registrations',
+    passwords: 'platform/users/passwords',
+    confirmations: 'platform/users/confirmations'
   }
 
   get '/users/locate' => 'users#locate'

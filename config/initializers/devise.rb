@@ -1,5 +1,3 @@
-require 'devise'
-
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -14,7 +12,7 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'info@yourapp.com'
 
-  config.parent_controller = 'ApplicationController'
+  config.parent_controller = 'Platform::ApplicationController'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

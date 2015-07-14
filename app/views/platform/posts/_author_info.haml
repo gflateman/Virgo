@@ -1,0 +1,16 @@
+.author-info
+  %span.inner
+    - if post.author.avatar.present?
+      = link_to user_path(post.author), class: 'author-avatar' do
+        = image_tag post.author.avatar.url(:thumb), class: 'post-author-avatar-img'
+    %span.muted By
+    = link_to post.author.byline, user_path(post.author), class: 'post-author-link'
+    %span.muted.bullet &bull;
+    %span.muted.pub-date
+      - if post.publish_at
+        = local_time (post.publish_at || post.created_at), post_time_format
+      - else
+        (unpublished)
+    - if post.post? && post.comments_enabled?
+      = link_to post_detail_url(post, anchor: 'disqus_thread'), class: 'muted comment-info' do
+        %span.disqus-comment-count{data: {disqus_identifier: post.disqus_identifier}}

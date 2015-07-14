@@ -1,0 +1,41 @@
+.spacer.md
+.row
+  .col-md-8.col-md-offset-2
+    %h2= "#{@slide.new_record? ? 'Add New' : 'Edit'} Slide"
+    - url = @slide.new_record? ? admin_slideshow_slides_path(@slideshow) : admin_slide_path(@slide)
+
+    = simple_form_for @slide, url: url, html: {class: 'admin-slide-form'} do |f|
+      = base_errors(@slide)
+      = f.input :slideshow_id, as: :hidden
+
+      = f.input :title, label: "Title (optional, markup allowed)", as: :string
+
+      - if @slide.image.present?
+        .thumbnail.slide-thumb
+          = image_tag @slide.image.image.url, class: "js-image-thumb"
+        = link_to "Change Image", "#", class: "btn btn-default js-change-image-link"
+
+      - else
+        .thumbnail.slide-thumb.empty
+          = image_tag "#", class: "js-image-thumb hidden"
+
+        = link_to "Add Image", "#", class: "btn btn-default js-add-image-link"
+
+      .spacer
+
+      = f.input :image_id, as: :hidden, input_html: {class: "js-image-id"}
+
+      %p.info
+        #{'...'} Alternatively you can present a video in this slide by pasting an embed code in the field below
+      = f.input :video_embed, label: "Video embed code"
+      = f.input :text, label: "Text (optional, markup allowed)", input_html: {class: 'md'}
+
+      = f.button :submit, "Save slide", class: "btn btn-primary pull-right", data: {disable_with: "Saving..."}
+
+      - if @slide.persisted?
+        = link_to admin_slide_path(@slide), data: {method: :delete, confirm: "Are you sure you want to remove this slide?"}, class: 'btn btn-danger pull-left delete-slide' do
+          %i.fa.fa-trash-o
+          Remove Slide
+
+:coffee
+  $ -> new AdminSlideForm

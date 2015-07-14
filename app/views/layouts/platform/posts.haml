@@ -1,0 +1,10 @@
+- content_for :content do
+  #wrapper.posts-container
+    #page-content-wrapper
+      = yield :posts_content
+
+    - if content_for?(:below_post)
+      .below-post
+        = yield :below_post
+
+= render template: '/layouts/application'

@@ -1,0 +1,6 @@
+- content_for :site_settings_content do
+  %h2 Site Settings
+  = simple_form_for @site, url: admin_site_path, method: :patch do |f|
+    = f.input :tagline, as: :string
+    = f.input :recommendations_enabled, label: "Article recommendations enabled?"
+    = f.button :submit, "Save Settings"

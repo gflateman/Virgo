@@ -1,0 +1,42 @@
+- @_current_layout ||= 'application'
+- body_classes = @_current_layout.split(' ').map{|name| "layout-#{name}"}.join(" ")
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}
+
+    %meta{:content => "Van Winkle's", :property => "og:site_name"}
+    %meta{:content => "website", :property => "og:type"}
+
+    - if content_for?(:title)
+      %title #{yield(:title)}
+    - else
+      %title Van Winkle's | Exploring sleep with our eyes wide open
+
+    - if content_for?(:description)
+      %meta{:content => yield(:description), :name => "description"}
+    - else
+      %meta{:content => "Van Winkle's is a new website obsessed with sleeping, waking and everything in between. Whether it’s brain chemistry, parasomnia, hotel room hacking or how much Adderall is safe, we explore the science and culture of sleep with our eyes wide open.", :name => "description"}
+
+    - if content_for?(:sharing_meta)
+      = yield :sharing_meta
+    - else
+      %meta{:content => "#{image_url 'common/vw-social.jpg'}", :property => "og:image"}
+
+    = auto_discovery_link_tag(:rss, feed_url)
+    = render '/common/fonts.html.erb'
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = favicon_link_tag 'common/icons/favicon.ico'
+    = csrf_meta_tags
+    = render '/common/header_analytics.html.erb'
+
+  %body{class: "#{body_classes} #{params[:controller].split('/').join(' ')} #{params[:action]}#{' admin-user' if admin_access?}"}
+    #wrap
+      = render 'common/public_nav.haml'
+
+      #main
+        = yield

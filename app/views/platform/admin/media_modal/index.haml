@@ -1,0 +1,19 @@
+#media-modal.modal.fade
+  .modal-dialog.media-modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4.modal-title Media Library
+      .modal-body
+        .row
+          .col-md-3.leftbar
+            %ul.nav.nav-pills.nav-stacked.media-modal-nav
+              %li{class: ('active' if action?('index', 'library_panel'))}
+                = link_to library_panel_admin_media_modal_index_path do
+                  Media Library
+              %li{class: ('active' if action?('upload_panel'))}
+                = link_to upload_panel_admin_media_modal_index_path do
+                  Upload Image
+          #media-modal-content-area.col-md-9
+            = render partial: 'library_panel'

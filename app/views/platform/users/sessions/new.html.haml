@@ -1,0 +1,12 @@
+.row
+  .col-xs-4.col-xs-offset-4.session-box
+    %h3.text-center Log in to your account
+    = simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+      = f.input :login, label: "Username"
+      = f.input :password
+      = hidden_field_tag "next", params[:next]
+      = f.button :submit, "Sign In", data: {disable_with: "Signing In..."}, class: "btn btn-inverse btn-block"
+      = f.input :remember_me, as: :hidden, input_html: {value: true}
+
+    .breaker
+    = render "users/shared/links"

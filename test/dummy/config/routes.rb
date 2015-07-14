@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount Platform::Engine => "/platform"
+  mount Platform::Engine => "/"
 end
