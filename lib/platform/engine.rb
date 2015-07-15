@@ -8,6 +8,8 @@ module Platform
 
     config.caching = :aggressive
 
+    config.post_scheduling_interval = 1.minute
+
     # some dependencies must be explicitly required if used in an engine...
     require 'friendly_id'
     require 'kaminari'
@@ -27,6 +29,9 @@ module Platform
     require 'local_time'
     require 'tinymce-rails'
     require 'chronic'
+    require 'que'
+
+    Que.mode = :async
 
 
     spec = Gem::Specification.find_by_name("local_time")
@@ -34,6 +39,10 @@ module Platform
     require "#{gem_root}/app/helpers/local_time_helper"
 
     ActionView::Base.send :include, ::LocalTimeHelper
+
+    initializer :start_publish_manager do |app|
+        Platform::PublishJobManager.init!
+    end
 
     initializer :append_migrations do |app|
       unless app.root.to_s == root.to_s

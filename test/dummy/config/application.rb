@@ -25,6 +25,7 @@ module Dummy
     config.edit_lock_timeout = (Rails.env.development? ? 30.seconds : 8.seconds)
     config.edit_lock_grace = (Rails.env.development? ? 35.seconds : 10.seconds)
     config.post_locking_enabled = true
+    config.post_scheduling_frequency = 1.minute
 
     config.domain = "localhost"
   end
