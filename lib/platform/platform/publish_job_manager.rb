@@ -5,10 +5,12 @@ module Platform
     def self.init!
       instance.setup
       instance.enqueue_immediate!
+      Que.logger.info "PublishJobManager initialized!"
       true
     end
 
     def self.notify_complete!
+      Que.logger.info "PublishJobManager notified of job completion"
       instance.notify_complete!
     end
 
@@ -25,12 +27,18 @@ module Platform
     end
 
     def re_enqueue!
-      if no_active_job?
+      no_active_job = no_active_job?
+
+      Que.logger.info "Re-enqueue requested...active job running?: #{no_active_job ? 'No' : 'Yes'}"
+
+      if no_active_job
+        Que.logger.info "Enqueing new run of PublishJob - run_at: #{next_run_time}"
         Platform::PublishJob.enqueue(run_at: next_run_time)
       end
     end
 
     def enqueue_immediate!
+      Que.logger.info "PublishJobManager job enqueued for immediate execution"
       Platform::PublishJob.enqueue
     end
 
@@ -52,8 +60,8 @@ module Platform
     private
 
     def no_active_job?
-      ActiveRecord::Base.connection.execute "select count(*) from que_jobs where job_class = 'Platform::PublishJob' AND error_count = 0;"
-      result[0]["count"].to_i == 0
+      result = ActiveRecord::Base.connection.execute "select count(*) from que_jobs where job_class = 'Platform::PublishJob' AND error_count = 0;"
+      result[0]["count"].try(:to_i) == 0
     end
 
     def nearest_time(slots, val)

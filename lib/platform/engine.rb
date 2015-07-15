@@ -8,7 +8,7 @@ module Platform
 
     config.caching = :aggressive
 
-    config.post_scheduling_interval = 1.minute
+    config.post_scheduling_interval = 15.seconds
 
     # some dependencies must be explicitly required if used in an engine...
     require 'friendly_id'
@@ -31,8 +31,6 @@ module Platform
     require 'chronic'
     require 'que'
 
-    Que.mode = :async
-
 
     spec = Gem::Specification.find_by_name("local_time")
     gem_root = spec.gem_dir
@@ -41,7 +39,9 @@ module Platform
     ActionView::Base.send :include, ::LocalTimeHelper
 
     initializer :start_publish_manager do |app|
-        Platform::PublishJobManager.init!
+      Que.logger = Logger.new("#{Rails.root}/log/que.log")
+      Que.mode = :async
+      Platform::PublishJobManager.init!
     end
 
     initializer :append_migrations do |app|
