@@ -22,6 +22,9 @@ module Dummy
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.require_posts_to_have_category = false
+    config.edit_lock_timeout = (Rails.env.development? ? 30.seconds : 8.seconds)
+    config.edit_lock_grace = (Rails.env.development? ? 35.seconds : 10.seconds)
+    config.post_locking_enabled = true
 
     config.domain = "localhost"
   end

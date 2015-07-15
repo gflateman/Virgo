@@ -14,7 +14,7 @@
 #= require local_time
 #= require bootstrap-datetimepicker
 #= require ./lib/manifest
-#= require ./tinymce/manifest
+#= require ../tinymce/manifest
 #= require_tree ./common
 #= require_tree ./components
 #= require_tree ./admin

@@ -365,6 +365,8 @@ module Platform
     def set_live_status
       if publish_at.present? && publish_at > Time.now.to_datetime
         self.live = false
+      elsif publish_at.present? && publish_at < Time.now.to_datetime
+        self.live = true
       end
 
       true
