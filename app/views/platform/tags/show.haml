@@ -1,0 +1,16 @@
+- cache [@tag, page_param] do
+  .container.posts-container.column-posts
+    .row
+      .col-md-10.col-md-offset-1
+        %h1.text-center.section-heading
+          .inner
+            %i.fa.fa-tag
+            %span.text= @tag.name
+
+        - @posts.each do |post|
+          = render '/platform/posts/post_short', post: post
+
+        = paginate @posts
+
+- content_for :end_of_body do
+  = render '/platform/common/disqus_comment_count'

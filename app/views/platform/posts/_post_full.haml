@@ -1,0 +1,63 @@
+- cache [post, site_key, @category] do
+  :javascript
+    window.comments_enabled = #{@post.comments_enabled.to_s};
+  .post-banner-img{style: ("background-image: url('#{post_banner_image_url(post)}');" if post.show_feature_image_on_post_page), class: ('no-img' if (!post.featured_image || post.featured_image.image.blank? || !post.show_feature_image_on_post_page))}
+    - if post.featured_image && post.featured_image.credit.present? && post.show_feature_image_on_post_page
+      .photo-credit= raw post.featured_image.credit
+
+  .container-fluid.post-content{class: ('no-img' if (!post.featured_image || post.featured_image.image.blank? || !post.show_feature_image_on_post_page))}
+    .post-content-inner
+      .post-content-col
+        .post.post-full{data: {tracking_uri: track_post_path(post)}, class: ('no-subhead' if post.subhead.blank?)}
+          %h2.post-title
+            = link_to expanded_post_url(post) do
+              %span.inner
+                = post.headline
+
+          .author-info-wrap
+            = render 'author_info', post: post
+            = render '/platform/common/share_bar', post: post
+
+          - if post.subhead.present?
+            .post-subhead
+              = raw post.subhead
+            .clear
+
+          - # this is solely here to feed to the outbrain crawler, it is styled display: none
+          - if post.featured_image.present?
+            = image_tag post.featured_image.image.url(:med_thumb), id: 'feature-thumb'
+
+          .post-body
+            = strip_read_more(post.rendered_body)
+
+          - if post.has_citation?
+            .post-citation
+              = link_to post.citation_url do
+                %span.via= "- via"
+                %span.citation-name= post.citation_name
+
+          .post-meta
+            .divider
+            - if post.tags.any?
+              %ul.post-tag-list.list-inline
+                %li.title Tags:
+
+                - tag_sz = post.tags.size
+                - post.post_tags.by_position.each_with_index do |post_tag, index|
+                  - tag = post_tag.tag
+
+                  %li
+                    = link_to tag.name, tag_path(tag)
+                  - if index < (tag_sz - 1)
+                    %li.slash= "/"
+            = render '/platform/common/share_bar', post: post
+
+      .clear
+
+      .post-bottom
+        - if post.post? && post.comments_enabled?
+          .post-comments
+            = render '/platform/common/disqus'
+
+- content_for :end_of_body do
+  = render '/platform/common/disqus_comment_count'

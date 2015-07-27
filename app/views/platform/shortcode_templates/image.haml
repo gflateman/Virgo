@@ -1,0 +1,17 @@
+- @image = ::Platform::Image.find_by(name: @attributes[:name].to_s)
+
+- if @image
+  - opts = {}
+
+  - opts.merge!(alt: @image.alt_text) if @image.alt_text.present?
+
+  .image-wrap{class: ('with-caption' if @attributes[:caption].present?), data: {id: @image.id}}
+    = image_tag @image.image.url(:content), opts
+
+    - if @attributes[:caption].present?
+      .image-caption
+        = @attributes[:caption].to_s
+
+    - if @image.credit.present?
+      .image-credit
+        %span.credit-body= raw @image.credit

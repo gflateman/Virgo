@@ -1,0 +1,15 @@
+#signup-modal.modal.fade
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#signup-modal.modal-title= "#{site.name} Newsletter"
+      .modal-body
+        %p.info
+          Sign up below to get our newsletter in your inbox weekly
+        = simple_form_for @subscriber, url: platform.modal_subscribers_path, html: {class: "js-list-signup-form"} do |f|
+          = f.input :email, label: false, input_html: {placeholder: "Your email address"}
+          = f.button :submit, "Submit", class: 'btn btn-primary pull-right js-submit-btn'
+
+        .clear

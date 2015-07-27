@@ -1,0 +1,12 @@
+- recommendations = post.recommendations.limit(3)
+
+- if site && site.recommendations_enabled && recommendations.any?
+  .related-posts
+    %h3.recommendations-head
+      Related
+      %br
+      Articles
+    .related-post-items
+      - recommendations.each do |recommendation|
+        = render '/platform/posts/post_thumb_box', post: recommendation
+    .clear

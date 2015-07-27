@@ -1,0 +1,13 @@
+#signup-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#signup-modal.modal-title= "#{site.name} Newsletter"
+      .modal-body
+        %p
+          Congrats! You're now signed up for our newsletter!
+      .modal-footer
+        %button.btn.btn-primary{"data-dismiss" => "modal", :type => "button"} Close
+

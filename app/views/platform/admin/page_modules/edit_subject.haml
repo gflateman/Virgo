@@ -1,0 +1,43 @@
+- content_for :site_settings_content do
+  = simple_form_for @page_module, url: admin_edit_page_module_subject_path(@page_module) do |f|
+    - if @page_module.name == "Tag Focus"
+      = hidden_field_tag 'page_module[subject_type]', 'Tag'
+      = f.input :subject_id, as: :select, collection: Tag.order(name: :asc)
+    - else
+      = f.input :subject_headline, as: :string, input_html: {id: 'page-module-subject-select'}
+      = hidden_field_tag 'page_module[subject_type]', 'Post'
+      = f.hidden_field :subject_id
+
+    - if @page_module.can_set_posts?
+      .form-group
+        %label.control-label Posts
+        .controls
+          - # multiselect widget orders selections based on position in the select dropdown, wtf...
+          - first = f.object.page_module_posts.by_position.map(&:post)
+
+          - rest = Post.where.not(id: f.object.page_module_posts.by_position.map(&:post_id)).order(headline: :asc).to_a
+
+          = select_tag 'post_ids[]', options_for_select((first + rest).map{|p| [truncate(p.headline, length: 50), p.id] }, f.object.page_module_posts.by_position.map(&:post_id)), multiple: true, class: 'js-post-multiselect page-module-post-ids'
+
+    .clear
+
+    - if @page_module.name == "Tag Focus"
+      = f.input :image, label: "Background image"
+      - if @page_module.image.present?
+        .form-group
+          %label
+            Image preview
+
+          = link_to @page_module.image.url, class: 'image-preview-wrap page-module-image-preview' do
+            = image_tag @page_module.image.url, class: 'image-preview'
+
+    .clear
+
+    = f.button :submit, "Save Settings", class: 'btn btn-primary'
+    = link_to "#", class: "pull-right clear-select js-clear-page-module-subject clear-link" do
+      %i.fa.fa-times
+      Clear Selection
+
+  :coffee
+    $ ->
+      new PageModuleEditSubjectForm

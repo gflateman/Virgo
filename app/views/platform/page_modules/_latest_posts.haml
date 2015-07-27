@@ -1,0 +1,29 @@
+- @latest_posts = Post.order(publish_at: :desc)
+
+.page-group.container-fluid.no-border.latest-posts-module-container
+  .content-col
+    .latest-posts-box
+      %h3.latest-posts-heading.with-link
+        = link_to "Latest", latest_posts_path
+      .latest-posts
+        .row
+          .col-md-12
+            = render '/platform/posts/post_thumb_box', post: @latest_posts.first, classes: 'first-level'
+
+        - @latest_posts.limit(2).offset(1).in_groups_of(2).each do |group|
+          .row
+            - group.each do |post|
+              .col-md-6
+                = render '/platform/posts/post_thumb_box', post: post, classes: 'second-level'
+
+        - @latest_posts.limit(3).offset(3).in_groups_of(3).each do |group|
+          .row
+            - group.each do |post|
+              .col-md-4
+                = render '/platform/posts/post_thumb_box', post: post, classes: 'third-level'
+
+      .show-more-wrap.text-center
+        = link_to "Load More", '#', data: {uri: more_posts_path(page: 1)}, class: 'view-more-link block-link js-load-posts'
+
+  .rail-col
+    = render PageModule.POPULAR.template_path

@@ -1,0 +1,43 @@
+= form_tag admin_slideshows_path, method: :get, class: 'search-form form-inline pull-left' do
+  = hidden_field_tag 'sort', sort_param
+
+  = text_field_tag 'filters[term]', filter_params[:term], class: 'form-control', placeholder: 'Filter by name or ID'
+  = submit_tag "Search", class: 'btn btn-default'
+
+  - if filter_params[:term].present?
+    = link_to nil, href: admin_slideshows_path, class: 'clear-link' do
+      %i.fa.fa-times-circle-o
+      clear search
+
+
+= link_to "Add New Slideshow", new_admin_slideshow_path, class: 'btn btn-inverse pull-right action-btn', id: 'new-slideshow-link'
+
+.clear
+.table-panel
+  %table.table.admin-posts-table
+    %thead
+      %tr
+        %th= sortable_column "ID", column: :id
+        %th= sortable_column "Name"
+        %th= sortable_column "Author", column: "users.byline"
+        %th= sortable_column "Created at", column: :created_at
+        %th= sortable_column "Last modified", column: :updated_at
+
+    %tbody
+      - if @slideshows.empty?
+        %tr.empty
+          %td{colspan: "5"}
+            = "No slideshows"
+
+      - @slideshows.each do |slideshow|
+        %tr
+          %td= link_to slideshow.id, edit_admin_slideshow_path(slideshow)
+          %td= link_to slideshow.name, edit_admin_slideshow_path(slideshow)
+          %td= slideshow.author.try(:byline)
+          %td= slideshow.created_at.to_s(:slashes_with_time)
+          %td
+            = slideshow.updated_at.to_s(:slashes_with_time)
+            %br
+            = "Last modified"
+
+= paginate @slideshows

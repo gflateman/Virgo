@@ -1,0 +1,14 @@
+#category-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4.modal-title Success
+      .modal-body
+        %p#category-success-message
+          Your category has been added.
+
+      .modal-footer
+        %button#category-modal-close.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+

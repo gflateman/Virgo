@@ -1,0 +1,9 @@
+.blockquote-wrap
+  - if @attributes[:title].present?
+    .blockquote-title= @attributes[:title]
+  %blockquote
+    .blockquote-content= @content
+    - if @attributes[:source].present?
+      %cite= raw "&ndash; #{@attributes[:source]}"
+
+    .bottom-line

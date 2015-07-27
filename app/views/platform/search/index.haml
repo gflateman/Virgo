@@ -1,0 +1,11 @@
+.container.search-page
+  .row
+    .col-md-10.col-md-offset-1
+      = render 'form'
+
+      .clearfix
+
+      .search-results
+        %ul.list-unstyled.search-results-list
+          - @posts.each do |post|
+            = render 'item', post: post

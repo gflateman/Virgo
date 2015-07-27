@@ -1,0 +1,8 @@
+- source = @attributes[:url].to_s
+- provider = video_provider(source)
+
+.video-embed-wrap
+  - if provider == :vimeo
+    %iframe{src: "#{vimeo_embed_url(source)}", width: '640', height: '480', frameborder: '0', allowfullscreen: true}
+  - elsif provider == :youtube
+    %iframe{width: '640', height: '480', src: "#{youtube_embed_url(source)}", frameborder: 0, allowfullscreen: true}

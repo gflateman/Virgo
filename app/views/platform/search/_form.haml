@@ -1,0 +1,5 @@
+.search-box
+  %h2= action?('index') ? 'Search Results' : 'Search Articles'
+  = simple_form_for @search, url: search_index_path, method: :post, html: {class: 'post-search-form'} do |f|
+    = f.input :term, as: :string, label: false, placeholder: 'Enter search term'
+    = f.button :submit, "Search", class: 'btn btn-inverse pull-right', data: {disable_with: 'Searching...'}

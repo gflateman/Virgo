@@ -1,0 +1,38 @@
+= link_to "Add New Category", new_admin_category_path, class: 'btn btn-inverse pull-right action-btn'
+.clear
+.table-panel
+  %table.table.admin-posts-table
+    %thead
+      %tr
+        %th= sortable_column "Name"
+        %th= sortable_column "Added at", column: :created_at
+        %th Added by
+        %th Shown in navbar?
+        %th= sortable_column "Weight", column: :navbar_weight
+        %th= sortable_column "Count", column: "post_count"
+
+    %tbody
+      - if @categories.empty?
+        %tr.empty
+          %td{colspan: "6"}
+            No categories
+
+      - @categories.each do |category|
+        %tr
+          %td= link_to truncate(category.name, length: 40), edit_admin_category_path(category)
+          %td= category.created_at.to_s(:slashes_with_time)
+          %td
+            - if category.created_by
+              = link_to category.created_by.try(:byline), edit_admin_user_path(category.created_by)
+          %td
+            - if category.display_in_navbar?
+              = icon 'check'
+
+          %td= category.navbar_weight
+          %td
+            - if category.post_count == 0
+              %span 0
+            - else
+              = link_to category.post_count, admin_posts_path(filters: {category_ids: [category.id]})
+
+= paginate @categories

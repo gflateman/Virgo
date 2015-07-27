@@ -1,0 +1,40 @@
+- limit = local_assigns.has_key?(:limit) ? limit : false
+
+- @versions = limit ? @post.unscoped_versions.order(created_at: :desc).limit(5) : @post.unscoped_versions.order(created_at: :desc)
+
+- @versions = @versions.where.not(whodunnit: nil)
+
+%table.table.post-revisions
+  %thead
+    %tr
+      %th Who?
+      %th When?
+      %th.revision-summary-col Summary
+      %th Revision details
+
+  %tbody
+    - if @versions.empty?
+      %tr.empty
+        %td{colspan: '3'}
+          No revisions
+
+    - @versions.each do |version|
+      - author = version.version_user
+      - if author
+        %tr
+          %td
+            %span.avatar-thumb= image_tag author.avatar.url(:thumb)
+            = author.pretty_name
+          %td
+            = time_ago_in_words version.created_at
+            %span.ago ago
+
+          %td= truncate version.pretty_changes, length: 80
+          %td
+            = link_to "Click to view details", admin_revision_detail_path(version)
+
+- if limit && @versions.size > 5
+  .see-all-revisions.text-right
+    = link_to revisions_admin_post_path(@post), target: '_blank' do
+      See all revisions &raquo;
+
