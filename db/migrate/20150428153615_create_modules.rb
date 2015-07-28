@@ -1,6 +1,6 @@
 class CreateModules < ActiveRecord::Migration
   def change
-    create_table :platform_page_modules do |t|
+    create_table :virgo_page_modules do |t|
       t.string :name
       t.string :template_path
       t.boolean :enabled
@@ -8,7 +8,7 @@ class CreateModules < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :platform_page_modules, :enabled
-    add_index :platform_page_modules, :weight
+    add_index :virgo_page_modules, :enabled
+    add_index :virgo_page_modules, :weight
   end
 end

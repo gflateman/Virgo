@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe Platform::PostsController do
+describe Virgo::PostsController do
   render_views
-  routes { Platform::Engine.routes }
+  routes { Virgo::Engine.routes }
 
   # smoke test
   describe "index" do

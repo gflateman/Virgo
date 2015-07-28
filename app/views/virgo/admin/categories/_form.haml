@@ -1,0 +1,19 @@
+- url = @category.new_record? ? admin_categories_path : admin_category_path(@category)
+
+= simple_form_for @category, url: url, html: {id: 'category-form'} do |f|
+  = hidden_field_tag 'post_id', post_id_param
+  = f.input :name
+  = f.input :slug, label: "Permalink"
+  = f.input :parent_id, label: 'Parent', as: :select, collection: Virgo::Category.where.not(id: @category.id)
+  = f.input :display_in_navbar, label: "Display in navbar?"
+  .row
+    .col-md-3
+      = f.input :navbar_weight, as: :select, collection: (-10..10).to_a, include_blank: false
+
+
+  - if @category.persisted?
+    = link_to admin_category_path(@category), class: 'delete-link pull-left', data: {method: :delete, confirm: "Are you sure you want to delete this category?"} do
+      %i.fa.fa-trash-o
+      Delete Category
+  = f.button :submit, class: 'btn btn-primary pull-right js-submit-category', id: "category-submit"
+  .clear

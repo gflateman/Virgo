@@ -82,7 +82,7 @@ RSpec.configure do |config|
   end
 
   config.after(:suite) do
-    carrierwave_uploads_path = File.expand_path("../../spec/dummy/public/uploads/platform",  __FILE__)
+    carrierwave_uploads_path = File.expand_path("../../spec/dummy/public/uploads/virgo",  __FILE__)
     FileUtils.rm_rf(carrierwave_uploads_path)
   end
 end

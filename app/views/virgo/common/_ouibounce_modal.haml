@@ -1,0 +1,26 @@
+#ouibounce-modal.campaign-prompt
+  .underlay
+  .ouibounce-modal.campaign-prompt-modal
+    %a.ouibounce-close.js-close-modal{href: "#"}
+      %i.fa.fa-times
+    .ouibounce-modal-body
+      .header-wrap.text-center
+        %h2.primary-head.text-center Hey!
+      %p.copy.text-center Keep up to date with a weekly digest email of our hottest stories.
+      = simple_form_for (@subscriber || Virgo::Subscriber.new), url: virgo.subscribers_path, html: {class: 'list-signup-form js-list-signup-form ouibounce-list-signup-form', id: 'ouibounce-list-signup-form'} do |f|
+        .input-btn-append.inverse.email-input-wrap
+          = f.text_field :email, class: 'email-input', placeholder: "Your Email Address"
+          = f.button :submit, "Sign Up", class: "sign-up-btn", 'data-loading-text' => "Loading"
+
+      .list-signup-message.info
+        %span.desktop-copy
+          Subscribe to our weekly newsletter
+        %span.mobile-copy
+          Subscribe to our weekly newsletter
+      .list-signup-message.success
+        %i.fa.fa-check
+        Thank you for joining the newsletter!
+      .list-signup-message.error
+
+    .ouibounce-modal-footer
+      %a.js-close-modal.js-ouibounce-footer-button{href: '#'} No thanks, I’m just too tired.

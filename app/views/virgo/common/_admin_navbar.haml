@@ -1,0 +1,100 @@
+- if admin_access?
+  %nav.admin-nav.navbar
+    .container-fluid
+      %ul.nav.navbar-nav
+        %li
+          = link_to virgo.root_path do
+            %i.fa.fa-home
+            Home
+
+        - if can? :index, Virgo::Post
+          %li{class: ('active' if controller?('virgo/admin/posts') && posts_action?)}
+            = link_to virgo.admin_posts_path do
+              %i.fa.fa-thumb-tack
+              Posts
+
+          %li{class: ('active' if controller?('virgo/admin/posts') && pages_action?)}
+            = link_to virgo.admin_posts_path(filters: {post_type: :page}) do
+              %i.fa.fa-file-o
+              Pages
+
+          %li{class: ('active' if controller?('virgo/admin/slideshows', 'admin/slides'))}
+            = link_to virgo.admin_slideshows_path do
+              %i.fa.fa-camera-retro
+              Slideshows
+
+        %li{class: ('active' if controller?('virgo/admin/categories'))}
+          = link_to virgo.admin_categories_path do
+            %i.fa.fa-archive
+            Categories
+
+        %li{class: ('active' if controller?('virgo/admin/tags'))}
+          = link_to virgo.admin_tags_path do
+            %i.fa.fa-tag
+            Tags
+
+        - if can? :index, Virgo::Column
+          %li{class: ('active' if controller?('virgo/admin/columns'))}
+            = link_to virgo.admin_columns_path do
+              %i.fa.fa-newspaper-o
+              Columns
+
+        - if can? :index, Virgo::User
+          %li{class: ('active' if controller?('virgo/admin/users'))}
+            = link_to virgo.admin_users_path do
+              %i.fa.fa-user
+              Users
+
+        %li{class: ('active' if controller?('virgo/admin/images'))}
+          = link_to virgo.admin_images_path do
+            %i.fa.fa-file-image-o
+            Media Library
+
+        - if can? :index, Virgo::Site
+          %li{class: ('active' if controller?('virgo/admin/sites', 'virgo/admin/page_modules', 'virgo/admin/newsletters'))}
+            = link_to virgo.admin_site_edit_path do
+              %i.fa.fa-wrench
+              Settings
+
+        %li{class: ('active' if action?('help'))}
+          = link_to virgo.admin_help_path do
+            %i.fa.fa-life-ring
+            Help
+
+        - if admin_access? && @post.present? && @post.persisted?
+          - if admin_view?
+            %li
+              = link_to virgo.post_detail_path(@post), class: 'edit-post-link pull-left' do
+                %i.fa.fa-eye
+                - if @post.page?
+                  View Page
+                - else
+                  View Post
+          - else
+            %li
+              = link_to virgo.edit_admin_post_path, class: 'edit-post-link pull-left' do
+                %i.fa.fa-pencil-square-o
+                Edit Post
+
+      .navbar-links.hidden-xs
+        .collapse.navbar-collapse
+          %ul#account-dropdown.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a#my-account.dropdown-toggle{data: {toggle: "dropdown"}}
+                Account
+                %i.fa.fa-chevron-down
+
+              %ul.dropdown-menu
+                - if user_signed_in?
+                  - if admin_access?
+                    %li
+                      = link_to 'Admin', virgo.admin_posts_path
+
+                    %li
+                      = link_to "My Settings", virgo.edit_admin_user_path(current_user)
+
+                  %li
+                    = link_to "Home", virgo.root_path
+
+                  %li
+                    = link_to "Sign Out", virgo.destroy_user_session_path, data: {method: :delete}

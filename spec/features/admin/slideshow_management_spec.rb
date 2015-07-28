@@ -9,7 +9,7 @@ describe "Admin slideshow management workflow", type: :feature, js: true do
   end
 
   it "should let me add a new editor in admin" do
-    visit platform.admin_slideshows_path
+    visit virgo.admin_slideshows_path
 
     click_link 'new-slideshow-link'
 

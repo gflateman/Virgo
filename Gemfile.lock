@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    platform (0.0.1)
+    virgo (0.0.1)
       actionpack-action_caching
       bootstrap-sass (~> 3.3.5.1)
       bootstrap3-datetimepicker-rails (~> 4.14.30)
@@ -416,7 +416,7 @@ DEPENDENCIES
   chromedriver-helper
   database_cleaner
   factory_girl_rails
-  platform!
+  virgo!
   pry
   rspec-rails
   selenium-webdriver

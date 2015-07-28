@@ -1,0 +1,8 @@
+- cache @authors do
+  .container.authors-page
+    .row
+      .col-md-10.col-md-offset-1
+        %h1.text-center Our Editorial Team
+        .authors-list
+          - @authors.each do |author|
+            = render '/virgo/authors/profile_short', author: author

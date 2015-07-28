@@ -1,0 +1,201 @@
+.row
+  - url = @post.new_record? ? admin_posts_path : admin_post_path(@post)
+
+  #post-locked-messaged{class: ('hidden' unless (@post.is_mid_edit? && @post.editing_user != current_user))}
+    .container-fluid
+      .row.alert-row.fade.in
+        .col-md-12
+          .alert.alert-danger.flash
+            .inner-text
+              %strong.alert-heading
+                = icon 'lock'
+                Warning!
+              This post is currently being edited by
+              :erb
+                <span class='editing-user-name'><%= @post.editing_user.try(:pretty_name) %></span>. Any changes that you make while the user is still editing the post
+                may be lost. A popup will appear when the user has finished editing the post giving you the option to refresh this page and view
+                their changes.
+
+  = simple_form_for @post, url: url, html: {class: 'admin-post-form'} do |f|
+    = base_errors(@post)
+
+    = f.hidden_field :post_type
+    .col-md-9
+      = f.input :headline, as: :string, input_html: {id: 'headline-input'}
+
+      = f.input :slug, label: "Permalink slug", input_html: {placeholder: "example: \"a-blog-post\"", "data-toggle" => "character-counter", id: 'slug-input'}
+
+      - if @post.post?
+        = f.input :subhead, label: "Subhead", input_html: {id: 'subhead-input'}
+
+      -# %a.btn.btn-sm.btn-default.pull-left.js-launch-media-modal.media-button{href: "#"}
+      -#   = icon 'image'
+      -#   Insert Image
+      .clear
+      .editor-wrap
+        .editor-word-count
+          %span.count-number
+          %span.count-text
+        %textarea.editor-custom{name: "post[body]", rows: 50}
+          = f.object.body.try(:html_safe)
+
+      .spacer
+
+      - if @post.post?
+        .panel.panel-default
+          .panel-heading Excerpt
+          .panel-body
+            = f.input :excerpt, input_html: {id: "excerpt-input"}
+
+      - if @post.persisted?
+        .panel.panel-default
+          .panel-heading Revisions
+          .panel-body
+            - # hide for now, on jeff's request
+            - # render partial: 'revisions', locals: {limit: true}
+            .see-all-revisions.text-left
+              = link_to revisions_admin_post_path(@post), target: '_blank' do
+                See all revisions &raquo;
+
+
+
+      - if @post.persisted? && (admin? || @post.author == current_user)
+        = link_to admin_post_path(@post), class: 'btn btn-danger pull-left delete-post-link', data: {method: :delete, confirm: "Are you sure you want to delete this #{@post.post? ? 'post' : 'page'} permanently?"} do
+          %i.fa.fa-trash-o
+          = "Delete #{@post.post? ? 'Post' : 'Page'}"
+
+      = f.button :submit, 'Save', class: 'btn btn-info pull-right post-save-btn', data: {disable_with: "Saving"}, id: "primary-save-button"
+
+      .spacer
+
+
+    .col-md-3
+      .panel.panel-default.push-down-sm
+        .panel-heading Publish
+        .panel-body
+          .form-group
+            %label.label-block
+              Author
+              = link_to new_admin_user_path, class: 'new-user-link pull-right', target: '_blank' do
+                Add User
+                = icon 'external-link'
+            = render 'author_dropdown'
+            .refresh-author-wrap.text-right
+              %a#refresh-authors.js-refresh-authors{href: '#', data: {toggle: 'tooltip', placement: 'top'}, title: 'Refresh authors dropdown'}
+                = icon 'refresh'
+
+
+          = f.input :status, label: 'Status', as: :select, collection: Virgo::Post.status_names, include_blank: false
+
+          = f.input :publish_at, label: 'Publish on date', as: :string, input_html: {id: 'publish-at-input', value: f.object.publish_at.try(:to_s, :slashes_with_time)}
+
+          = f.button :submit, "Save", class: 'btn btn-info pull-right'
+
+    .col-md-3
+      - if @post.post?
+        .panel.panel-default.push-down-sm
+          .panel-heading Categories
+          .panel-body
+            = render 'categories_form'
+
+        .panel.panel-default
+          .panel-heading Tags
+          .panel-body.tags-panel-body
+            .box-loading-overlay.tags-box-loading
+              %i.spinner.fa.fa-circle-o-notch.fa-spin
+            .row
+              .col-sm-12
+                = f.hidden_field :ordered_tag_ids, multiple: true, class: 'tags-select', value: "[#{post_params[:ordered_tag_ids].present? ? post_params[:ordered_tag_ids].try(:[], 0) :  f.object.post_tags.order(position: :asc).map{|pt| "\"#{pt.tag_id}\""}.join(',')}]"
+                = link_to "+ Add New Tag", "#", data: {uri: modal_form_admin_tags_path(post_id: @post.id)}, id: 'new-category-link'
+
+        .panel.panel-default
+          .panel-heading Column
+          .panel-body
+            .row
+              .col-sm-12
+                .post-column-field
+                  = f.input :column_id, as: :select, label: false, collection: Virgo::Column.order(name: :asc)
+
+        .panel.panel-default.push-down-sm
+          .panel-heading Citation
+          .panel-body
+            = f.input :citation_name, as: :string, label: "Citation name (optional)"
+            = f.input :citation_url, as: :string, label: "Citation url (optional)"
+
+      .panel.panel-default.push-down-sm
+        .panel-heading SEO
+        .panel-body
+          = f.input :title_tag_text, label: "Title tag value (optional)", input_html: {placeholder: "defaults to headline text"}
+          = f.input :meta_description_tag_value, label: "Meta description tag value (optional)", input_html: {placeholder: "Defaults to first 160 characters of post body (stripped of markup)"}
+
+
+      - if @post.post?
+        .panel.panel-default
+          .panel-heading Publishing Options
+          .panel-body
+            .row
+              .col-sm-12
+                = f.input :comments_enabled, label: "Comments enabled?"
+
+        .panel.panel-default.featured-image-settings-box
+          .panel-heading Featured Image
+          .panel-body
+            .row
+              .col-sm-12
+                .featured-image-thumbnail{class: ('hidden' unless @post.featured_image)}
+                  = link_to @post.featured_image.try(:image).try(:url), target: '_blank', class: 'thumbnail' do
+                    = image_tag @post.featured_image.try(:image).try(:url)
+
+                %p.info.muted.no-image-message.js-no-featured-image-message{class: ('hidden' if @post.thumbnail_image)}
+                  No image selected
+
+
+                .featured-image-box-buttons
+                  = link_to '#', class: 'js-select-featured-image featured-image-link pull-left btn btn-info' do
+                    = icon 'plus'
+                    Choose Image
+
+                  = f.button :submit, 'Save Changes', class: "btn btn-primary pull-left js-save-featured-image hidden"
+
+                  = link_to 'Remove Image', (@post.new_record? ? '#' : featured_image_admin_post_path(@post)), class: "btn btn-danger pull-left js-remove-featured-image#{' hidden' if @post.featured_image.nil?}"
+
+                  .clear
+                  = f.input :show_feature_image_on_post_page, label: "Display featured image on post page?", input_html: {class: 'show-on-post-page'}
+
+                = f.input :featured_image_id, as: :hidden
+
+        .panel.panel-default.thumbnail-image-settings-box
+          .panel-heading Thumbnail Image (Optional)
+          .panel-body
+            .row
+              .col-sm-12
+                %p.info
+                  If selected, the post thumbnail image will override the feature image
+                  on index pages and widgets sitewide.
+                .thumbnail-image-thumbnail{class: ('hidden' unless @post.thumbnail_image)}
+                  = link_to @post.thumbnail_image.try(:image).try(:url), target: '_blank', class: 'thumbnail' do
+                    = image_tag @post.thumbnail_image.try(:image).try(:url)
+
+                %p.info.muted.no-image-message.js-no-thumbnail-image-message{class: ('hidden' if @post.thumbnail_image)}
+                  No image selected
+
+
+                .thumbnail-image-box-buttons
+                  = link_to '#', class: 'js-select-thumbnail-image thumbnail-image-link pull-left btn btn-info' do
+                    = icon 'plus'
+                    Choose Image
+
+                  = f.button :submit, 'Save Changes', class: "btn btn-primary pull-left js-save-thumbnail-image hidden"
+
+                  = link_to 'Remove Image', (@post.new_record? ? '#' : thumbnail_image_admin_post_path(@post)), class: "btn btn-danger pull-left js-remove-thumbnail-image#{' hidden' if @post.thumbnail_image.nil?}"
+
+                  .clear
+
+                = f.input :thumbnail_image_id, as: :hidden
+
+      -# = f.button :submit, "Save Post", class: 'btn btn-info pull-right post-save-btn post-save-btn', data: {disable_with: "Saving"}
+
+
+- cache [Virgo::Tag.cache_key, 'tag_ids'] do
+  :javascript
+    window.tag_info = #{ Virgo::Tag.all.map{ |t| {t.name => t.id} }.reduce({}, :update).to_json };

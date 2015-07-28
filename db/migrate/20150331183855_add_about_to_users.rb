@@ -1,5 +1,5 @@
 class AddAboutToUsers < ActiveRecord::Migration
   def change
-    add_column :platform_users, :about, :text
+    add_column :virgo_users, :about, :text
   end
 end

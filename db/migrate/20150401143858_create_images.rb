@@ -1,6 +1,6 @@
 class CreateImages < ActiveRecord::Migration
   def change
-    create_table :platform_images do |t|
+    create_table :virgo_images do |t|
       t.integer :user_id
       t.string :name
       t.string :slug
@@ -12,8 +12,8 @@ class CreateImages < ActiveRecord::Migration
       t.integer :data_file_size
       t.timestamps
     end
-    add_index :platform_images, :user_id
-    add_index :platform_images, :name
-    add_index :platform_images, :slug
+    add_index :virgo_images, :user_id
+    add_index :virgo_images, :name
+    add_index :virgo_images, :slug
   end
 end

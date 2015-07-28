@@ -1,9 +1,9 @@
 class AddUuidToPosts < ActiveRecord::Migration
   def change
-    add_column :platform_posts, :uuid, :string
-    add_index :platform_posts, :uuid
+    add_column :virgo_posts, :uuid, :string
+    add_index :virgo_posts, :uuid
 
-    Platform::Post.find_each do |p|
+    Virgo::Post.find_each do |p|
       p.send :generate_uuid, force: true
       p.save
     end

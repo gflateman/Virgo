@@ -1,0 +1,20 @@
+.list-signup.page-group
+  .inner
+    .row
+      .col-sm-3
+        .title-wrap
+          %h2.title
+            .weekly
+              Newsletter
+              %br
+              Signup
+        .clear
+      .col-sm-9
+        .copy Sign up to get our weekly newsletter.
+        = simple_form_for (@subscriber || Subscriber.new), url: virgo.subscribers_path, html: {id: 'list-signup-form'} do |f|
+          .input-btn-append.inverse.email-input-wrap
+            = f.text_field :email, class: 'email-input', placeholder: "Your Email Address"
+            = f.button :submit, "Sign Up", class: "sign-up-btn", 'data-loading-text' => "Loading"
+        .list-signup-message.success
+          Thanks! You’ve signed up successfully.
+        .list-signup-message.error

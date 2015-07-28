@@ -1,4 +1,4 @@
-Platform::Engine.routes.draw do
+Virgo::Engine.routes.draw do
   root to: 'posts#index'
   get 'login', to: redirect('/users/sign_in')
 
@@ -31,11 +31,11 @@ Platform::Engine.routes.draw do
   get '/admin/help' => 'admin/pages#help', as: :admin_help
 
 
-  devise_for :users, class_name: "Platform::User", controllers: {
-    sessions: 'platform/users/sessions',
-    registrations: 'platform/users/registrations',
-    passwords: 'platform/users/passwords',
-    confirmations: 'platform/users/confirmations'
+  devise_for :users, class_name: "Virgo::User", controllers: {
+    sessions: 'virgo/users/sessions',
+    registrations: 'virgo/users/registrations',
+    passwords: 'virgo/users/passwords',
+    confirmations: 'virgo/users/confirmations'
   }
 
   namespace :admin do

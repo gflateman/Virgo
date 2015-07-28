@@ -9,7 +9,7 @@ describe "Admin user management workflow", type: :feature, js: true do
   end
 
   it "should let me add a new editor in admin" do
-    visit platform.admin_users_path
+    visit virgo.admin_users_path
 
     first(:css, '#new-user-link').click
 

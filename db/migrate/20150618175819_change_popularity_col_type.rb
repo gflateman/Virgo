@@ -1,7 +1,7 @@
 class ChangePopularityColType < ActiveRecord::Migration
   def change
-    remove_column :platform_posts, :popularity
-    add_column :platform_posts, :popularity, :decimal, precision: 12, scale: 3
-    add_index :platform_posts, :popularity
+    remove_column :virgo_posts, :popularity
+    add_column :virgo_posts, :popularity, :decimal, precision: 12, scale: 3
+    add_index :virgo_posts, :popularity
   end
 end

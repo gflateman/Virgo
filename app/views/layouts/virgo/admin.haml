@@ -1,0 +1,16 @@
+- content_for :head do
+  = javascript_include_tag 'virgo/admin_only'
+  = stylesheet_link_tag 'virgo/admin_only'
+
+- @_current_layout = 'admin'
+
+- content_for :content do
+  #admin-content
+    = alerts
+    #admin-content-inner
+      - if content_for? :admin_content
+        = yield :admin_content
+      - else
+        = yield
+
+= render template: 'layouts/virgo/application'

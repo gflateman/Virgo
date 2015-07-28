@@ -1,6 +1,6 @@
 class AddColumnIdToPosts < ActiveRecord::Migration
   def change
-    add_column :platform_posts, :column_id, :integer
-    add_index :platform_posts, :column_id
+    add_column :virgo_posts, :column_id, :integer
+    add_index :virgo_posts, :column_id
   end
 end

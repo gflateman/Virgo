@@ -1,12 +1,12 @@
 class RecreateSearchIndexOnPosts < ActiveRecord::Migration
   def up
-    remove_column :platform_posts, :document
+    remove_column :virgo_posts, :document
 
-    add_column :platform_posts, :search_document, :text
+    add_column :virgo_posts, :search_document, :text
 
-    execute "CREATE INDEX platform_post_search_document_index ON platform_posts USING gin (search_document gin_trgm_ops);"
+    execute "CREATE INDEX virgo_post_search_document_index ON virgo_posts USING gin (search_document gin_trgm_ops);"
 
-    Platform::Post.find_each do |post|
+    Virgo::Post.find_each do |post|
       post.send(:generate_search_document, force: true)
       post.save
     end

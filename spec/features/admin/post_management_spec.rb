@@ -17,7 +17,7 @@ describe "Admin post management workflow", type: :feature, js: true do
   private
 
   def visit_admin_posts_index
-    visit platform.admin_posts_path
+    visit virgo.admin_posts_path
   end
 
   def click_new_post_link

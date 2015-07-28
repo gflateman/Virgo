@@ -1,9 +1,9 @@
 FactoryGirl.define do
-  factory :site, class: Platform::Site do
+  factory :site, class: Virgo::Site do
     name "The Site"
   end
 
-  factory :user, class: Platform::User do
+  factory :user, class: Virgo::User do
     sequence(:username) { |n| "Faker::Internet.user_name#{n}" }
     byline { Faker::Name.name }
     email { Faker::Internet.email }
@@ -14,11 +14,11 @@ FactoryGirl.define do
     role :admin
   end
 
-  factory :category, class: Platform::Category do
+  factory :category, class: Virgo::Category do
     name { "#{Faker::Lorem.words(1)} #{Time.now.to_i}" }
   end
 
-  factory :post, class: Platform::Post do
+  factory :post, class: Virgo::Post do
     association :author, factory: :user
     headline { Faker::Lorem.words.join(" ") + " " + Time.now.to_i.to_s }
     body { Faker::Lorem.paragraph(2) }

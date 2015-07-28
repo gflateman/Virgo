@@ -1,5 +1,5 @@
 class AddNameToSites < ActiveRecord::Migration
   def change
-    add_column :platform_sites, :name, :text
+    add_column :virgo_sites, :name, :text
   end
 end

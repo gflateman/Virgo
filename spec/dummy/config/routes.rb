@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Platform::Engine => "/"
+  mount Virgo::Engine => "/"
 end

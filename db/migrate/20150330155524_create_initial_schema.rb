@@ -1,6 +1,6 @@
 class CreateInitialSchema < ActiveRecord::Migration
   def change
-    create_table :platform_users do |t|
+    create_table :virgo_users do |t|
       # Database authenticatable
       t.string :email,              :null => false, :default => ""
 
@@ -56,7 +56,7 @@ class CreateInitialSchema < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :platform_users, :email
-    add_index :platform_users, :role
+    add_index :virgo_users, :email
+    add_index :virgo_users, :role
   end
 end
