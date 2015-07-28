@@ -1,8 +1,0 @@
-= form_tag url, method: :get, class: 'search-form form-inline' do
-  = text_field_tag 'filters[term]', filter_params[:term], class: 'form-control'
-  = submit_tag "Search", class: 'btn btn-default'
-
-  - if filter_params[:term].present?
-    = link_to nil, href: url, class: 'clear-link' do
-      %i.fa.fa-times-circle-o
-      clear search

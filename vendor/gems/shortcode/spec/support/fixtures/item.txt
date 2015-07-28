@@ -1,1 +1,0 @@
-[item title="Example title 1"]Example content 1[/item]

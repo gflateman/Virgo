@@ -1,9 +1,0 @@
-= render 'form'
-
-- if Rails.application.config.post_locking_enabled
-  :coffee
-    window.post_editor_id = #{@post.editing_user_id}
-    window.post_status_interval = #{Rails.application.config.edit_lock_timeout * 1000}
-    window.post_status_grace = #{Rails.application.config.edit_lock_grace * 1000}
-    window.post_edit_status_uri = #{editing_admin_post_path(@post).to_json}
-    $ -> new PostEditLocking

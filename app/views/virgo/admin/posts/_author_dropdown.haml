@@ -1,1 +1,0 @@
-= select_tag "post[author_id]", options_for_select(Virgo::User.authors.by_name.map{|u| [u.pretty_name, u.id] }, @post.try(:author_id) || current_user.id), include_blank: false, class: 'form-control js-author-dropdown', data: {refresh_uri: author_dropdown_admin_posts_path(post_id: @post.try(:id))}
