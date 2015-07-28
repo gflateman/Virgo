@@ -29,7 +29,7 @@ Finally, for simplicity and robustness **cron** is used to publish scheduled pos
 
 If your deployment environment doesn't support cron but does support scheduled recurring jobs, you can simply wrap an invocation of
 
-    Post.publish_scheduled!
+    Virgo::Post.publish_scheduled!
 
 In a job definition and make sure it runs once every few minutes.
 
