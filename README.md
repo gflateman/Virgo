@@ -77,3 +77,8 @@ This project is very much in a "alpha" state. There are a few critical things as
 
 * True plugin architecture - there is not yet a true plugin architecture, though we do expose the ability to override all aspects of an install. We would like to introduce something resembling a plugin package system in the immediate future.
 * Better test coverage - there is good Capybara coverage of the admin workflows but very little in the way of model/controller-level testing (only very critical Post-related functionality covered).
+
+
+## License
+
+This code is released under the [GPL v2 License](http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt).
