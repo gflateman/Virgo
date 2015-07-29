@@ -9,10 +9,10 @@ Gem::Specification.new do |s|
   s.version     = Virgo::VERSION
   s.authors     = ["Nicholas Zaillian"]
   s.email       = ["nzaillian@gmail.com"]
-  s.homepage    = "http://virgo.github.io"
-  s.summary     = "A blogging engine for Rails apps"
-  s.description = "A blogging engine for Rails apps"
-  s.license     = "MIT"
+  s.homepage    = "http://caspersleep.github.io/Virgo"
+  s.summary     = "A blogging engine for Ruby on Rails"
+  s.description = "Virgo is a comprehensive team blogging tool for Ruby on Rails"
+  s.license     = "GPL v2"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
