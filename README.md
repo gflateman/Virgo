@@ -9,11 +9,11 @@ Key features of Virgo CMS include the following:
 * A WYSIWYG content editing experience modeled on WordPress
 * Serious, battle-tested performance (including an "aggressive" configuration option which allows most requests to be serviced in under 3ms reading only from Redis)
 * fine grained access controls for admins, editors, contributors, etc
-* PostgreSQL text-index-backed full text search
+* Postgres text-index-backed full text search
 * RSS
 * Social media integrations
 
-Virgo CMS is distributed as a Rails Engine structured to be easily extended and customized.
+Virgo CMS is distributed as a Rails Engine and structured to be easily extended and customized.
 
 ## Requirements
 
