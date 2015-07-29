@@ -37,9 +37,10 @@
                 %li
                   = link_to cat.name, virgo.category_path(cat)
 
-        %li.search.hidden-xs.hidden-sm.hidden-md
-          = link_to "#", class: 'navbar-search-link js-expand-search-form' do
-            %i.fa.fa-search
+      %li.search.hidden-xs.hidden-sm.hidden-md
+        = link_to "#", class: 'navbar-search-link js-expand-search-form' do
+          %i.fa.fa-search
+
       .search-form-container.js-search-form
         .search-form-wrapper
           = form_tag virgo.search_index_path, method: :post, class: 'search-form form-inline pull-left' do

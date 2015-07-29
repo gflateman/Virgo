@@ -5,7 +5,7 @@ module Virgo
     after_save :expire_containing_posts
 
     belongs_to :author, class_name: 'Virgo::User'
-    has_many :slides
+    has_many :slides, dependent: :destroy
 
     scope :search, ->(filters=nil) {
       filters ||= {}
