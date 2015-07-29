@@ -16,7 +16,7 @@ h2
   font-weight: 700
 
 .top-section
-  padding: 40px 0
+  padding: 40px 0 30px 0
 
   h1
     font-size: 57px
@@ -61,12 +61,12 @@ p.notes
   line-height: 1.62em
   margin-bottom: 22px
 
-.github-link
+.github-link, .demo-site-link
   display: inline-block
   background: #222
   color: #f7f7f7
   font-size: 28px
-  padding: 18px 21px
+  padding: 0.7em 0.8em
   border-radius: 4px
   margin: 14px auto 60px auto
 
@@ -77,5 +77,10 @@ p.notes
     &, &:hover
       text-decoration: none
       color: #f7f7f7
+.demo-site-link
+  background: #48b4fb
+  font-size: 22px
+  margin: 0 0 30px 0
 
-
+  &:hover
+    background: darken(#48b4fb, 7%)
