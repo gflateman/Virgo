@@ -416,7 +416,7 @@ DEPENDENCIES
   chromedriver-helper
   database_cleaner
   factory_girl_rails
-  virgo!
   pry
   rspec-rails
   selenium-webdriver
+  virgo!
