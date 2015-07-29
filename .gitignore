@@ -18,3 +18,5 @@
 .DS_Store
 
 spec/dummy
+
+*.gem
