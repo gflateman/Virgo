@@ -1,6 +1,6 @@
-# Virgo CMS
+# Virgo
 
-Virgo CMS is a comprehensive, WordPress-inspired blogging platform in Ruby on Rails. Virgo CMS is not a replacement for minimalist static site generators like Jekyll or Middleman (we love those tools!). Virgo CMS is for enabling a professional editorial workflow involving dozens or hundreds of non-technical contributors. It's for creating large-scale media sites, not personal blogs.
+Virgo is a comprehensive, WordPress-inspired publishing platform in Ruby on Rails. Virgo is not a replacement for minimalist static site generators like Jekyll or Middleman (we love those tools!). Rather, it is for enabling a professional editorial workflow involving dozens or hundreds of non-technical contributors. It can support anything from a personal blog to a large-scale media property.
 
 Key features of Virgo CMS include the following:
 
@@ -14,11 +14,11 @@ Key features of Virgo CMS include the following:
 * Social media integrations
 * Slideshows
 
-Virgo CMS is distributed as a Rails Engine and structured to be easily extended and customized.
+Virgo is distributed as a Rails Engine and structured to be easily extended and customized.
 
 ## Requirements
 
-Virgo CMS deeply integrates PostgreSQL (to support things such as article search) so Postgres is a requirement in both the development and production environments.
+Virgo deeply integrates PostgreSQL (to support things such as article search) so Postgres is a requirement in both the development and production environments.
 
 Redis is required for production deployments (you can configure the Redis cache store in your production.rb file):
 
@@ -36,7 +36,7 @@ In a job definition and make sure it runs once every few minutes.
 
 ## Installation
 
-Add Virgo CMS to your Gemfile:
+Add Virgo to your Gemfile:
 
     gem 'virgo'
 
@@ -44,7 +44,7 @@ Add Virgo CMS to your Gemfile:
 
     $ bundle install
 
-Next run the Virgo CMS install generator which will add a line to mount the Engine in your routes file and add some minimal views to your app's "views directory".
+Next run the Virgo install generator which will add a line to mount the Engine in your routes file and add some minimal views to your app's "views directory".
 
     $ bin/rails g virgo:install
 
@@ -54,11 +54,11 @@ Finally, run the db:migrate rake task to add the virgo_cms tables to your databa
 
 (the migrations are pulled in from the Virgo gem itself so there is nothing you need to copy into your project tree)
 
-When you now start your app server and open up your app in your web browser, you will be guided through a basic configuration process for your new Virgo blog!
+When you now start your app server and open up your app in your web browser, you will be guided through a basic configuration process for your new Virgo app!
 
 ## Customizing and Extending
 
-The Virgo CMS installer copies several templates for user-facing portion of the site into subdirectories of your views directory. You can freely modify these templates to customize your site UI.
+The installer copies several templates for user-facing portion of the site into subdirectories of your views directory. You can freely modify these templates to customize your site UI.
 
 If you wish to modify controller or model-level functionality the recommended technique is to decorate the corresponding ruby class like so:
 
