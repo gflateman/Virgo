@@ -104,7 +104,7 @@ module Virgo
 
     def notify_exception(env, exception)
       if ['production', 'staging'].include?(Rails.env)
-         env["airbrake.error_id"] = notify_airbrake(exception)
+         # stub for your exception handling code...
       end
     end
 
