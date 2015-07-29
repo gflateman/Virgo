@@ -1,6 +1,6 @@
 # Virgo CMS
 
-Virgo CMS is a comprehensive, WordPress-inspired blogging virgo in Ruby on Rails. Virgo CMS is not a replacement for minimalist static site generators like Jekyll or Middleman (we love those tools!). Virgo CMS is for enabling a professional editorial workflow involving dozens or hundreds of non-technical contributors. It's for creating large-scale media sites, not personal blogs.
+Virgo CMS is a comprehensive, WordPress-inspired blogging platform in Ruby on Rails. Virgo CMS is not a replacement for minimalist static site generators like Jekyll or Middleman (we love those tools!). Virgo CMS is for enabling a professional editorial workflow involving dozens or hundreds of non-technical contributors. It's for creating large-scale media sites, not personal blogs.
 
 Key features of Virgo CMS include the following:
 
