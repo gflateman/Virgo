@@ -13,3 +13,4 @@ spec/dummy/app/views/virgo
 dump.rdb
 .sass-cache
 .idea
+*.gem
