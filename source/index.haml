@@ -7,10 +7,10 @@
       for Ruby on Rails
 
 
-.install-section
+.install-section.section
   %h2 Installation Guide
 
-  .section
+  .subsection
     %p.info
       %span.num 1)
       Add Virgo to your Gemfile
@@ -18,7 +18,7 @@
     %code.install.code-snippet
       gem 'virgo'
 
-  .section
+  .subsection
     %p.info
       %span.num 2)
       Run bundler
@@ -26,7 +26,7 @@
     %code.install.code-snippet
       $ bundle
 
-  .section
+  .subsection
     %p.info
       %span.num 3)
       Run the Virgo install generator
@@ -34,10 +34,35 @@
     %code.install.code-snippet
       $ bin/rails generate virgo:install
 
-  .section
+  .subsection
     %p.info
       %span.num 4)
       Migrate
 
     %code.install.code-snippet
       $ bin/rake db:migrate
+
+  .spacer
+
+  %p.notes
+    Migrations are pulled from the gem itself (so you won't find Virgo migration files cluttering your app's db/migrate directory).
+
+  %p.notes
+    The Virgo install generator by default will mount the Virgo engine at the root URI ("/").
+    We do this because we assume you are running your blog application standalone and not at a sub-uri of an existing site, though
+    you can certainly do that (just change the mount URI to something different, like "/blog").
+
+  %p.notes
+    The Virgo install generator will also drop several (non-admin) views into "app/views/virgo" in your project tree. These are minimal templates meant to start you out and give you an idea of the default schema. We assume you will customize them deeply.
+
+
+.section.contributing
+  %h2 Contributing
+  %p.notes
+    You can find the Virgo source code on Github. If you are interested in implementing a feature or seeing one implemented please start
+    a discussion there!
+
+  .text-center
+    = link_to "https://github.com/CasperSleep/Virgo", class: "github-link" do
+      %i.icon.fa.fa-github
+      View on Github

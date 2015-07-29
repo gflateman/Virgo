@@ -4,4 +4,6 @@ gem 'middleman'
 
 gem 'middleman-gh-pages'
 
-gem 'bootstrap-sass', :require => false
+gem 'bootstrap-sass', require: false
+
+gem 'font-awesome-sass', require: false
