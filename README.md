@@ -70,3 +70,10 @@ If you wish to modify controller or model-level functionality the recommended te
     end
 
 You'll likely want to "bundle open virgo" for implementation details of the original classes.
+
+## Development Notes
+
+This project is very much in a "alpha" state. There are a few critical things as-yet not done that we would like to implement in the near future:
+
+* True plugin architecture - there is not yet a true plugin architecture, though we do expose the ability to override all aspects of an install. We would like to introduce something resembling a plugin package system in the immediate future.
+* Better test coverage - there is good Capybara coverage of the admin workflows but very little in the way of model/controller-level testing (only very critical Post-related functionality covered).
