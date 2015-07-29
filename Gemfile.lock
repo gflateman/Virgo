@@ -123,6 +123,3 @@ DEPENDENCIES
   bootstrap-sass
   middleman
   middleman-gh-pages
-
-BUNDLED WITH
-   1.10.4
