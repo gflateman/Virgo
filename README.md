@@ -12,6 +12,7 @@ Key features of Virgo CMS include the following:
 * Postgres text-index-backed full text search
 * RSS
 * Social media integrations
+* Slideshows
 
 Virgo CMS is distributed as a Rails Engine and structured to be easily extended and customized.
 
