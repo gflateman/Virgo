@@ -1,5 +1,5 @@
 - content_for :title do
-  = "Latest Posts | #{site.name}"
+  = "Latest Posts | #{site.try(:name)}"
 
 - cache [site_key, page_param] do
   .latest-posts-page
