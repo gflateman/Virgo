@@ -2,6 +2,10 @@
 
 Virgo is a comprehensive, WordPress-inspired publishing platform in Ruby on Rails. Virgo is not a replacement for minimalist static site generators like Jekyll or Middleman (we love those tools!). Rather, it is for enabling a professional editorial workflow involving dozens or hundreds of non-technical contributors. It can support anything from a personal blog to a large-scale media property.
 
+### <a href="http://virgo-demo.casper.com/demo_autologin" target="_blank">View a Live Demo Here!</a>
+(note: the demo link above will auto-log you in as an admin user. All site content is refreshed every 10 minutes)
+
+
 Key features of Virgo CMS include the following:
 
 * A comprehensive admin UI
