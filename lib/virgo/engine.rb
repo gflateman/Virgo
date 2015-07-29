@@ -21,6 +21,8 @@ module Virgo
 
     config.post_locking_enabled = true
 
+    config.deploy_key = Digest::MD5.hexdigest(Dir["#{Rails.root}/public/assets/**/*"].join(':'))
+
     # some dependencies must be explicitly required if used in an engine...
     require 'friendly_id'
     require 'kaminari'
