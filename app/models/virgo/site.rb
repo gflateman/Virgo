@@ -9,9 +9,9 @@ module Virgo
     def self.instance
       _instance = first
 
-      _instance = create! if _instance.nil?
+      _instance = create if _instance.nil?
 
-      _instance
+      _instance || self.new
     end
 
     def generate_dummy_data!(opts={})
