@@ -200,7 +200,6 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.string   "first_name"
       t.string   "last_name"
       t.string   "role",                   index: {name: "index_virgo_users_on_role"}
-      t.string   "nickname"
       t.boolean  "canceled"
       t.string   "avatar"
       t.boolean  "active"

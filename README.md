@@ -77,6 +77,7 @@ This project is very much in a "alpha" state. There are a few critical things as
 
 * True plugin architecture - there is not yet a true plugin architecture, though we do expose the ability to override all aspects of an install. We would like to introduce something resembling a plugin package system in the immediate future.
 * Better test coverage - there is good Capybara coverage of the admin workflows but very little in the way of model/controller-level testing (only very critical Post-related functionality covered).
+* Cleaner CSS - the present default frontend styles could probably stand to be cleaned up and simplified some. They were extracted from a live, high traffic site with a pretty complex UI and could perhaps benefit from clean rewrite.
 
 
 ## License
