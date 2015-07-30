@@ -52,13 +52,13 @@ Next run the Virgo install generator which will add a line to mount the Engine i
 
     $ bin/rails g virgo:install
 
-Finally, run the db:migrate rake task to add the virgo_cms tables to your database schema:
+Finally, run the db:migrate rake task to add virgo's tables to your database schema:
 
     $ bin/rake db:migrate
 
-When you now start your app server and open up your app in your web browser, you will be guided through a basic configuration process for your new Virgo app!
+When you now start your app server and open up your app in your web browser, you will be guided through a basic configuration process for your new Virgo install.
 
-One important note is that to support fully expanded permalink URIs in certain sections of your site in complex multi-host deployments (such as our own production deployment) we rely on a "domain" application config variable. Please be sure to include a line like the following in your config/environments/production.rb file:
+One important thing worth noting is that to support fully expanded permalink URIs in certain sections of your site in complex multi-host deployments (such as our own production deployment) we rely on a "domain" application config variable. Please be sure to include a line like the following in your config/environments/production.rb file:
 
     config.domain = "your-virgo-site-domain.com"
 
