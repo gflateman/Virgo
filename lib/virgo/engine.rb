@@ -1,6 +1,3 @@
-require 'devise'
-require 'kaminari-bootstrap'
-
 module Virgo
   class Engine < ::Rails::Engine
     isolate_namespace Virgo
@@ -22,6 +19,8 @@ module Virgo
     config.deploy_key = Digest::MD5.hexdigest(Dir["#{Rails.root}/public/assets/**/*"].join(':'))
 
     # some dependencies must be explicitly required if used in an engine...
+    require 'devise'
+    require 'kaminari-bootstrap'
     require 'friendly_id'
     require 'kaminari'
     require 'kaminari-bootstrap'
@@ -41,6 +40,7 @@ module Virgo
     require 'local_time'
     require 'tinymce-rails'
     require 'chronic'
+
     require File.expand_path("../../../vendor/gems/shortcode/lib/shortcode", __FILE__)
 
 
