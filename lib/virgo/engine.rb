@@ -13,8 +13,6 @@ module Virgo
 
     config.domain = 'localhost'
 
-    config.caching = :aggressive
-
     config.edit_lock_timeout = 8.seconds
 
     config.edit_lock_grace = 10.seconds
