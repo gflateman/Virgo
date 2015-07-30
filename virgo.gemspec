@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "Virgo is a comprehensive team blogging tool for Ruby on Rails"
   s.license     = "GPL v2"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib,vendor}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.2.2"
