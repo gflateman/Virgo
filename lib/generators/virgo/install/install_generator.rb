@@ -8,6 +8,8 @@ module Virgo
       end
 
       generate "virgo:views"
+      generate "virgo:migrations"
+      generate "virgo:schedule"
     end
 
     def app_has_engine_route?

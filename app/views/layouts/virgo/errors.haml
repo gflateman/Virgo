@@ -14,7 +14,7 @@
     - if content_for?(:title)
       %title #{yield(:title)}
     - else
-      %title= "#{site.title} | #{site.tagline}"
+      %title= "#{site.name} | #{site.tagline}"
 
     - if content_for?(:description)
       %meta{:content => yield(:description), :name => "description"}

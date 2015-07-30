@@ -56,8 +56,6 @@ Finally, run the db:migrate rake task to add the virgo_cms tables to your databa
 
     $ bin/rake db:migrate
 
-(the migrations are pulled in from the Virgo gem itself so there is nothing you need to copy into your project tree)
-
 When you now start your app server and open up your app in your web browser, you will be guided through a basic configuration process for your new Virgo app!
 
 One important note is that to support fully expanded permalink URIs in certain sections of your site in complex multi-host deployments (such as our own production deployment) we rely on a "domain" application config variable. Please be sure to include a line like the following in your config/environments/production.rb file:

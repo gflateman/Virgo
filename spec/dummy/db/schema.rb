@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722184918) do
+ActiveRecord::Schema.define(version: 20150729174510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
   enable_extension "hstore"
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",      null: false, index: {name: "index_versions_on_item_type_and_item_id", with: ["item_id"]}
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.text     "object_changes"
+  end
 
   create_table "virgo_categories", force: :cascade do |t|
     t.string   "name",              index: {name: "index_virgo_categories_on_name"}
@@ -203,7 +213,6 @@ ActiveRecord::Schema.define(version: 20150722184918) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "role",                   index: {name: "index_virgo_users_on_role"}
-    t.string   "nickname"
     t.boolean  "canceled"
     t.string   "avatar"
     t.boolean  "active"
@@ -225,26 +234,4 @@ ActiveRecord::Schema.define(version: 20150722184918) do
     t.string   "linkedin_id"
     t.string   "public_email"
   end
-
-  create_table "que_jobs", id: false, force: :cascade do |t|
-    t.integer  "priority",    limit: 2, default: 100,                                        null: false
-    t.datetime "run_at",      default: { expr: "now()" }, default: "now()",                                    null: false
-    t.integer  "job_id",      default: { expr: "nextval('que_jobs_job_id_seq'::regclass)" }, limit: 8, default: "nextval('que_jobs_job_id_seq'::regclass)", null: false
-    t.text     "job_class",   null: false
-    t.json     "args",        default: [],                                         null: false
-    t.integer  "error_count", default: 0,                                          null: false
-    t.text     "last_error"
-    t.text     "queue",       default: "",                                         null: false
-  end
-
-  create_table "versions", force: :cascade do |t|
-    t.string   "item_type",      null: false, index: {name: "index_versions_on_item_type_and_item_id", with: ["item_id"]}
-    t.integer  "item_id",        null: false
-    t.string   "event",          null: false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.datetime "created_at"
-    t.text     "object_changes"
-  end
-
 end

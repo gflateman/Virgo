@@ -15,9 +15,9 @@ Gem::Specification.new do |s|
   s.license     = "GPL v2"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "rails", ">= 4.2.2"
+  s.add_dependency "rails", "~> 4.2.2"
 
   s.add_dependency 'pg'
 
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'jquery-fileupload-rails', '0.4.5'
 
-  s.add_dependency 'font-awesome-sass', '>= 4.3.2.1'
+  s.add_dependency 'font-awesome-sass', '~> 4.3.2.1'
 
   s.add_dependency 'bootstrap-sass', '~> 3.3.5.1'
 
@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'therubyracer', '~> 0.12.2'
 
-  s.add_dependency 'redis-rails', '>= 1.5.0'
+  s.add_dependency 'redis-rails'
 
   s.add_dependency 'chronic', '~> 0.10.2'
 
@@ -79,7 +79,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'whenever', '~> 0.9.4'
 
-  s.add_dependency 'momentjs-rails', '>= 2.9.0'
+  s.add_dependency 'momentjs-rails', '~> 2.9.0'
 
   s.add_dependency 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
