@@ -12,7 +12,7 @@ module Virgo
 
     before_action :set_client_id
 
-    helper_method :render_to_string, :sort_param, :page_param, :just_confirmed?, :deploy_key, :id_param, :popular_posts_page_param, :filter_params
+    helper_method :render_to_string, :just_confirmed?, :deploy_key, :filter_params
 
 
     if Rails.env.production? || Rails.env.test?
@@ -20,9 +20,6 @@ module Virgo
       rescue_from ActiveRecord::RecordNotFound, with: :render_404
       rescue_from CanCan::AccessDenied, with: :render_404
       rescue_from ActionController::RoutingError, with: :render_404
-    end
-
-    def sitemap
     end
 
     protected
@@ -45,18 +42,6 @@ module Virgo
 
     def self.collection_actions(*extras)
       [:index, :new, :create] + extras
-    end
-
-    def page_param
-      params.permit(:page)[:page]
-    end
-
-    def sort_param
-      params.permit(:sort)[:sort]
-    end
-
-    def id_param
-      params.permit(:id)[:id]
     end
 
     def self.default_sort_order(val)
@@ -130,10 +115,6 @@ module Virgo
 
     def filter_params
       params.permit(filters: [:term])[:filters]
-    end
-
-    def popular_posts_page_param
-      params.permit(:popular_posts_page)[:popular_posts_page]
     end
 
     def init

@@ -3,7 +3,7 @@
 - search_url = pages_action? ? admin_posts_path(filters: {post_type: :page}) : admin_posts_path
 
 = form_tag search_url, method: :get, class: 'search-form form-inline pull-left' do
-  = hidden_field_tag 'sort', sort_param
+  = hidden_field_tag 'sort', params[:sort]
 
   - if pages_action?
     = hidden_field_tag 'filters[post_type]', 'page'

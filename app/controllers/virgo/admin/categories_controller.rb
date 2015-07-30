@@ -1,17 +1,16 @@
 module Virgo
   class Admin::CategoriesController < Admin::BaseController
     before_action :set_category, only: member_actions
-    helper_method :post_id_param
 
     handles_sortable_columns
 
     def index
-      if sort_param.nil?
+      if params[:sort].nil?
         flash.keep
         redirect_to admin_categories_path(sort: 'navbar_weight') and return
       end
 
-      @categories = Category.visible.order(sort_order).with_post_count.page(page_param)
+      @categories = Category.visible.order(sort_order).with_post_count.page(params[:page])
     end
 
     def new
@@ -30,7 +29,7 @@ module Virgo
       respond_to do |fmt|
         if @category.save
           fmt.json {
-            @post = Post.find_by(id: post_id_param)
+            @post = Post.find_by(id: params[:post_id])
             @post.categories << @category unless (@post.nil? || @post.categories.include?(@category))
 
             render json: {
@@ -76,15 +75,11 @@ module Virgo
     private
 
     def set_category
-      @category = Category.friendly.find(id_param)
+      @category = Category.friendly.find(params[:id])
     end
 
     def category_params
       params.permit(category: [:name, :parent_id, :display_in_navbar, :navbar_weight, :slug])[:category]
-    end
-
-    def post_id_param
-      params.permit(:post_id)[:post_id]
     end
   end
 end

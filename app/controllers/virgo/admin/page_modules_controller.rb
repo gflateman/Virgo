@@ -15,8 +15,8 @@ module Virgo
       if request.patch?
         if @page_module.update(page_module_params)
           @page_module.page_module_posts.map &:destroy
-          if post_id_params.present?
-            post_id_params.each_with_index do |post_id, index|
+          if params[:post_ids].present?
+            params[:post_ids].each_with_index do |post_id, index|
               @page_module.page_module_posts.create!(post_id: post_id, position: index)
             end
           end
@@ -49,12 +49,9 @@ module Virgo
     end
 
     def set_page_module
-      @page_module = PageModule.find(id_param)
+      @page_module = PageModule.find(params[:id])
     end
 
-    def post_id_params
-      params.permit(post_ids: [])[:post_ids]
-    end
     def page_module_params
       params.permit(page_module: [:subject_id, :subject_type, :image])[:page_module]
     end

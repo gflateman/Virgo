@@ -8,7 +8,7 @@ module Virgo
 
     def index
       authorize! :index, User
-      @users = User.search(filter_params).with_post_count.order(sort_order).page(page_param)
+      @users = User.search(filter_params).with_post_count.order(sort_order).page(params[:page])
     end
 
     def new
@@ -55,7 +55,7 @@ module Virgo
     private
 
     def set_user
-      @user = User.friendly.find(id_param)
+      @user = User.friendly.find(params[:id])
       authorize! :manage, @user
     end
 

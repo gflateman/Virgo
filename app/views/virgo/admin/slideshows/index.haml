@@ -1,5 +1,5 @@
 = form_tag admin_slideshows_path, method: :get, class: 'search-form form-inline pull-left' do
-  = hidden_field_tag 'sort', sort_param
+  = hidden_field_tag 'sort', params[:sort]
 
   = text_field_tag 'filters[term]', filter_params[:term], class: 'form-control', placeholder: 'Filter by name or ID'
   = submit_tag "Search", class: 'btn btn-default'

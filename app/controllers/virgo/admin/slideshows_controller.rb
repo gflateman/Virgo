@@ -7,12 +7,12 @@ module Virgo
     helper_method :filter_params
 
     def index
-      if sort_param.blank?
+      if params[:sort].blank?
         flash.keep
         redirect_to admin_slideshows_path(sort: '-created_at') and return
       end
 
-      @slideshows = Slideshow.joins(:author).search(filter_params).order(sort_order).page(page_param)
+      @slideshows = Slideshow.joins(:author).search(filter_params).order(sort_order).page(params[:page])
     end
 
     def new
@@ -52,7 +52,7 @@ module Virgo
     private
 
     def set_slideshow
-      @slideshow = Slideshow.find(id_param)
+      @slideshow = Slideshow.find(params[:id])
     end
 
     def slideshow_params

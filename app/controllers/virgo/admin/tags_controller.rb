@@ -1,17 +1,16 @@
 module Virgo
   class Admin::TagsController < Admin::BaseController
     before_action :set_tag, only: member_actions
-    helper_method :post_id_param
 
     handles_sortable_columns
 
     def index
-      if sort_param.blank? && filter_params.all_blank?
+      if params[:sort].blank? && filter_params.all_blank?
         flash.keep
         redirect_to admin_tags_path(sort: 'name') and return
       end
 
-      @tags = Tag.search(filter_params).with_post_count.order(sort_order).page(page_param)
+      @tags = Tag.search(filter_params).with_post_count.order(sort_order).page(params[:page])
     end
 
     def new
@@ -30,7 +29,7 @@ module Virgo
       respond_to do |fmt|
         if @tag.save
           fmt.json {
-            @post = Post.find_by(id: post_id_param)
+            @post = Post.find_by(id: params[:post_id])
             @post.tags << @tag unless (@post.nil? || @post.tags.include?(@tag))
 
             flash.now[:success] = "Tag successfully added! If you would like to add more tags you can do so below. Otherwise, close this pop-up."
@@ -80,15 +79,11 @@ module Virgo
     private
 
     def set_tag
-      @tag = Tag.friendly.find(id_param)
+      @tag = Tag.friendly.find(params[:id])
     end
 
     def tag_params
       params.permit(tag: [:name])[:tag]
-    end
-
-    def post_id_param
-      params.permit(:post_id)[:post_id]
     end
 
     def filter_params

@@ -1,11 +1,11 @@
 - mini = local_assigns.has_key?(:mini) ? mini : false
 - tabbed = local_assigns.has_key?(:tabbed) ? tabbed : tabbed_param
-- cat_id = category_id_param
+- cat_id = params[:category_id]
 - category = local_assigns.has_key?(:category) ? category : nil
-- category = Category.find_by(id: category_id_param) if category.nil?
-- tab = local_assigns.has_key?(:tab) ? tab : (tab_param.try(:to_sym) || :all)
+- category = Category.find_by(id: params[:category_id]) if category.nil?
+- tab = local_assigns.has_key?(:tab) ? tab : (params[:tab].try(:to_sym) || :all)
 
-- cache_if !action?('popular_posts'), [site_key, popular_posts_page_param, mini, tabbed, cat_id, category, tab] do
+- cache_if !action?('popular_posts'), [site_key, params[:popular_posts_page], mini, tabbed, cat_id, category, tab] do
   .most-popular-posts-box.js-popular-posts-box{class: ('mini' if mini), data: {uri: popular_posts_page_modules_path(category_id: category.try(:id))}}
     .inner
       %h3.most-popular-posts-heading Most Popular
@@ -20,29 +20,29 @@
       .loading-overlay.most-popular-posts-loading-overlay
       %ul.popular-posts.list-unstyled
         - if tab == :category
-          - posts = category.posts.most_popular.page(popular_posts_page_param).per(5)
+          - posts = category.posts.most_popular.page(params[:popular_posts_page]).per(5)
         - else
-          - posts = Post.most_popular.page(popular_posts_page_param).per(5)
+          - posts = Post.most_popular.page(params[:popular_posts_page]).per(5)
 
         - posts.each_with_index do |post, index|
           %li.popular-post
             %a.popular-post-inner{href: expanded_post_url(post)}
-              .number= (((popular_posts_page_param.try(:to_i) || 1) - 1) * 5) + index + 1
+              .number= (((params[:popular_posts_page].try(:to_i) || 1) - 1) * 5) + index + 1
               .post-headline
                 .text= post.headline
                 .author-info
                   = post_byline post, no_links: true
 
     .more-link
-      - is_first_page = popular_posts_page_param.blank? || popular_posts_page_param.to_i == 1
+      - is_first_page = params[:popular_posts_page].blank? || params[:popular_posts_page].to_i == 1
 
-      - is_last_page = ((popular_posts_page_param.try(:to_i) || 1) >= posts.total_pages)
+      - is_last_page = ((params[:popular_posts_page].try(:to_i) || 1) >= posts.total_pages)
 
-      = link_to popular_posts_path(popular_posts_page: ((popular_posts_page_param.try(:to_i) || 1) - 1), category_id: (category.try(:id) || cat_id), tabbed: tabbed, tab: tab), class: "popular-prev-link#{' first-page' if is_first_page}" do
+      = link_to popular_posts_path(popular_posts_page: ((params[:popular_posts_page].try(:to_i) || 1) - 1), category_id: (category.try(:id) || cat_id), tabbed: tabbed, tab: tab), class: "popular-prev-link#{' first-page' if is_first_page}" do
         %i.fa.fa-chevron-left
         &nbsp;Prev 5
 
-      = link_to popular_posts_path(popular_posts_page: ((popular_posts_page_param.try(:to_i) || 1) + 1), category_id: (category.try(:id) || cat_id), tabbed: tabbed, tab: tab), class: "popular-more-link#{' last-page' if is_last_page}" do
+      = link_to popular_posts_path(popular_posts_page: ((params[:popular_posts_page].try(:to_i) || 1) + 1), category_id: (category.try(:id) || cat_id), tabbed: tabbed, tab: tab), class: "popular-more-link#{' last-page' if is_last_page}" do
 
         Next 5&nbsp;
         %i.fa.fa-chevron-right

@@ -57,15 +57,11 @@ module Virgo
     end
 
     def set_slideshow
-      @slideshow = Slideshow.find(slideshow_id_param)
+      @slideshow = Slideshow.find(params[:slideshow_id])
     end
 
     def set_slide
-      @slide = Slide.find(id_param)
-    end
-
-    def slideshow_id_param
-      params.permit(:slideshow_id)[:slideshow_id]
+      @slide = Slide.find(params[:id])
     end
   end
 end

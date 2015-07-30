@@ -1,4 +1,4 @@
-- if defined?(caption_param) && caption_param.present?
-  = raw "[image name=\"#{image.name}\" caption=\"#{caption_param}\"]"
+- if defined?(params[:caption]) && params[:caption].present?
+  = raw "[image name=\"#{image.name}\" caption=\"#{params[:caption]}\"]"
 - else
   = raw "[image name=\"#{image.name}\"]"

@@ -4,7 +4,7 @@
       = form_tag do
         .media-thumbnails
           .media-thumbnails-inner
-            - if @images.empty? && page_param.blank?
+            - if @images.empty? && params[:page].blank?
               %p.empty-message
                 The media library is currently empty. Click "Upload Image" on the left to add your first image file.
 
@@ -18,7 +18,7 @@
                         = icon 'check-square'
                       = image_tag image.image.url(:thumb)
 
-          %a.paginator.js-paginate-link{href: '#', data: {page: page_param.to_i, last_page: last_page?.to_s, uri: library_panel_admin_media_modal_index_path(page: next_page_num)}, class: ('last-page' if last_page?)}
+          %a.paginator.js-paginate-link{href: '#', data: {page: params[:page].to_i, last_page: last_page?.to_s, uri: library_panel_admin_media_modal_index_path(page: next_page_num)}, class: ('last-page' if last_page?)}
             Load More
 
     .col-md-3

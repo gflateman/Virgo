@@ -1,7 +1,7 @@
 - content_for :title do
   = "Latest Posts | #{site.try(:name)}"
 
-- cache [site_key, page_param] do
+- cache [site_key, params[:page]] do
   .latest-posts-page
     .container.posts-container.latest-posts-wrap
       .row

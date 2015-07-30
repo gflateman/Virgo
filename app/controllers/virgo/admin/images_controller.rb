@@ -5,7 +5,7 @@ module Virgo
     handles_sortable_columns
 
     def index
-      @images = Image.all.search(filter_params).order(sort_order).page(page_param).per(40)
+      @images = Image.all.search(filter_params).order(sort_order).page(params[:page]).per(40)
     end
 
     def new
@@ -68,7 +68,7 @@ module Virgo
     private
 
     def set_image
-      @image = Image.friendly.find(id_param)
+      @image = Image.friendly.find(params[:id])
     end
 
     def image_params

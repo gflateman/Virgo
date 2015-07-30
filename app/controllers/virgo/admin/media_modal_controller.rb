@@ -67,7 +67,7 @@ module Virgo
     private
 
     def set_images
-      @images = Image.order(created_at: :desc).page(page_param).per(32)
+      @images = Image.order(created_at: :desc).page(params[:page]).per(32)
     end
 
     def image_params
@@ -75,19 +75,15 @@ module Virgo
     end
 
     def last_page?
-      @images && (page_param.present? ? page_param.to_i : (page_param.to_i + 1)) >= @images.total_pages
+      @images && (params[:page].present? ? params[:page].to_i : (params[:page].to_i + 1)) >= @images.total_pages
     end
 
     def next_page_num
-      page_param.present? ? (page_param.to_i + 1) : 2
+      params[:page].present? ? (params[:page].to_i + 1) : 2
     end
 
     def set_image
-      @image = Image.friendly.find(image_id_param)
-    end
-
-    def image_id_param
-      params.permit(:image_id)[:image_id]
+      @image = Image.friendly.find(params[:image_id])
     end
 
     def caption_param

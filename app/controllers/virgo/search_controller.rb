@@ -23,7 +23,7 @@ module Virgo
 
       @search = PostSearch.new(post_search_params)
 
-      @posts = Post.search_by_similarity(@search.term).page(page_param)
+      @posts = Post.search_by_similarity(@search.term).page(params[:page])
     end
 
     private

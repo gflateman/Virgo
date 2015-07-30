@@ -12,13 +12,13 @@ module Virgo
     end
 
     def show
-      @posts = @column.posts.latest.page(page_param)
+      @posts = @column.posts.latest.page(params[:page])
     end
 
     private
 
     def set_column
-      @column = Column.friendly.find(id_param)
+      @column = Column.friendly.find(params[:id])
     end
   end
 end

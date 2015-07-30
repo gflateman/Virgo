@@ -5,12 +5,12 @@ module Virgo
     handles_sortable_columns
 
     def index
-      if sort_param.nil?
+      if params[:sort].nil?
         flash.keep
         redirect_to admin_columns_path(sort: 'weight') and return
       end
 
-      @columns = Column.order(sort_order).with_post_count.page(page_param)
+      @columns = Column.order(sort_order).with_post_count.page(params[:page])
     end
 
     def new
@@ -53,7 +53,7 @@ module Virgo
     private
 
     def set_column
-      @column = Column.friendly.find(id_param)
+      @column = Column.friendly.find(params[:id])
 
       authorize! :manage, @column
     end

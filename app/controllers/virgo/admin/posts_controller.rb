@@ -7,7 +7,7 @@ module Virgo
     helper_method :filter_params, :model_name, :post_params
 
     def index
-      if sort_param.blank?
+      if params[:sort].blank?
         flash.keep
         redirect_to admin_posts_path(filters: filter_params, sort: '-publish_at') and return
       end
@@ -15,12 +15,12 @@ module Virgo
       @posts = Post.with_relations
                    .search(filter_params)
                    .order(sort_order)
-                   .page(page_param)
+                   .page(params[:page])
     end
 
     # auto-complete endpoint
     def find
-      @posts = Post.search_by_similarity(term_param)
+      @posts = Post.search_by_similarity(params[:term])
 
       render json: {
         posts: @posts
@@ -32,7 +32,7 @@ module Virgo
     end
 
     def revision_detail
-      @version = PaperTrail::Version.find(version_id_param)
+      @version = PaperTrail::Version.find(params[:version_id])
       @post = @version.item
     end
 
@@ -60,7 +60,7 @@ module Virgo
     end
 
     def author_dropdown
-      @post = Post.find_by(id: post_id_param)
+      @post = Post.find_by(id: params[:post_id])
 
       render json: {
         html: render_content(partial: "author_dropdown")
@@ -134,7 +134,7 @@ module Virgo
     private
 
     def set_post
-      @post = Post.friendly.find(id_param)
+      @post = Post.friendly.find(params[:id])
     end
 
     def post_params
@@ -150,24 +150,12 @@ module Virgo
       _post_params
     end
 
-    def post_id_param
-      params.permit(:post_id)[:post_id]
-    end
-
     def filter_params
       params.permit(filters: [:term, :post_type, :category, :month, :status, category_ids: [], tag_ids: [], user_ids: []])[:filters]
     end
 
-    def version_id_param
-      params.permit(:version_id)[:version_id]
-    end
-
     def model_name
       @post.post_type.capitalize
-    end
-
-    def term_param
-      params.permit(:term)[:term]
     end
   end
 end

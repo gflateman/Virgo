@@ -1,7 +1,7 @@
 - url = @category.new_record? ? admin_categories_path : admin_category_path(@category)
 
 = simple_form_for @category, url: url, html: {id: 'category-form'} do |f|
-  = hidden_field_tag 'post_id', post_id_param
+  = hidden_field_tag 'post_id', params[:post_id]
   = f.input :name
   = f.input :slug, label: "Permalink"
   = f.input :parent_id, label: 'Parent', as: :select, collection: Virgo::Category.where.not(id: @category.id)

@@ -19,7 +19,7 @@ module Virgo
     end
 
     def changelog
-      @versions = @site.versions.order(created_at: :desc).page(page_param)
+      @versions = @site.versions.order(created_at: :desc).page(params[:page])
     end
 
     private

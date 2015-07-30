@@ -6,5 +6,5 @@
           = render '/virgo/posts/post_thumb_box', post: post, classes: 'third-level'
 
 .show-more-wrap.text-center
-  = link_to "Load More", '#', data: {uri: more_posts_path(page: (page_param.to_i + 1))}, class: 'view-more-link block-link js-load-posts'
+  = link_to "Load More", '#', data: {uri: more_posts_path(page: (params[:page].to_i + 1))}, class: 'view-more-link block-link js-load-posts'
   -#= link_to "All Articles", latest_posts_path, class: 'view-more-link block-link'

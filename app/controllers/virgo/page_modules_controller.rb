@@ -5,19 +5,13 @@ module Virgo
                   cache_path: ->(o){ "#{deploy_key}/#{site_key}/page_modules/popular_posts/#{params[:category_id]}/#{params[:page]}" }
 
     def popular_posts
-      @category = Category.friendly.find(category_id_param) if category_id_param.present?
+      @category = Category.friendly.find(params[:category_id]) if params[:category_id].present?
       @tabbed = @category.present? ? true : false
       @tab = @category.present? ? :category : :all
 
       render json: {
         html: render_content(partial: '/virgo/page_modules/popular_posts', locals: {category: @category, tab: @tab, tabbed: @tabbed})
       }
-    end
-
-    private
-
-    def category_id_param
-      params.permit(:category_id)[:category_id]
     end
   end
 end

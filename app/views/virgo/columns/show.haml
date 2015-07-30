@@ -1,7 +1,7 @@
 - content_for :title do
   = "#{site.name} | #{@column.name}"
 
-- cache [@column, page_param] do
+- cache [@column, params[:page]] do
   .container.posts-container.column-posts
     .row
       .col-md-10.col-md-offset-1

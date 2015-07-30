@@ -2,7 +2,7 @@
   = "#{site.name} | #{@category.name}"
 
 - content_for :posts_content do
-  - cache [@category, page_param] do
+  - cache [@category, params[:page]] do
     - category_feature = Virgo::Post.category_feature(@category)
 
     - if category_feature

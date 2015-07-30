@@ -4,7 +4,7 @@ module Virgo
 
     if Rails.application.config.caching == :aggressive
       caches_action :show, if: ->{ current_user.nil? && flash.empty? },
-                    cache_path: ->(o){ "#{deploy_key}/#{site_key}/posts/#{category_id_param}/#{params[:id]}/#{post_timestamp(params[:id])}" }
+                    cache_path: ->(o){ "#{deploy_key}/#{site_key}/posts/#{params[:category_id]}/#{params[:id]}/#{post_timestamp(params[:id])}" }
 
       caches_action :index, if: ->{ current_user.nil? && flash.empty? },
                     cache_path: ->(o){ "#{deploy_key}/#{site_key}/posts/index/#{params[:page]}" }
@@ -14,18 +14,18 @@ module Virgo
     end
 
     def index
-      @posts = Post.posts.publicly_viewable.order(publish_at: :desc).page(page_param)
+      @posts = Post.posts.publicly_viewable.order(publish_at: :desc).page(params[:page])
     end
 
     def more
-      @posts = Post.order(publish_at: :desc).page(page_param).per(6).padding(6)
+      @posts = Post.order(publish_at: :desc).page(params[:page]).per(6).padding(6)
       render json: {
         html: render_content('/virgo/posts/more', layout: false)
       }
     end
 
     def latest
-      @posts = Post.posts.publicly_viewable.order(publish_at: :desc).page(page_param)
+      @posts = Post.posts.publicly_viewable.order(publish_at: :desc).page(params[:page])
     end
 
     def show
@@ -60,7 +60,7 @@ module Virgo
       # can't slam this endpoint w/ js ajax requests to artificially pump up a story)
       tracked = JSON::load(Rails.cache.fetch("tracks[#{client_id}]") || '{}')
 
-      unless tracked[id_param]
+      unless tracked[params[:id]]
         set_post
         @post.track_view!
         tracked[@post.id.to_s] = 1
@@ -77,14 +77,14 @@ module Virgo
       # params w/ a leading "&" instead of w/ a leading "?"
       # (assuming there are alread querystring params on the
       # article url I guess) - adding a catch for this here.
-      post_id = id_param
+      post_id = params[:id]
 
       post_id = (post_id.present? && post_id.include?("&")) ? post_id.slice(0..(post_id.index('&') - 1)) : post_id
 
       @post = Post.find_by_id_or_historic_slug!(post_id)
 
-      if category_id_param.present?
-        @category = Category.friendly.find(category_id_param)
+      if params[:category_id].present?
+        @category = Category.friendly.find(params[:category_id])
       else
         @category = @post.primary_category
       end
@@ -93,7 +93,7 @@ module Virgo
     end
 
     def old_path?
-      if @post && id_param != @post.slug && id_param.to_i != @post.id
+      if @post && params[:id] != @post.slug && params[:id].to_i != @post.id
         true
       end
     end

@@ -19,11 +19,7 @@ module Virgo
     private
 
     def set_page
-      @page = Post.pages.friendly.find(slug_param)
-    end
-
-    def slug_param
-      params.permit(:slug)[:slug]
+      @page = Post.pages.friendly.find(params[:slug])
     end
   end
 end

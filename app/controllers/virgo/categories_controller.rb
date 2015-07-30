@@ -6,7 +6,7 @@ module Virgo
     def show
       set_category
 
-      @posts = @category.posts.order(publish_at: :desc).page(page_param)
+      @posts = @category.posts.order(publish_at: :desc).page(params[:page])
 
       render layout: 'virgo/posts'
     end
@@ -14,7 +14,7 @@ module Virgo
     private
 
     def set_category
-      @category = Category.friendly.find(id_param)
+      @category = Category.friendly.find(params[:id])
     end
   end
 end

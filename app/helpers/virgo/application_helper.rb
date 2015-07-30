@@ -87,16 +87,8 @@ module Virgo
       end
     end
 
-    def category_id_param
-      params.permit(:category_id)[:category_id]
-    end
-
     def tabbed_param
       params.permit(:tabbed)[:tabbed].try(:to_bool)
-    end
-
-    def tab_param
-      params.permit(:tab)[:tab]
     end
 
     def site
