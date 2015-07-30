@@ -18,6 +18,12 @@ module Virgo
 
     config.deploy_key = Digest::MD5.hexdigest(Dir["#{Rails.root}/public/assets/**/*"].join(':'))
 
+    if Rails.env.test?
+      config.enable_virgo_error_handlers = true
+    else
+      config.enable_virgo_error_handlers = false
+    end
+
     # some dependencies must be explicitly required if used in an engine...
     require 'devise'
     require 'kaminari-bootstrap'

@@ -15,7 +15,11 @@ module Virgo
     helper_method :render_to_string, :just_confirmed?, :deploy_key, :filter_params
 
 
-    if Rails.env.production? || Rails.env.test?
+    # Graceful error handling - commented out b/c it is difficult (impossible?)
+    # to override these rescues in a decorator - if you like the strategy
+    # set config.enable_virgo_error_handlers = true in an initializer
+    #
+    if Rails.application.config.enable_virgo_error_handlers
       rescue_from Exception, with: :render_500
       rescue_from ActiveRecord::RecordNotFound, with: :render_404
       rescue_from CanCan::AccessDenied, with: :render_404

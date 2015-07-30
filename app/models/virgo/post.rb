@@ -214,7 +214,6 @@ module Virgo
     end
 
     def track_view!
-
       update_columns({
         view_count: (view_count + 1),
         popularity: calc_popularity(:increment)
