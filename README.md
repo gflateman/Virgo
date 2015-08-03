@@ -1,5 +1,7 @@
 # Virgo
 
+![Build status](https://circleci.com/gh/CasperSleep/Virgo.svg?style=shield&circle-token=663c869f611f10ce1054bd06ded3a6617a9e724c)
+
 Virgo is a comprehensive, WordPress-inspired publishing platform in Ruby on Rails. Virgo is not a replacement for minimalist static site generators like Jekyll or Middleman (we love those tools!). Rather, it is for enabling a professional editorial workflow involving dozens or hundreds of non-technical contributors. It can support anything from a small team blog to a large-scale media property.
 
 ### <a href="http://demo.virgo.casper.com/demo_autologin" target="_blank">View a Live Demo Here!</a>
