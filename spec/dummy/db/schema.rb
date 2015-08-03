@@ -234,4 +234,5 @@ ActiveRecord::Schema.define(version: 20150729174510) do
     t.string   "linkedin_id"
     t.string   "public_email"
   end
+
 end

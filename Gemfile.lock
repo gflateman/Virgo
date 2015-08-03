@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    virgo (0.1.5)
+    virgo (0.1.7)
       actionpack-action_caching
       bootstrap-sass (~> 3.3.5.1)
       bootstrap3-datetimepicker-rails (~> 4.14.30)
@@ -200,7 +200,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.6.1)
-    mini_magick (4.2.7)
+    mini_magick (4.2.9)
     mini_portile (0.6.2)
     minitest (5.7.0)
     modware (0.1.2)
@@ -391,7 +391,7 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     tins (1.5.4)
-    tinymce-rails (4.2.2)
+    tinymce-rails (4.2.3)
       railties (>= 3.1.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -422,6 +422,3 @@ DEPENDENCIES
   rspec-rails
   selenium-webdriver
   virgo!
-
-BUNDLED WITH
-   1.10.4
