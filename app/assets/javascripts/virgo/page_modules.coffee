@@ -154,22 +154,3 @@ class ColumnFocus
       window.location = $(this).attr('data-uri')
 
 $ -> new ColumnFocus if $('.column-box').length
-
-
-# class CategoryFocus
-#   constructor: ->
-#     $(window).resize @resize_boxes
-#     @resize_boxes()
-
-#   resize_boxes: ->
-#     max_box = {}
-
-#     $('.category-box').each ->
-#       if !max_box['height'] || max_box['height'] < $(this).height()
-#         max_box['height'] = $(this).height()
-#         max_box['element'] = this
-
-#     $('.category-box').not(max_box['element']).each ->
-#       $(this).height(max_box['height'])
-
-# $ -> new CategoryFocus if $('.category-box').length
