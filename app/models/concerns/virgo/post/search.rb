@@ -68,7 +68,7 @@ module Virgo
             parts.each_with_index do |part, i|
               vals[:"term_#{i}"] = "%#{part}%"
 
-              queries << "(virgo_posts.search_document ILIKE :term_#{i})"
+              queries << "(posts.search_document ILIKE :term_#{i})"
             end
 
             query  = queries.join(" OR ")
@@ -85,11 +85,15 @@ module Virgo
 
         scope :by_similarity_to, ->(text) {
           sanitized = connection.quote(text)
-          select("virgo_posts.*, SIMILARITY(virgo_posts.search_document, #{sanitized}) AS search_similarity").order("search_similarity DESC")
+          select("posts.*, SIMILARITY(posts.search_document, #{sanitized}) AS search_similarity").order("search_similarity DESC")
+        }
+
+        scope :search_by_headline, ->(term) {
+          Virgo::Post.where("headline ILIKE :term", term: "%#{term}%")
         }
 
         def self.reindex!
-          ::Post.find_each do |post|
+          Virgo::Post.find_each do |post|
             post.send :generate_search_document, force: true
             post.save!
           end

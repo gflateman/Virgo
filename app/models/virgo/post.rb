@@ -42,6 +42,7 @@ module Virgo
     symbolize :post_type
 
     scope :with_relations, ->{ joins(:author).preload(:author, :tags, :categories) }
+    scope :with_featured_image, ->{ where.not(featured_image_id: nil) }
 
     scope :publicly_viewable, ->{ where(status: :published, live: true).where.not(publish_at: nil) }
     scope :published, ->{ where(status: :published) }

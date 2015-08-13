@@ -109,28 +109,11 @@ return function ouibounce(el, custom_config) {
   }
 
   function checkCookieValue(cookieName, value) {
-    return parseCookies()[cookieName] === value;
-  }
-
-  function parseCookies() {
-    // cookies are separated by '; '
-    var cookies = document.cookie.split('; ');
-
-    var ret = {};
-    for (var i = cookies.length - 1; i >= 0; i--) {
-      var el = cookies[i].split('=');
-      ret[el[0]] = el[1];
-    }
-    return ret;
+    return $.cookie("viewedOuibounceModal") == value;
   }
 
   function isDisabled() {
-    // ! important! - we are temporarily ONLY going to show these on mobile
-    if (!mobileCheck()){
-      return true;
-    }
-
-    return checkCookieValue(cookieName, 'true') && !aggressive && !(window.app_env == "production" && $.cookie("ouibounceSignupOccurred") == "true");
+    return ((checkCookieValue(cookieName, 'true') && !aggressive) || (window.app_env == "production" && $.cookie("ouibounceSignupOccurred") == "true"));
   }
 
   // You can use ouibounce without passing an element
@@ -142,6 +125,8 @@ return function ouibounce(el, custom_config) {
 
     callback();
     disable();
+
+    CustomAnalytics.track("ouibounce_modal_shown")
   }
 
   function disable(custom_options) {
