@@ -31,6 +31,7 @@ $.widget("ui.multiselect", {
   options: {
     sortable: true,
     searchable: true,
+    ajaxSearchFunc: null,
     doubleClickable: true,
     animated: 'fast',
     show: 'slideDown',
@@ -142,6 +143,7 @@ $.widget("ui.multiselect", {
     this.selectedList.children('.ui-element').remove();
     this.availableList.children('.ui-element').remove();
     this.count = 0;
+    this.rowValueMapping = {};
 
     var that = this;
     var items = $(options.map(function(i) {
@@ -165,6 +167,7 @@ $.widget("ui.multiselect", {
     option = $(option);
     var node = $('<li class="ui-state-default ui-element" title="'+option.text()+'"><span class="ui-icon"/>'+option.text()+'<a href="#" class="action"><span class="ui-corner-all ui-icon"/></a></li>').hide();
     node.data('optionLink', option);
+    node.attr("data-option-val", option.val());
     return node;
   },
   // clones an item with associated data
@@ -257,6 +260,42 @@ $.widget("ui.multiselect", {
       });
     }
   },
+
+  // taken from John Resig's liveUpdate script
+  _filterByValues: function(allowedValues) {
+    var list = this.availableList;
+
+    var rows = list.children('li'),
+      cache = rows.map(function(){
+        return $(this).text().toLowerCase();
+      });
+
+    if (!allowedValues || allowedValues.length == 0) {
+      rows.show();
+    } else {
+      rows.hide();
+
+      for (var i = 0; i < allowedValues.length; i++) {
+        var item = allowedValues[i];
+        var value = item.value;
+        var label = item.label;
+        var row = rows.filter("[data-option-val='" + value + "']");
+
+        if (row.length == 0) {
+          var opt = $("<option />")
+          opt.text(label);
+          opt.val(value);
+          this.element.append(opt);
+          var row = this._getOptionNode(opt);
+          row.appendTo(this.availableList).show();
+          this._applyItemState(row, false);
+        }
+
+        row.show();
+      }
+    }
+  },
+
   _registerDoubleClickEvents: function(elements) {
     if (!this.options.doubleClickable) return;
     elements.dblclick(function(ev) {
@@ -325,7 +364,17 @@ $.widget("ui.multiselect", {
         return false;
     })
     .keyup(function() {
-      that._filter.apply(this, [that.availableList]);
+      var searchFunc = that.options.searchFunc;
+
+      if (searchFunc) {
+        var term = $(this).val();
+
+        searchFunc(term, function(results) {
+          that._filterByValues.apply(that, results);
+        });
+      } else {
+        that._filter.apply(this, [that.availableList]);
+      }
     });
   }
 });

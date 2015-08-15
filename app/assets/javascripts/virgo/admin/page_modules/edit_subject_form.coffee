@@ -24,13 +24,14 @@ class PageModuleEditSubjectForm
       @subject_id_input.val("")
 
   init_multiselect: =>
-    $('.js-post-multiselect').multiselect({
+    @post_multiselect = $('.js-post-multiselect')
+    @post_multiselect.multiselect({
       searchFunc: @search_posts
     })
 
   search_posts: (term, callback) =>
     if term != ""
-      $.get "/admin/posts/options", {term: term}, (response) =>
+      $.get @post_multiselect.attr("data-autocomplete-uri"), {term: term}, (response) =>
         callback([response.posts])
     else
       callback([null])
