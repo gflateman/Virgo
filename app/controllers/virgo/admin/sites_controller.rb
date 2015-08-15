@@ -16,6 +16,18 @@ module Virgo
       end
     end
 
+
+    def styles
+      if request.patch?
+        if @site.update(site_params)
+          flash[:notice] = "Site styles saved"
+          redirect_to admin_site_styles_path
+        else
+          render :styles
+        end
+      end
+    end
+
     private
 
     def set_site
@@ -25,7 +37,7 @@ module Virgo
     end
 
     def site_params
-      params.permit(site: [:name, :description, :tagline, :disqus_app_id, :twitter_handle, :instagram_account_name, :pinterest_account_name])[:site]
+      params.permit(site: [:name, :description, :style_overrides, :tagline, :disqus_app_id, :twitter_handle, :instagram_account_name, :pinterest_account_name])[:site]
     end
   end
 end

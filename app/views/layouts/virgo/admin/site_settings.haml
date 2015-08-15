@@ -3,10 +3,12 @@
   .row
     .col-md-8.col-md-offset-2
       %ul.nav.nav-pills
-        %li{class: ('active' if controller?('virgo/admin/sites'))}
+        %li{class: ('active' if controller?('virgo/admin/sites') && action?('edit', 'update'))}
           = link_to "Basic Settings", admin_site_edit_path
         %li{class: ('active' if controller?('virgo/admin/page_modules'))}
           = link_to "Page Modules", admin_page_modules_edit_path
+        %li{class: ('active' if controller?('virgo/admin/sites') && action?('styles'))}
+          = link_to "Site Styles", admin_site_styles_path
 
       .site-settings-inner
         = yield :site_settings_content

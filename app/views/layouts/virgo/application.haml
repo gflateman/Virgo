@@ -40,6 +40,8 @@
     = javascript_include_tag "virgo/application"
     = csrf_meta_tags
     = render '/virgo/common/header_analytics'
+    - if site.style_overrides.present?
+      %style= raw site.style_overrides
     :coffee
       window.page_url = "#{page_url}";
 

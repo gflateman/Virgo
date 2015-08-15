@@ -37,7 +37,6 @@ class Header
           $("#signup-modal .modal-dialog").replaceWith($(response.html).find(".modal-dialog"))
 
 
-
     unless (window.localStorage? && window.localStorage.getItem("emailPromptHidden") == "true")
       $(".sticky-signup-form, .navbar-spacer.large").removeClass('hidden')
 

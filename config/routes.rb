@@ -68,6 +68,7 @@ Virgo::Engine.routes.draw do
 
     get '/site/edit' => 'sites#edit'
     patch '/site' => 'sites#update'
+    match '/site/styles' => 'sites#styles', via: [:get, :patch]
 
     get '/page_modules/edit' => 'page_modules#edit'
     patch '/page_modules' => 'page_modules#update'

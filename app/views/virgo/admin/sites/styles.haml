@@ -1,0 +1,5 @@
+- content_for :site_settings_content do
+  = simple_form_for @site, url: admin_site_styles_path, method: :patch do |f|
+    = f.input :style_overrides, label: "CSS overrides", input_html: {class: 'xl'}, hint: "The style rules you add here will be placed in a \"style\" tag after all other style rules are loaded"
+
+    = f.button :submit, "Save Styles", class: "btn btn-default", data: {disable_with: "Loading..."}
