@@ -23,7 +23,7 @@ module Virgo
           if filters[:category_ids].present?
             filters[:category_ids].each_with_index do |id, i|
               items = items.joins(
-                "INNER JOIN post_categories pc#{i} ON posts.id = pc#{i}.post_id AND pc#{i}.category_id = #{id.to_i}"
+                "INNER JOIN virgo_post_categories pc#{i} ON virgo_posts.id = pc#{i}.post_id AND pc#{i}.category_id = #{id.to_i}"
               )
             end
           end
@@ -35,17 +35,17 @@ module Virgo
           if filters[:tag_ids].present?
             filters[:tag_ids].each_with_index do |id, i|
               items = items.joins(
-                "INNER JOIN post_tags pt#{i} ON posts.id = pt#{i}.post_id AND pt#{i}.tag_id = #{id.to_i}"
+                "INNER JOIN virgo_post_tags pt#{i} ON virgo_posts.id = pt#{i}.post_id AND pt#{i}.tag_id = #{id.to_i}"
               )
             end
           end
 
           if filters[:term].present?
-            items = items.where("posts.headline ILIKE :term", term: "%#{filters[:term]}%")
+            items = items.where("virgo_posts.headline ILIKE :term", term: "%#{filters[:term]}%")
           end
 
           if filters[:user_ids].present?
-            items = items.where("posts.author_id IN (?)", filters[:user_ids])
+            items = items.where("virgo_posts.author_id IN (?)", filters[:user_ids])
           end
 
           if filters[:month].present?
@@ -68,7 +68,7 @@ module Virgo
             parts.each_with_index do |part, i|
               vals[:"term_#{i}"] = "%#{part}%"
 
-              queries << "(posts.search_document ILIKE :term_#{i})"
+              queries << "(virgo_posts.search_document ILIKE :term_#{i})"
             end
 
             query  = queries.join(" OR ")
@@ -85,7 +85,7 @@ module Virgo
 
         scope :by_similarity_to, ->(text) {
           sanitized = connection.quote(text)
-          select("posts.*, SIMILARITY(posts.search_document, #{sanitized}) AS search_similarity").order("search_similarity DESC")
+          select("virgo_posts.*, SIMILARITY(virgo_posts.search_document, #{sanitized}) AS search_similarity").order("search_similarity DESC")
         }
 
         scope :search_by_headline, ->(term) {
