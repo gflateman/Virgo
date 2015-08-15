@@ -56,6 +56,7 @@ Virgo::Engine.routes.draw do
 
     resources :posts do
       get :revisions, on: :member
+      get :options, on: :collection
       get 'author_dropdown' => 'posts#author_dropdown', on: :collection
       match 'editing' => 'posts#editing', on: :member, via: [:get, :post]
       delete 'featured_image' => 'posts#delete_featured_image', on: :member

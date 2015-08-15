@@ -7,11 +7,11 @@ class PageModuleEditSubjectForm
 
     @post_select.autocomplete
       source: (request, response) =>
-        $.get "/admin/posts/find", {term: request.term}, (resp) =>
+        $.get @post_select.attr("data-autocomplete-uri"), {term: request.term}, (resp) =>
           data = []
 
           for item in resp.posts
-            data.push({label: item.headline, value: item.headline, subject_id: item.id})
+            data.push({label: item.label, value: item.label, subject_id: item.value})
 
           response(data)
 
@@ -24,6 +24,15 @@ class PageModuleEditSubjectForm
       @subject_id_input.val("")
 
   init_multiselect: =>
-    $('.js-post-multiselect').multiselect()
+    $('.js-post-multiselect').multiselect({
+      searchFunc: @search_posts
+    })
+
+  search_posts: (term, callback) =>
+    if term != ""
+      $.get "/admin/posts/options", {term: term}, (response) =>
+        callback([response.posts])
+    else
+      callback([null])
 
 window.PageModuleEditSubjectForm = PageModuleEditSubjectForm

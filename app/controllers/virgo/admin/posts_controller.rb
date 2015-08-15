@@ -18,6 +18,18 @@ module Virgo
                    .page(params[:page])
     end
 
+    def options
+      @posts = Post.search_by_headline(params[:term])
+
+      data = @posts.map { |post|
+        {value: post.id, label: truncate(post.headline, length: 100)}
+      }
+
+      render json: {
+        posts: data
+      }
+    end
+
     # auto-complete endpoint
     def find
       @posts = Post.search_by_similarity(params[:term])

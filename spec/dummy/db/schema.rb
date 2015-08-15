@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20150729174510) do
     t.boolean  "recommendations_enabled", default: true
     t.text     "name"
     t.text     "description"
+    t.text     "style_overrides"
     t.string   "disqus_app_id"
     t.string   "twitter_handle"
     t.string   "instagram_account_name"

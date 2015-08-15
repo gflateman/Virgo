@@ -4,7 +4,7 @@
       = hidden_field_tag 'page_module[subject_type]', 'Tag'
       = f.input :subject_id, as: :select, collection: Tag.order(name: :asc)
     - else
-      = f.input :subject_headline, as: :string, input_html: {id: 'page-module-subject-select'}
+      = f.input :subject_headline, as: :string, input_html: {id: 'page-module-subject-select', data: {autocomplete_uri: options_admin_posts_path}}
       = hidden_field_tag 'page_module[subject_type]', 'Post'
       = f.hidden_field :subject_id
 
