@@ -136,10 +136,10 @@ class ListSignup
           source = "footer-form"
 
         $(document).trigger("ouibounceSignupOccurred")
-        $(document).trigger("list_signup_occurred", {
+        $(document).trigger("list_signup_occurred", [{
           email: $wrap.find(".email-input").val(),
           signupSource: source
-        })
+        }])
 
       else
         $wrap.find('.list-signup-message.error').html(response.message).show()
