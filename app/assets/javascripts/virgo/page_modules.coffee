@@ -136,11 +136,11 @@ class ListSignup
           source = "footer-form"
 
         $(document).trigger("ouibounceSignupOccurred")
-        if window.analytics?
-          window.analytics.track('email_signup', {
-            email: $(".email-input").val(),
-            signupSource: source
-          })
+        $(document).trigger("list_signup_occurred", {
+          email: $wrap.find(".email-input").val(),
+          signupSource: source
+        })
+
       else
         $wrap.find('.list-signup-message.error').html(response.message).show()
 

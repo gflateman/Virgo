@@ -19,6 +19,7 @@ Key features of Virgo CMS include the following:
 * RSS
 * Social media integrations
 * Slideshows
+* Shortcodes
 
 Virgo is distributed as a Rails Engine and structured to be easily extended and customized.
 

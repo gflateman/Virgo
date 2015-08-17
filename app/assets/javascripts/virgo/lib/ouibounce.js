@@ -126,7 +126,7 @@ return function ouibounce(el, custom_config) {
     callback();
     disable();
 
-    CustomAnalytics.track("ouibounce_modal_shown")
+    $(document).trigger("ouibounce_modal_shown")
   }
 
   function disable(custom_options) {
