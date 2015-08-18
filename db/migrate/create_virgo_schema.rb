@@ -5,7 +5,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
     enable_extension "pg_trgm"
     enable_extension "hstore"
 
-    create_table "versions", force: :cascade do |t|
+    create_table "versions" do |t|
       t.string   "item_type",      null: false, index: {name: "index_versions_on_item_type_and_item_id", with: ["item_id"]}
       t.integer  "item_id",        null: false
       t.string   "event",          null: false
@@ -15,7 +15,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.text     "object_changes"
     end
 
-    create_table "virgo_categories", force: :cascade do |t|
+    create_table "virgo_categories" do |t|
       t.string   "name",              index: {name: "index_virgo_categories_on_name"}
       t.datetime "created_at"
       t.datetime "updated_at"
@@ -27,7 +27,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.boolean  "visible",           default: true, index: {name: "index_virgo_categories_on_visible"}
     end
 
-    create_table "virgo_columns", force: :cascade do |t|
+    create_table "virgo_columns" do |t|
       t.string   "name"
       t.string   "slug",        index: {name: "index_virgo_columns_on_slug"}
       t.text     "description"
@@ -37,7 +37,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
-    create_table "virgo_images", force: :cascade do |t|
+    create_table "virgo_images" do |t|
       t.integer  "user_id",           index: {name: "index_virgo_images_on_user_id"}
       t.string   "name",              index: {name: "index_virgo_images_on_name"}
       t.string   "slug",              index: {name: "index_virgo_images_on_slug"}
@@ -54,7 +54,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.text     "credit"
     end
 
-    create_table "virgo_page_module_posts", force: :cascade do |t|
+    create_table "virgo_page_module_posts" do |t|
       t.integer  "page_module_id", index: {name: "index_virgo_page_module_posts_on_page_module_id"}
       t.integer  "post_id",        index: {name: "index_virgo_page_module_posts_on_post_id"}
       t.integer  "position"
@@ -62,7 +62,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
-    create_table "virgo_page_modules", force: :cascade do |t|
+    create_table "virgo_page_modules" do |t|
       t.string   "name"
       t.string   "template_path"
       t.boolean  "enabled",            index: {name: "index_virgo_page_modules_on_enabled"}
@@ -77,18 +77,18 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.boolean  "hidden_from_admins", default: false
     end
 
-    create_table "virgo_post_categories", force: :cascade do |t|
+    create_table "virgo_post_categories" do |t|
       t.integer "post_id",     index: {name: "index_virgo_post_categories_on_post_id"}
       t.integer "category_id", index: {name: "index_virgo_post_categories_on_category_id"}
     end
 
-    create_table "virgo_post_tags", force: :cascade do |t|
+    create_table "virgo_post_tags" do |t|
       t.integer "post_id",  index: {name: "index_virgo_post_tags_on_post_id"}
       t.integer "tag_id",   index: {name: "index_virgo_post_tags_on_tag_id"}
       t.integer "position", default: 0, index: {name: "index_virgo_post_tags_on_position"}
     end
 
-    create_table "virgo_posts", force: :cascade do |t|
+    create_table "virgo_posts" do |t|
       t.string   "post_type",                       default: "post", index: {name: "index_virgo_posts_on_post_type"}
       t.string   "slug",                            index: {name: "index_virgo_posts_on_slug"}
       t.integer  "author_id",                       index: {name: "index_virgo_posts_on_author_id"}
@@ -123,7 +123,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.integer  "thumbnail_image_id",              index: {name: "index_virgo_posts_on_thumbnail_image_id"}
     end
 
-    create_table "virgo_sites", force: :cascade do |t|
+    create_table "virgo_sites" do |t|
       t.text     "tagline"
       t.datetime "created_at"
       t.datetime "updated_at"
@@ -137,7 +137,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.string   "pinterest_account_name"
     end
 
-    create_table "virgo_slides", force: :cascade do |t|
+    create_table "virgo_slides" do |t|
       t.text     "text"
       t.integer  "slideshow_id", index: {name: "index_virgo_slides_on_slideshow_id"}
       t.integer  "position",     index: {name: "index_virgo_slides_on_position"}
@@ -149,14 +149,14 @@ class CreateVirgoSchema < ActiveRecord::Migration
     end
     add_index "virgo_slides", ["image_id"], name: "index_virgo_slides_on_image_id"
 
-    create_table "virgo_slideshows", force: :cascade do |t|
+    create_table "virgo_slideshows" do |t|
       t.integer  "author_id",  index: {name: "index_virgo_slideshows_on_author_id"}
       t.string   "name"
       t.datetime "created_at"
       t.datetime "updated_at"
     end
 
-    create_table "virgo_slug_histories", force: :cascade do |t|
+    create_table "virgo_slug_histories" do |t|
       t.integer  "record_id",   index: {name: "index_virgo_slug_histories_on_record_id"}
       t.string   "record_type", index: {name: "index_virgo_slug_histories_on_record_type"}
       t.string   "slug",        index: {name: "index_virgo_slug_histories_on_slug"}
@@ -164,14 +164,14 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
-    create_table "virgo_subscribers", force: :cascade do |t|
+    create_table "virgo_subscribers" do |t|
       t.string   "email",      index: {name: "index_virgo_subscribers_on_email"}
       t.boolean  "subscribed", default: true
       t.datetime "created_at"
       t.datetime "updated_at"
     end
 
-    create_table "virgo_tags", force: :cascade do |t|
+    create_table "virgo_tags" do |t|
       t.string   "name",          index: {name: "index_virgo_tags_on_name"}
       t.datetime "created_at"
       t.datetime "updated_at"
@@ -179,7 +179,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.integer  "created_by_id", index: {name: "index_virgo_tags_on_created_by_id"}
     end
 
-    create_table "virgo_users", force: :cascade do |t|
+    create_table "virgo_users" do |t|
       t.string   "email",                  default: "",    null: false, index: {name: "index_virgo_users_on_email"}
       t.string   "encrypted_password",     default: "",    null: false
       t.string   "reset_password_token"

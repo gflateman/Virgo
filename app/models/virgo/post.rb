@@ -119,10 +119,6 @@ module Virgo
       posts.publicly_viewable.where(feature_on_front_page: true).order(publish_at: :asc).last
     end
 
-    def permalink
-      urls.post_detail_url(self, protocol: 'https')
-    end
-
     def rendered_body
       @rendered_body ||= Shortcode.process(body || '').html_safe
     end

@@ -141,13 +141,18 @@ module Virgo
       end
     end
 
+    def post_permalink_url(post)
+      virgo.post_detail_url(post, protocol: 'https')
+    end
+
+
     def rss_post(xml, post)
       xml.item {
         xml.guid(post.uuid)
         xml.pubDate(post.publish_at.to_s(:rfc822))
         xml.title(post.headline)
         xml.author(post.author.byline)
-        xml.link(post.permalink)
+        xml.link(post_permalink_url(post))
         xml.description(post.rendered_body)
 
         if post.featured_image

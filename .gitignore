@@ -9,6 +9,7 @@ spec/dummy/.sass-cache
 spec/dummy/public/uploads
 spec/dummy/app/views/layouts/virgo
 spec/dummy/app/views/virgo
+spec/dummy/db/migrate/*
 .DS_Store
 dump.rdb
 .sass-cache

@@ -11,6 +11,14 @@ class ActiveRecord::Base
     Rails.application.routes.url_helpers
   end
 
+  def virgo_urls
+    self.class.urls
+  end
+
+  def self.virgo_urls
+    Virgo::Engine.routes.url_helpers
+  end
+
   def expire_site_key
     Rails.cache.write "site_key", "site_key_#{Time.now.to_i}"
   end
