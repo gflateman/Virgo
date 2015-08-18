@@ -3,7 +3,7 @@ cache ['rss', Post.posts.publicly_viewable.order(publish_at: :desc).first, 'feed
   xml.instruct! :xml, :version => "1.0"
   xml.rss(version: '2.0', "xmlns:media" => "http://search.yahoo.com/mrss") {
     xml.channel {
-      xml.title(site.name})
+      xml.title(site.name)
       xml.link(request.host)
       xml.description(site.description)
 
