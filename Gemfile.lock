@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    virgo (0.1.14)
+    virgo (0.1.16)
       actionpack-action_caching
       bootstrap-sass (~> 3.3.5.1)
       bootstrap3-datetimepicker-rails (~> 4.14.30)
