@@ -75,6 +75,7 @@ class CreateVirgoSchema < ActiveRecord::Migration
       t.string   "image"
       t.boolean  "can_set_posts",      default: false
       t.boolean  "hidden_from_admins", default: false
+      t.boolean "has_image", default: false
     end
 
     create_table "virgo_post_categories" do |t|
