@@ -217,6 +217,14 @@ module Virgo
       })
     end
 
+    def epoch_seconds(t)
+      (t.to_i - epoch.to_i).to_f
+    end
+
+    def epoch
+      DateTime.zero.to_time
+    end
+
     # based on reddit "hot" algorithm:
     # https://gist.github.com/jrochkind/2636355
     def calc_popularity
