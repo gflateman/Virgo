@@ -1,5 +1,5 @@
-cache ['rss', Post.posts.publicly_viewable.order(publish_at: :desc).first, 'feed'] do
-  @posts = Post.posts.publicly_viewable.order(publish_at: :desc).limit(@limit)
+cache ['rss', Virgo::Post.posts.publicly_viewable.order(publish_at: :desc).first, 'feed'] do
+  @posts = Virgo::Post.posts.publicly_viewable.order(publish_at: :desc).limit(@limit)
   xml.instruct! :xml, :version => "1.0"
   xml.rss(version: '2.0', "xmlns:media" => "http://search.yahoo.com/mrss") {
     xml.channel {
