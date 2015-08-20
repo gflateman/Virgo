@@ -9,7 +9,6 @@ module Virgo
 
       generate "virgo:views"
       generate "virgo:migrations"
-      generate "virgo:assets"
       generate "virgo:schedule"
     end
 
