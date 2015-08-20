@@ -7,19 +7,18 @@
 #= require jquery-ui/sortable
 #= require jquery-ui/draggable
 #= require jquery-fileupload/basic
-#= require ./common
 #= require bootstrap
 #= require select2
 #= require moment
 #= require local_time
 #= require bootstrap-datetimepicker
-#= require ./lib/manifest
-#= require ../tinymce/manifest
-#= require_tree ./common
-#= require_tree ./components
-#= require_tree ./admin
-#= require_tree ./posts
-#= require ./page_modules
+#= require virgo/lib
+#= require tinymce/manifest
+#= require virgo/common
+#= require virgo/admin
+#= require virgo/components
+#= require virgo/posts
+#= require virgo/page_modules
 #= require_self
 
 $ ->

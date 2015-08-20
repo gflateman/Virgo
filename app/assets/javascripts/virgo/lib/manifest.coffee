@@ -1,5 +1,5 @@
-#= require ./jquery.pjax
-#= require ./jquery.cookie
-#= require ./jquery_ext
-#= require ./jquery.browser
-#= require ./ouibounce
+#= require virgo/lib/jquery.pjax
+#= require virgo/lib/jquery.cookie
+#= require virgo/lib/jquery_ext
+#= require virgo/lib/jquery.browser
+#= require virgo/lib/ouibounce
