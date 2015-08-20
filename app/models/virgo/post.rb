@@ -119,10 +119,6 @@ module Virgo
       posts.publicly_viewable.where(feature_on_front_page: true).order(publish_at: :asc).last
     end
 
-    def permalink
-      urls.post_detail_url(self, protocol: 'https')
-    end
-
     def rendered_body
       @rendered_body ||= Shortcode.process(body || '').html_safe
     end
@@ -217,29 +213,33 @@ module Virgo
     def track_view!
       update_columns({
         view_count: (view_count + 1),
-        popularity: calc_popularity(:increment)
+        popularity: calc_popularity
       })
     end
 
-    def calc_popularity(opt=nil)
+    def epoch_seconds(t)
+      (t.to_i - epoch.to_i).to_f
+    end
+
+    def epoch
+      DateTime.zero.to_time
+    end
+
+    # based on reddit "hot" algorithm:
+    # https://gist.github.com/jrochkind/2636355
+    def calc_popularity
       unless publish_at.nil?
-        # the number of days ago the very oldest post was made
-        days_ago_max = (Time.now - Post.minimum(:publish_at))/86400
-        days_ago = (Time.now - publish_at)/86400
+        s = view_count
+        displacement = Math.log( [s.abs, 1].max,  10 )
+        sign = if s > 0
+          1
+        elsif s < 0
+          -1
+        else
+          0
+        end
 
-        # ex oldest post gets age_percentage 0.0, newest post gets 1.
-        age_percentage = (1 - (days_ago/(days_ago_max || 1.0)))
-
-        # boost from today to 10x...
-        age_percentage = 10 if publish_at.to_date == Date.today
-
-        # age factor is a number in the range of 0.1 - 1.00
-        # that is used to moderate the weight of votes for this post
-        age_factor = 0.1 + (0.9*age_percentage)
-
-        basis = opt == :increment ? (view_count + 1) : view_count
-
-        basis * age_factor
+        rank = (displacement * sign.to_f) + ( epoch_seconds(publish_at) / 45000 )
       else
         0
       end

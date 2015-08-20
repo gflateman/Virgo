@@ -1,11 +1,11 @@
 - content_for :site_settings_content do
   = simple_form_for @page_module, url: admin_edit_page_module_subject_path(@page_module) do |f|
     - if @page_module.name == "Tag Focus"
-      = hidden_field_tag 'page_module[subject_type]', 'Tag'
+      = hidden_field_tag 'page_module[subject_type]', 'Virgo::Tag'
       = f.input :subject_id, as: :select, collection: Virgo::Tag.order(name: :asc)
     - else
       = f.input :subject_headline, as: :string, input_html: {id: 'page-module-subject-select', data: {autocomplete_uri: options_admin_posts_path}}
-      = hidden_field_tag 'page_module[subject_type]', 'Post'
+      = hidden_field_tag 'page_module[subject_type]', 'Virgo::Post'
       = f.hidden_field :subject_id
 
     - if @page_module.can_set_posts?
@@ -21,8 +21,8 @@
 
     .clear
 
-    - if @page_module.name == "Tag Focus"
-      = f.input :image, label: "Background image"
+    - if @page_module.has_image
+      = f.input :image, label: "Image"
       - if @page_module.image.present?
         .form-group
           %label
