@@ -10,8 +10,8 @@ module Virgo
 
     belongs_to :subject, polymorphic: true
 
-    has_many :page_module_posts
-    has_many :posts, through: :page_module_posts
+    has_many :page_module_posts, class_name: 'Virgo::PageModulePost'
+    has_many :posts, through: :page_module_posts, class_name: 'Virgo::Post'
 
     scope :enabled, ->{ where(enabled: true) }
 
