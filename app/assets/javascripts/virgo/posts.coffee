@@ -1,0 +1,1 @@
+#= require virgo/posts/show

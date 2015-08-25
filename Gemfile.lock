@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    virgo (0.1.16)
+    virgo (0.2.3)
       actionpack-action_caching
       bootstrap-sass (~> 3.3.5.1)
       bootstrap3-datetimepicker-rails (~> 4.14.30)
@@ -327,7 +327,7 @@ GEM
     schema_plus_columns (0.1.0)
       activerecord (~> 4.2)
       schema_plus_indexes (~> 0.1)
-    schema_plus_core (0.5.1)
+    schema_plus_core (0.6.0)
       activerecord (~> 4.2)
       schema_monkey (~> 2.1)
     schema_plus_db_default (0.1.0)
@@ -374,7 +374,7 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
-    sprockets (3.3.1)
+    sprockets (3.3.2)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
@@ -422,3 +422,6 @@ DEPENDENCIES
   rspec-rails
   selenium-webdriver
   virgo!
+
+BUNDLED WITH
+   1.10.4

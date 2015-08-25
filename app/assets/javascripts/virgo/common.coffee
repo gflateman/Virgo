@@ -1,3 +1,5 @@
+#= require virgo/common/manifest
+
 class EllipseFix
   @run: ->
     $("span.ellipse").each ->

@@ -58,7 +58,7 @@ module Virgo
     end
 
     def expanded_post_url(post, extra_opts={})
-      post_detail_url(post)
+      virgo.post_detail_url(post)
     end
 
     def site_key
