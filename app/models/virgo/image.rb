@@ -17,7 +17,7 @@ module Virgo
       items = all
 
       if filters[:term].present?
-        items = items.where("images.name ILIKE :term", term: "%#{filters[:term]}%")
+        items = items.where("virgo_images.name ILIKE :term", term: "%#{filters[:term]}%")
       end
 
       items
