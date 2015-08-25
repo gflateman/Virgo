@@ -13,7 +13,7 @@ module Virgo
 
     def edit_subject
       if request.patch?
-        if @page_module.update(page_module_params)
+        if page_module_params.nil? || @page_module.update(page_module_params)
           @page_module.page_module_posts.map &:destroy
           if params[:post_ids].present?
             params[:post_ids].each_with_index do |post_id, index|

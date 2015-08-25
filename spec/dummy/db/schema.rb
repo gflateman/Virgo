@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729174510) do
+ActiveRecord::Schema.define(version: 20150818154711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150729174510) do
     t.string   "image"
     t.boolean  "can_set_posts",      default: false
     t.boolean  "hidden_from_admins", default: false
+    t.boolean  "has_image",          default: false
   end
 
   create_table "virgo_post_categories", force: :cascade do |t|
@@ -143,6 +144,7 @@ ActiveRecord::Schema.define(version: 20150729174510) do
     t.boolean  "recommendations_enabled", default: true
     t.text     "name"
     t.text     "description"
+    t.text     "style_overrides"
     t.string   "disqus_app_id"
     t.string   "twitter_handle"
     t.string   "instagram_account_name"
