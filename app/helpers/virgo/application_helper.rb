@@ -110,7 +110,7 @@ module Virgo
 
       _url += ":#{request.port}" if request.port.present? && request.port != 80 && request.port != 443
 
-      _url += request.original_fullpath
+      _url += request.path
     end
   end
 end
