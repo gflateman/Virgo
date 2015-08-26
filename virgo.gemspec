@@ -93,8 +93,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'tinymce-rails', '~> 4.2.1'
 
-  s.add_dependency 'non-stupid-digest-assets'
-
   s.add_dependency 'htmlentities', '~> 4.3.4'
 
   s.add_dependency 'faker', '~> 1.4.3'

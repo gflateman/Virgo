@@ -56,6 +56,8 @@ module Virgo
 
     ActionView::Base.send :include, ::LocalTimeHelper
 
+    config.tinymce.install = :copy
+
     config.to_prepare do
       # Load application's model / class decorators
       Dir["#{Rails.root}/app/**/*_decorator*.rb"].each do |c|
