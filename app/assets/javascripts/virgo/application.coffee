@@ -36,15 +36,3 @@ $ ->
   $('a.cancel-events').click (e) -> e.preventDefault()
 
   $('body').addClass("browser-#{$.browser.name}")
-
-
-  # uncomment to force modal to continue to appear (after first dismissal) in dev/staging environments
-  # if window.app_env == "staging" or window.app_env == "development"
-  #   $.cookie("viewedOuibounceModal", false)
-
-  # initialize ouibounce modal
-  ouibounce($('#ouibounce-modal')[0], {cookieExpire: 7})
-
-  $('#ouibounce-modal .js-close-modal, #ouibounce-modal .underlay').click (e) ->
-    e.preventDefault()
-    $('#ouibounce-modal').fadeOut(200)
