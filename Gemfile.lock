@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    virgo (0.3)
+    virgo (0.3.3)
       actionpack-action_caching
       bootstrap-sass (~> 3.3.5.1)
       bootstrap3-datetimepicker-rails (~> 4.14.30)
@@ -87,7 +87,7 @@ GEM
     archive-zip (0.7.0)
       io-like (~> 0.3.0)
     arel (6.0.3)
-    autoprefixer-rails (5.2.1.2)
+    autoprefixer-rails (5.2.1.3)
       execjs
       json
     bcrypt (3.1.10)
@@ -190,7 +190,7 @@ GEM
       rails
     key_struct (0.4.2)
     libv8 (3.16.14.11)
-    local_time (1.0.2)
+    local_time (1.0.3)
       coffee-rails
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
@@ -214,7 +214,7 @@ GEM
     paper_trail (3.0.8)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
-    parslet (1.7.0)
+    parslet (1.7.1)
       blankslate (>= 2.0, <= 4.0)
     pg (0.18.2)
     pry (0.10.1)
@@ -362,7 +362,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    simple_form (3.1.0)
+    simple_form (3.1.1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     simplecov (0.10.0)
@@ -391,7 +391,7 @@ GEM
       railties (>= 3.1.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unf (0.1.4)

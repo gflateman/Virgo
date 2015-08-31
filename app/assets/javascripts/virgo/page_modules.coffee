@@ -1,3 +1,5 @@
+window.virgo_page_modules ?= {}
+
 class PostThumbs
   constructor: ->
     @bind_events()
@@ -35,8 +37,9 @@ class PostThumbs
   raise_thumb_overlay: (thumb) =>
     thumb.addClass('expanded')
 
-
 $ -> new PostThumbs if $('.post-thumb-box').length
+
+window.virgo_page_modules.PostThumbs = PostThumbs
 
 class PopularPosts
   constructor: ->
@@ -76,10 +79,7 @@ class PopularPosts
     $.get $box.attr("data-uri"), (response) =>
       $box.html($(response.html).html())
 
-
-
-$ -> new PopularPosts if $('.popular-post').length
-
+window.virgo_page_modules.PopularPosts = PopularPosts
 
 class LatestPosts
   constructor: ->
@@ -100,6 +100,8 @@ class LatestPosts
           @loading = false
 
 $ -> new LatestPosts if $('.latest-posts-box').length
+
+window.virgo_page_modules.LatestPosts = LatestPosts
 
 class ListSignup
   constructor: ->
@@ -144,8 +146,9 @@ class ListSignup
       else
         $wrap.find('.list-signup-message.error').html(response.message).show()
 
-
 $ -> new ListSignup if $('.list-signup').length
+
+window.virgo_page_modules.ListSignup = ListSignup
 
 
 class ColumnFocus
@@ -154,3 +157,5 @@ class ColumnFocus
       window.location = $(this).attr('data-uri')
 
 $ -> new ColumnFocus if $('.column-box').length
+
+window.virgo_page_modules.ColumnFocus = ColumnFocus
