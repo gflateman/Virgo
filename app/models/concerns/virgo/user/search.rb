@@ -18,11 +18,11 @@ module Virgo
               vals[:"term_#{i}"] = "%#{part}%"
 
               queries << \
-                "(users.email ILIKE :term_#{i} OR " +
-                "users.first_name ILIKE :term_#{i} OR " +
-                "users.last_name ILIKE :term_#{i} OR " +
-                "users.username ILIKE :term_#{i} OR " +
-                "users.byline ILIKE :term_#{i})"
+                "(virgo_users.email ILIKE :term_#{i} OR " +
+                "virgo_users.first_name ILIKE :term_#{i} OR " +
+                "virgo_users.last_name ILIKE :term_#{i} OR " +
+                "virgo_users.username ILIKE :term_#{i} OR " +
+                "virgo_users.byline ILIKE :term_#{i})"
             end
 
             query  = queries.join(" OR ")
