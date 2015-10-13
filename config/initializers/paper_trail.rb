@@ -6,7 +6,7 @@ module PaperTrail
     scope :by_date, ->{ order(created_at: :desc) }
 
     def version_user
-      @version_user ||= User.find_by(id: whodunnit)
+      @version_user ||= Virgo::User.find_by(id: whodunnit)
     end
 
     def pretty_changes
