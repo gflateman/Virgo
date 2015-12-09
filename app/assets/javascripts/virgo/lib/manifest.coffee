@@ -3,3 +3,4 @@
 #= require virgo/lib/jquery_ext
 #= require virgo/lib/jquery.browser
 #= require virgo/lib/ouibounce
+#= require virgo/lib/jquery-ui-multiselect
