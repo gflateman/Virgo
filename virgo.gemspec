@@ -75,7 +75,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'friendly_id', '~> 5.1.0'
 
-  s.add_dependency 'select2-rails', '~> 4.0.0'
+  s.add_dependency 'select2-rails', '~> 3.5.9.3'
 
   s.add_dependency 'whenever', '~> 0.9.4'
 
