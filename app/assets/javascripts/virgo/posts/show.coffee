@@ -17,10 +17,13 @@ class PostShow
 
 
   is_video_embed_url: (url) =>
-    provider = url.match(/https?:\/\/(:?www.)?(\w*)/)[2]
+    url_parts = url.match(/https?:\/\/(:?www.)?(\w*)/)
 
-    if provider == 'youtube' or provider == 'vimeo' or provider == 'player' or provider == 'youtu.be'
-      return true
+    if url_parts >= 3
+      provider = url_parts
+
+      if provider == 'youtube' or provider == 'vimeo' or provider == 'player' or provider == 'youtu.be'
+        return true
 
     false
 
