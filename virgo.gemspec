@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'jquery-ui-rails'
 
-  s.add_dependency 'schema_plus', '~> 2.0.0'
+  s.add_dependency 'schema_plus', '>= 1.8.9'
 
   s.add_dependency 'jquery-fileupload-rails', '0.4.5'
 
