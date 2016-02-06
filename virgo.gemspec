@@ -73,7 +73,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'mini_magick'
 
-  s.add_dependency 'friendly_id', '~> 5.1.0'
+  s.add_dependency 'friendly_id', '>= 5.0.5'
 
   s.add_dependency 'select2-rails', '>= 3.5.9.1'
 
