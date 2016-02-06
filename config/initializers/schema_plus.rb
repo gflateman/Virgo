@@ -1,5 +1,5 @@
-require 'schema_plus'
+# require 'schema_plus'
 
-SchemaPlus::ForeignKeys.setup do |config|
-  config.auto_create = false
-end
+# SchemaPlus::ForeignKeys.setup do |config|
+#   config.auto_create = false
+# end
