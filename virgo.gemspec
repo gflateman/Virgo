@@ -87,7 +87,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'actionpack-action_caching'
 
-  s.add_dependency 'paper_trail', '~> 3.0.8'
+  s.add_dependency 'paper_trail', '>= 3.0.8'
 
   s.add_dependency 'local_time', '~> 1.0.2'
 
