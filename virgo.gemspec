@@ -67,7 +67,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'sdoc'
 
-  s.add_dependency 'devise', '~> 3.5.1'
+  s.add_dependency 'devise', '>= 3.2.4'
 
   s.add_dependency 'carrierwave', '~> 0.10.0'
 
