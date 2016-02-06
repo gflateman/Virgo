@@ -1,6 +1,6 @@
 module Virgo
   class User < ActiveRecord::Base
-    include User::Search
+    # include User::Search
 
     extend FriendlyId
 
